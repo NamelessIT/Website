@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ID=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" /></head>
+    <!-- <script src="https://unpkg.com/dom-event/dist/dom-event.min.js"></script> -->
+<body id="background">
+    
+    <section id="header" >        
+        <a href="#"><img src="img/logo.png" class="logo" alt=""></a>    
+        <div>
+            <ul class="bar">
+                <li><a class="active" href="#">HOME</a></li>
+                
+                <li class="navigate nav-menu">
+                    <h3 class="a">MENU 
+                        <i id="iconupdown" class="fa fa-chevron-up" aria-hidden="true"></i>
+                    </h3>
+                    <div class="outside invisible">
+                        <ul class="js-nav ">
+                            <li class="li-checkbox">
+                                <input type="checkbox">
+                                <h3>Trà Sữa</h3> 
+                            </li>
+                            <li class="li-checkbox">
+                                <input type="checkbox">
+                                <h3>Trà</h3>  
+                            </li>
+                            <li class="li-checkbox">
+                                <input type="checkbox"> 
+                                <h3>Bánh</h3> 
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <!-- làm 1 cái checkbox để tick vào phân loại sản phẩm -->
+                <li class="navigate"> 
+                    <h3 class="a">STORE</h3>
+                    <ul class="nav invisible">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+                </li>
+                <li class="navigate"> 
+                    <h3 class="a">CONTACT</h3>
+                    <ul class="nav invisible" style="left: 9px !important;">
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i></li>
+                        <li>3</li>
+                    </ul>
+                </li>
+                <!-- làm hover hạ xuống 1 hình chữ nhật  -->
+                <li class="navigate"> 
+                    <h3 class="a">ABOUT</h3>
+                    <ul class="nav invisible">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                    </ul>
+                </li>
+                <!-- <li><a href="#">Hirer</a></li> -->
+               <div class="bar icon-bar" id="user">
+                <li> <h3 class="a"><i class="fa fa-shopping-bag" ></i></h3></li>
+                <!-- hiện ra khi thêm 1 sản phẩm và tính tổng -->
+                <li><h3 class="a"><i class="fa fa-user"></i></h3></li>
+                <!-- hiện tài khoản và có thể đăng xuất và sẽ có thêm quản lý tài khoản nếu đó là admin -->
+                </div>
+            </ul>
+        <!-- có các thanh trượt dọc xuống các bar nhỏ -->
+        </div>
+        
+        
+    </section>
+    <section id="banner1" class="img img0">
+        <h4 class="TieuDe display">Well come to</h4>
+        <h1 class="TieuDe">SGU COFFEE</h1>
+        <!-- <p>Chương trình giảm giá 20%</p> Đã Xong -->
+        <!-- <button>Mua ngay</button> Đã Xong -->
+        <div class="icon">
+            <span class="dot-icon active"></span>
+            <span class="dot-icon"></span>
+            <span class="dot-icon"></span>
+            
+        </div>
+
+    </section>
+
+
+    <!-- sản phẩm -->
+    <section id="product1">
+        <h1>Sản phẩm phổ biến</h1>
+        <div class="pro-container">
+            <div class="pro-admin">
+                <!-- FOR ADMIN -->
+                <img src="img/add.png" >
+                <div class="des">
+                <span>TITLE</span>
+                <h5>NAME</h5>        
+                <h4>PRICE</h4>
+                </div>            
+                <div><i class="fa fa-shopping-cart cart" style="background-color: red !important;"></i></div>                    
+            </div>
+                <!-- END -->
+                <div class="pro" data-img="img/pro1.png">
+                    <img src="img/pro1.png" alt="Product image">
+                    <div class="des">
+                      <span>Trà sữa</span>
+                      <h5>Trà sữa trân châu</h5>
+                      <h4>50.000đ</h4>
+                    </div>
+                    <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+                  </div>
+                  
+            
+            <div class="pro" data-img="img/pro2.png">
+                <img src="img/pro2.png" alt="Product image">
+                <div class="des">
+                  <span>Trà sữa</span>
+                  <h5>Trà sữa trân châu</h5>
+                  <h4>50.000đ</h4>
+                </div>
+                <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
+              </div>
+              
+        </div>
+    </section>
+    <!-- kết thúc -->
+
+    <!--Chi tiết sản phẩm  -->
+    <div class="modal invisible">
+        <div class="modal-container animationTransmision">
+            <div class="fa fa-times icon close">
+                <i></i>
+            </div>
+            <div class="modal-body">
+                <div class="img">
+                    <img src="img/pro2.png" >
+                </div>
+                <div class="properties">
+                    <h2 style="margin-bottom: 15px;color: red;">Trà sữa trân châu</h2> 
+                    <h4 style="margin: 5px;">Gía: 50.000đ</h4>
+                    <h4 style="margin: 8px 5px;">Số lượng: <input type="number" pattern="[1-9]+"></h4>
+                    <a href="#"><i class="fa fa-shopping-cart cart" ></i>MUA</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- kết thúc -->
+    <!-- MODAL FOR ADMIN -->
+    <div class="modal-admin invisible">
+        <div class="modal-container animationTransmision">
+            <div class="fa fa-times icon close">
+                <i></i>
+            </div>
+            <div class="modal-body">
+                <div class="img">
+                    <img src="img/white.png" >
+                </div>
+                <div class="properties">
+                    <div class="flex-box">
+                        <h3 class="Title" style="margin-bottom: 15px;color: red;">NAME:</h3> 
+                        <input id="TenSanPham" class="SoLuong" type="text" >
+                    </div>
+                    <div class="flex-box">
+                        <h4 class="Title" style="margin: 5px;">Gía: </h4>
+                        <input id="GiaBan" class="SoLuong" type="number" pattern="[1-9]+">
+                    </div>
+                    <div class="flex-box">
+                        <h4 class="Title" style="margin: 8px 5px;">Số lượng: </h4>
+                        <input id="SoLuongMua"  type="number" pattern="[1-9]+">
+                    </div>
+                    <a class="Accept" href="#">XÁC NHẬN</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END -->
+
+    <!-- javascripts mở menu chi tiết sản phẩm -->
+
+
+
+<!-- kết thúc -->
+
+
+
+    <script src="testscripts.js"></script>
+</body>
+</html>

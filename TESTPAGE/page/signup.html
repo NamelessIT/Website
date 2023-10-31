@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="signup.css">
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" /></head>
+</head>
+<body id="signup">
+    <section class="signup-img">      
+    </section>
+    <section class="signup-de">
+        <div class="wrapper">   
+        <form class="input-box">
+            <h1>Sign in</h1>
+            <div class="form-group">
+                <i class="fa fa-key"></i>
+                <input placeholder="Email" id="USERNAME" class="form-input username" type="text" required>
+            </div>
+            <div class="form-group">
+                <i class="fa fa-lock"></i>
+                    <input type="password" id="PASSWORD" class="form-input password" placeholder="Password" required>
+                <div id="eyes">
+                    <i class="fa fa-eye"></i>
+                </div>
+            </div>
+            <input type="submit" value="Login" class="form-submit login">
+            <h1 id="OR">------Or------</h1>
+            <input type="submit" value="Sign up" class="form-submit signup">
+
+        </form>
+        </div>
+    </section>
+<!-- THONG BAO -->
+
+    <div id="toast"></div>
+
+
+
+
+
+
+
+    <script src="signup.js"></script>
+
+<!-- SCRIPTS THÔNG BÁO -->
+<script>
+    function showErrorToast() {
+    toast({
+      title: "Thất bại!",
+      message: "Bạn đã nhập sai Username hoặc Password.Vui lòng nhập lại",
+      type: "error",
+      duration: 5000
+    });
+  }
+
+</script>
+
+
+<script>
+    // Toast function
+function toast({ title = "", message = "", type = "info", duration = 3000 }) {
+  const main = document.getElementById("toast");
+  if (main) {
+    const toast = document.createElement("div");
+
+    // Auto remove toast
+    const autoRemoveId = setTimeout(function () {
+      main.removeChild(toast);
+    }, duration + 1000);
+
+    // Remove toast when clicked
+    toast.onclick = function (e) {
+      if (e.target.closest(".toast__close")) {
+        main.removeChild(toast);
+        clearTimeout(autoRemoveId);
+      }
+    };
+
+    const icons = {
+      // success: "fas fa-check-circle",
+      // info: "fas fa-info-circle",
+      warning: "fas fa-exclamation-circle",
+      error: "fas fa-exclamation-circle"
+    };
+    const icon = icons[type];
+    const delay = (duration / 1000).toFixed(2);
+
+    toast.classList.add("toast", `toast--${type}`);
+    toast.style.animation = `slideInLeft ease .3s, fadeOut linear 1s ${delay}s forwards`;
+
+    toast.innerHTML = `
+                    <div class="toast__icon">
+                        <i class="${icon}"></i>
+                    </div>
+                    <div class="toast__body">
+                        <h3 class="toast__title">${title}</h3>
+                        <p class="toast__msg">${message}</p>
+                    </div>
+                    <div class="toast__close">
+                        <i class="fas fa-times"></i>
+                    </div>
+                `;
+    main.appendChild(toast);
+  }
+}
+</script>
+<!-- KẾT THÚC THÔNG BÁO -->
+
+    
+</body>
+</html>

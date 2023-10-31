@@ -1,0 +1,187 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Spartan', sans-serif;
+}
+
+body {
+    /* background-color: red; */
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    border-width: 10px;
+}
+
+.signup-img {
+    width: 60%;
+    height: 100%;
+    background-color: grey;
+    background-image: url('../img/login-background.jpeg');
+}
+.signup-de {
+    width: 40%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    
+    /* background-color: aqua; */
+}
+.wrapper {
+    display: flex;
+    width: 60%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    
+}.input-box {
+    background-color: white;
+    height: 100%;
+    
+    text-align: center;
+    flex-grow: 1;
+    padding: 100px 30px 40px;
+    /* box-shadow: 0px 0px 17px 2px rgba(3, 0, 0, 0.8); */
+    /* padding: 20px 50px 20px; */
+}
+.input-box h1 {
+    font-size: 30px;
+    color: black;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.form-group {
+    border-bottom: 1px solid #0e0e0e;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+}
+.form-group i {
+    /* color: #fff; */
+    font-size: 20px;
+    padding-top: 5px;
+    padding-right: 5px;
+}
+.form-input {
+    background: transparent;
+    border: 20px;
+    outline: 20px;
+    /* border-radius: 10px; */
+    color: black;
+    flex-grow: 1;
+}
+.form-input::placeholder {
+    color: rgba(0, 0, 0, 0.936);
+    
+}
+.form-submit {
+    background: transparent;
+    border: 1px solid black;
+    background-color: #0974f7bc;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    width: 80%;
+    text-transform: uppercase;
+    padding: 12px 20px;
+    transition: 0.1s ease-in-out;
+    margin-top: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.form-submit:hover {
+    background-color: #0073ff;
+    box-shadow: 0px 0px 5px 0px rgba(3, 0, 0, 0.221);
+
+}
+#OR {
+    margin-top: 40px;
+}
+/* THÔNG BÁO */
+#toast {
+    position: fixed;
+    top: 32px;
+    right: 32px;
+    z-index: 999999;
+  }
+  
+  .toast {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 2px;
+    padding: 20px 0;
+    min-width: 400px;
+    max-width: 450px;
+    border-left: 4px solid;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+    transition: all linear 0.3s;
+  }
+  .toast--warning {
+    border-color: #ffc021;
+  }
+  
+  .toast--warning .toast__icon {
+    color: #ffc021;
+  }
+  
+  .toast--error {
+    border-color: #ff623d;
+  }
+  
+  .toast--error .toast__icon {
+    color: #ff623d;
+  }
+  
+  .toast + .toast {
+    margin-top: 24px;
+  }
+  
+  .toast__icon {
+    font-size: 24px;
+  }
+  
+  .toast__icon,
+  .toast__close {
+    padding: 0 16px;
+  }
+  
+  .toast__body {
+    flex-grow: 1;
+  }
+  
+  .toast__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .toast__msg {
+    font-size: 14px;
+    color: #888;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+  
+  .toast__close {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+  }
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(calc(100% + 32px));
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+    }
+  }
