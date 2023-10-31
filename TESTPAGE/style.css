@@ -336,10 +336,34 @@ body {
 #product1 .pro:hover,.pro-admin:hover {
     box-shadow: 20px 20px 30px rgba(0,0,0,0.123);
 }
+#product1 .pro:hover img{
+    opacity: 0.7;
+}
+#product1 .pro .icon-menu{
+    display: none;
+}
+#product1 .pro:hover .icon-menu{
+    display: block !important;
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    background-color: #ccc;
+    padding: 8px;
+    border-radius: 60px;
+    width: 28px;
+    text-align: center;
+}
+#product1 .pro .icon-menu:hover{
+    opacity: 0.5;
+}
 #product1 .pro img,.pro-admin img {
     width: 100%;
     border-radius: 20px;
+    position: relative;
     /* background-color: rgba(128, 128, 128, 0.17); */
+ }
+ #product1 .pro-admin:hover{
+    opacity: 0.5;
  }
  #product1 .pro .des,.pro-admin .des {
     text-align: start;
@@ -349,6 +373,10 @@ body {
  #product1 .pro .des span,.pro-admin .des span {
     color:#22222281;
     font-size: 12px;
+ }
+ #product1 .pro .des .MaSP{
+    display: inline;
+    font-size: 10px;
  }
 
  #product1 .pro .des h5,.pro-admin .des h5 {
@@ -439,7 +467,7 @@ body {
     align-items: baseline;
  }
  .modal-admin .flex-box .Title{
-    min-width: 52px;
+    min-width: 65px;
  }
  .modal-admin .flex-box .SoLuong{
     flex: 1;

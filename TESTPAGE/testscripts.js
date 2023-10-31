@@ -320,26 +320,186 @@ var close_admin = document.querySelector('.modal-admin .close');
 var modalImage_admin = document.querySelector('.modal-admin .modal-body img');
 var inputs=document.querySelectorAll('.SoLuong');
 var accept=document.querySelector('.Accept');
+
+
+const productImage = document.createElement('img');
+productImage.alt = 'Product image';
+
 openadd.addEventListener('click',function(){
   add.classList.remove('invisible');
 })
 function finish() {
   add.classList.add('invisible');
+  const MASP=document.getElementById("MaSanPham");
+  const TDSP=document.getElementById("TIEUDE");
   const TenSanPham = document.getElementById("TenSanPham");
   const GiaBan = document.getElementById("GiaBan");
-  const SoLuongMua = document.getElementById("SoLuongMua");
-  var valueTen=TenSanPham.value;
-  var valueGia=GiaBan.value;
-  var valueSo=SoLuongMua.value;
-
+  MASP.value=0;
+  TDSP.value='';
   TenSanPham.value='';
   GiaBan.value=0;
-  SoLuongMua.value=0;
 
   modalImage_admin.src="img/white.png";
 }
-accept.addEventListener('click',finish);
 close_admin.addEventListener('click',finish);
 
 
 // tạo thêm sản phẩm
+class Pro {
+  constructor(container, img, ma, tieude, name, price, icon) {
+    this.container = container;
+    this.img = img;
+    this.ma = ma;
+    this.tieude = tieude;
+    this.name = name;
+    this.price = price;
+    this.icon = icon;
+
+    this.element = document.createElement('div');
+    this.element.classList.add('pro');
+    this.element.setAttribute('data-img', img);
+
+    const productImage = document.createElement('img');
+    productImage.src = img;
+    productImage.alt = 'Product image';
+
+    const iIcon = document.createElement('i');
+    iIcon.classList.add('icon-menu');
+    iIcon.classList.add('fa');
+    iIcon.classList.add('fa-ellipsis-v');
+
+    const description = document.createElement('div');
+    description.classList.add('des');
+
+    const Ten = document.createElement('span');
+    Ten.textContent = tieude;
+
+    const productName = document.createElement('h5');
+    productName.textContent = name;
+
+    const productPrice = document.createElement('h4');
+    productPrice.textContent = price;
+
+    const addToCartButton = document.createElement('a');
+    addToCartButton.href = '#';
+    addToCartButton.innerHTML = '<i class="fa fa-shopping-cart cart"></i>';
+
+    description.appendChild(productName);
+    description.appendChild(productPrice);
+
+    this.element.appendChild(productImage);
+    this.element.appendChild(iIcon);
+    this.element.appendChild(description);
+    this.element.appendChild(addToCartButton);
+
+    this.container.appendChild(this.element);
+  }
+}
+
+
+
+
+
+// Lấy ảnh từ trong máy.
+
+
+
+
+modalImage_admin.addEventListener('click', function() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+
+  input.addEventListener('change', function() {
+    const file = input.files[0];
+
+    // Lấy URL của ảnh.
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      modalImage_admin.src = e.target.result;
+      productImage.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+  });
+
+  input.click();
+});
+
+//KẾT THÚC
+
+
+const proContainer = document.querySelector('.pro-container');
+
+// Lưu trữ thông tin của sản phẩm vào local storage.
+function saveProduct(pro) {
+  const products = JSON.parse(localStorage.getItem('products') || '[]');
+  products.push(pro);
+  localStorage.setItem('products', JSON.stringify(products));
+}
+
+// Lấy thông tin của sản phẩm từ local storage.
+function getProducts() {
+  const products = JSON.parse(localStorage.getItem('products') || '[]');
+  return products;
+}
+
+// Khi bấm vào nút `Accept`, lưu trữ thông tin của sản phẩm mới vào local storage.
+accept.addEventListener('click', function() {
+  const ma = document.getElementById('MaSanPham').value;
+  const tieude = document.getElementById('TIEUDE').value;
+  const tenSanPham = document.getElementById('TenSanPham').value;
+  const giaBan = document.getElementById('GiaBan').value;
+
+  const newPro = new Pro(proContainer, productImage.src, ma, tieude, tenSanPham, giaBan);
+
+  // Lưu trữ thông tin của sản phẩm mới vào local storage.
+  saveProduct(newPro);
+
+  // Đóng modal.
+  add.classList.add('invisible');
+
+  // Xóa giá trị của các input.
+  document.getElementById('MaSanPham').value = 0;
+  document.getElementById('TIEUDE').value = '';
+  document.getElementById('TenSanPham').value = '';
+  document.getElementById('GiaBan').value = 0;
+
+  // Reset hình ảnh của modal.
+  modalImage_admin.src = 'img/white.png';
+});
+
+// Khi trang được tải, lấy thông tin của sản phẩm từ local storage và hiển thị chúng trên trang.
+window.addEventListener('load', function() {
+  const products = getProducts();
+
+  for (const pro of products) {
+    const newPro = new Pro(proContainer, pro.img, pro.tieude, pro.ma, pro.name, pro.price);
+  }
+});
+
+
+// xóa sản phẩm
+
+
+// // Lấy danh sách các sản phẩm được lưu trữ trong local storage.
+// const products = JSON.parse(localStorage.getItem('products') || '[]');
+
+// // Tìm kiếm sản phẩm cần xóa.
+// const proToDelete = products.find(pro => pro.img === 'img/pro1.png');
+
+// // Xóa sản phẩm khỏi danh sách.
+// products.splice(products.indexOf(proToDelete), 1);
+
+// // Lưu lại danh sách sản phẩm đã cập nhật.
+// localStorage.setItem('products', JSON.stringify(products));
+
+// // Xóa vĩnh viễn sản phẩm.
+// localStorage.removeItem('products');
+
+
+
+// localStorage.clear();
+
+
+// KẾT THÚC
