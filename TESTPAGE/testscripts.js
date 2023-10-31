@@ -274,41 +274,7 @@ timeoutId=setTimeout(chuyen,2000);
 
 
 
-// SẢN PHẨM
-var products = document.querySelectorAll('.pro');
-var Propertie = document.querySelector('.modal');
-var InPropertie = document.querySelector('.modal-container');
-var close = document.querySelector('.close');
-var modalImage = document.querySelector('.modal img');
-var input = document.querySelector('.SoLuong');
 
-function showProperties(e) {
-  Propertie.classList.remove('invisible');
-
-  // Get the image url of the clicked product
-  const imageURL = e.target.closest('.pro').getAttribute('data-img');
-
-  // Set the image url of the modal image
-  modalImage.src = imageURL;
-}
-
-function closeProperties() {
-  Propertie.classList.add('invisible');
-  input.value = 0;
-}
-
-products.forEach(pro => {
-  pro.addEventListener('click', showProperties);
-});
-
-close.addEventListener('click', closeProperties);
-Propertie.addEventListener('click', closeProperties);
-InPropertie.addEventListener('click', function(event) {
-  event.stopPropagation();
-});
-
-
-// KẾT THÚC SẢN PHẨM
 
 
 
@@ -479,9 +445,11 @@ window.addEventListener('load', function() {
   const products = getProducts();
 
   for (const pro of products) {
-    const newPro = new Pro(proContainer, pro.img, pro.tieude, pro.ma, pro.name, pro.price);
+    const newPro = new Pro(proContainer, pro.img, pro.ma, pro.tieude, pro.name, pro.price);
   }
 });
+
+
 
 
 // xóa sản phẩm
@@ -508,3 +476,78 @@ window.addEventListener('load', function() {
 
 
 // KẾT THÚC
+
+
+
+
+// SẢN PHẨM
+
+// Lấy danh sách các sản phẩm đã lưu trữ trong local storage.
+const products = localStorage.getItem('products');
+
+// Giải mã chuỗi JSON.
+const productsJSON = decodeURI(products);
+
+// Chuyển đổi chuỗi JSON sang danh sách các đối tượng JavaScript.
+const proList = JSON.parse(productsJSON);
+
+// Thêm sự kiện click cho các sản phẩm.
+proList.forEach(pro => {
+  // Kiểm tra xem có sản phẩm nào trong DOM có id là `product-${pro.id}` hay không.
+  const proObj = document.querySelector(`#product-${pro.id}`);
+
+  // Nếu có sản phẩm, thì thêm sự kiện click cho sản phẩm đó.
+  if (proObj) {
+    proObj.addEventListener('click', () => {
+      console.log(proObj);
+    });
+  }
+});
+
+
+
+
+
+
+
+var pros = document.querySelectorAll('.pro');
+var Propertie = document.querySelector('.modal');
+var InPropertie = document.querySelector('.modal-container');
+var close = document.querySelector('.close');
+var modalImage = document.querySelector('.modal img');
+var input = document.querySelector('.SoLuong');
+
+function showProperties(e) {
+  // Get the modal element from the document
+  const modal = document.querySelector('.modal');
+
+  // Remove the invisible class from the modal
+  modal.classList.remove('invisible');
+
+  // Get the image url of the clicked product
+  const imageURL = e.target.closest('.pro').getAttribute('data-img');
+
+  // Set the image url of the modal image
+  modalImage.src = imageURL;
+}
+
+
+function closeProperties() {
+  Propertie.classList.add('invisible');
+  input.value = 0;
+}
+
+
+for (const pro of pros) {
+  pro.addEventListener('click',showProperties);
+}
+
+close.addEventListener('click', closeProperties);
+Propertie.addEventListener('click', closeProperties);
+InPropertie.addEventListener('click', function(event) {
+  event.stopPropagation();
+});
+
+
+
+// KẾT THÚC SẢN PHẨM
