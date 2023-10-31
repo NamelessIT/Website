@@ -374,6 +374,10 @@ class Pro {
     const Ten = document.createElement('span');
     Ten.textContent = tieude;
 
+    const maSP=document.createElement('h5');
+    maSP.classList.add('MaSP');
+    maSP.textContent=ma;
+
     const productName = document.createElement('h5');
     productName.textContent = name;
 
@@ -383,7 +387,8 @@ class Pro {
     const addToCartButton = document.createElement('a');
     addToCartButton.href = '#';
     addToCartButton.innerHTML = '<i class="fa fa-shopping-cart cart"></i>';
-
+    Ten.appendChild(maSP);
+    description.appendChild(Ten);
     description.appendChild(productName);
     description.appendChild(productPrice);
 
