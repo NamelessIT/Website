@@ -353,8 +353,9 @@ body {
  }
  #product1 .pro:hover .modal-adjust{
     display: block !important;
- }
- #product1 .pro .adjust{
+}
+#product1 .pro .adjust{
+    z-index: 1;
     position: absolute;
     top: 25%;
     left: 0;

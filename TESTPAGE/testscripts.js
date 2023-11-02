@@ -542,7 +542,8 @@ function getModals() {
 }
 
 // Khi bấm vào nút `Accept`, lưu trữ thông tin của sản phẩm mới vào local storage.
-accept.addEventListener('click', function() {
+accept.addEventListener('click', chapnhan);
+  function chapnhan() {
   const ma = document.getElementById('MaSanPham').value;
   const tieude = document.getElementById('TIEUDE').value;
   const tenSanPham = document.getElementById('TenSanPham').value;
@@ -557,7 +558,7 @@ accept.addEventListener('click', function() {
     // Không thực hiện các hành động tiếp theo
     return false;
   }
-  const newmodal = new Modal(MODAL,productImage.src, tenSanPham,giaBan);
+  const newmodal = new Modal(MODAL,productImage.src, tenSanPham,"Giá: "+giaBan);
   const newPro = new Pro(proContainer, productImage.src," #" +ma, tieude, tenSanPham, giaBan+"đ");
 
   // Lưu trữ thông tin của sản phẩm mới vào local storage.
@@ -576,11 +577,51 @@ accept.addEventListener('click', function() {
   // Reset hình ảnh của modal.
   modalImage_admin.src = 'img/add.png';
   
-});
+};
 function reload() {
   // Tải lại trang
   location.reload();
 }
+
+// xóa product khỏi local storage
+
+function deleteProduct(product) {
+  // Lấy danh sách các sản phẩm từ local storage
+  const products = JSON.parse(localStorage.getItem('products') || '[]');
+
+  // Tìm vị trí của sản phẩm cần xóa
+  const index = products.findIndex((p) => p.id === product.id);
+
+  // Nếu tìm thấy, thì xóa sản phẩm khỏi danh sách
+  if (index !== -1) {
+    products.splice(index, 1);
+  }
+
+  // Lưu lại danh sách các sản phẩm đã cập nhật vào local storage
+  localStorage.setItem('products', JSON.stringify(products));
+}
+
+
+
+// xóa modal khỏi local storage
+function deleteModal(modal) {
+  // Lấy danh sách các modal từ local storage
+  const modals = JSON.parse(localStorage.getItem('modals') || '[]');
+
+  // Tìm vị trí của modal cần xóa
+  const index = modals.findIndex((m) => m.id === modal.id);
+
+  // Nếu tìm thấy, thì xóa modal khỏi danh sách
+  if (index !== -1) {
+    modals.splice(index, 1);
+  }
+
+  // Lưu lại danh sách các modal đã cập nhật vào local storage
+  localStorage.setItem('modals', JSON.stringify(modals));
+}
+
+
+
 
 // Khi trang được tải, lấy thông tin của sản phẩm từ local storage và hiển thị chúng trên trang.
 window.addEventListener('load', function() {
@@ -593,16 +634,42 @@ window.addEventListener('load', function() {
   for(const modal of modals){
     const newmodal=new Modal(MODAL,modal.imgSrc,modal.name,modal.price);
   }
+// tạo 1 list pro và modal dưới dạng js
+
+
 
   const productElements = Array.from(document.querySelectorAll('.pro'));
   const modalElements=Array.from(document.querySelectorAll('.modal'));
- 
+//  tạo list dạng nodediv
 
   // các biến và hàm cho sản phẩm
 
  
  var modalImage = document.querySelector('.modal img');
- 
+ var delPros=document.querySelectorAll('.delete');
+ var adjusts=document.querySelectorAll('.rewrite');
+
+ delPros.forEach((del,index) => {
+  del.addEventListener('click',function(){
+    console.log('đã click delete');
+    deleteProduct(products[index]);
+    deleteModal(modals[index]);
+    reload();
+  })
+
+    del.addEventListener('click',function(event){
+      event.stopPropagation();
+    })
+
+ });
+ adjusts.forEach((adjust,index) => {
+  adjust.addEventListener('click',function(){
+    console.log('đã click adjust');
+  })
+  adjust.addEventListener('click',function(event){
+    event.stopPropagation();
+  })
+});
  
 //  var input = document.querySelector('.SoLuong');
  
@@ -634,8 +701,9 @@ window.addEventListener('load', function() {
       })
   });
 
- // KẾT THÚC MỞ MODAL
- // ĐÓNG MODAL
+ // KẾT THÚC MỞ MODAL và ĐÓNG MODAL
+//  chỉnh sửa và xóa pro
+
 
  
 
