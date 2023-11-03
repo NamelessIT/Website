@@ -131,7 +131,9 @@
 
     <!-- MODAL -->
 
-    <div id="MODAL"></div>
+    <div id="MODAL">
+
+    </div>
 
     <!-- KẾT THÚC MODAL -->
 
@@ -169,6 +171,41 @@
     </div>
     <!-- END -->
 
+    <!-- ADJUST -->
+
+    <div class="modal-ADJUST invisible">
+        <div class="modal-container_ADJUST animationTransmision">
+            <div class="fa fa-times icon close">
+                <i></i>
+            </div>
+            <div class="modal-body_ADJUST">
+                <div class="img">
+                    <img src="img/add.png" title="Nhấn để thêm ảnh" >
+                </div>
+                <div class="properties">
+                    <div class="flex-box">
+                        <h4 class="Title" style="margin: 8px 5px;">Mã Sản Phẩm </h4>
+                        <input id="MaSanPham" class="SoLuong" type="number" pattern="[1-9]{4}" required placeholder="#0000">
+                    </div>
+                    <div class="flex-box">
+                        <h3 class="Title" style="margin-bottom: 15px;">TITLE:</h3> 
+                        <input id="TIEUDE" class="SoLuong" type="text" required>
+                    </div>
+                    <div class="flex-box">
+                        <h3 class="Title" style="margin-bottom: 15px;color: red;">NAME:</h3> 
+                        <input id="TenSanPham" class="SoLuong" type="text" required>
+                    </div>
+                    <div class="flex-box">
+                        <h4 class="Title" style="margin: 5px 0;">Gía: </h4>
+                        <input id="GiaBan" class="SoLuong" type="number" pattern="[1-9]+" placeholder="000.000đ" >
+                    </div>
+                    <button class="ADJUST" >XÁC NHẬN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KẾT THÚC -->
 
 
     <!-- javascripts mở menu chi tiết sản phẩm -->

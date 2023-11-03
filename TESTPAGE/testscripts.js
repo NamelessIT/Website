@@ -284,6 +284,7 @@ var add=document.querySelector('.modal-admin');
 var InPropertie_admin = document.querySelector('.modal-admin .modal-container');
 var close_admin = document.querySelector('.modal-admin .close');
 var modalImage_admin = document.querySelector('.modal-admin .modal-body img');
+var modalImage_adjust=document.querySelector('.modal-ADJUST .modal-body_ADJUST img')
 var inputs=document.querySelectorAll('.SoLuong');
 var accept=document.querySelector('.Accept');
 
@@ -315,7 +316,7 @@ function finish() {
   TenSanPham.value='';
   GiaBan.value=0;
 
-  modalImage_admin.src="img/white.png";
+  modalImage_admin.src="img/add.png";
 }
 close_admin.addEventListener('click',finish);
 
@@ -478,7 +479,9 @@ class Modal {
 
 
 
-modalImage_admin.addEventListener('click', function() {
+modalImage_admin.addEventListener('click',LayAnh );
+modalImage_adjust.addEventListener('click',LayAnh);
+function LayAnh() {
   const input = document.createElement('input');
   input.type = 'file';
   input.accept = 'image/*';
@@ -497,7 +500,7 @@ modalImage_admin.addEventListener('click', function() {
   });
 
   input.click();
-});
+};
 
 //KẾT THÚC
 
@@ -620,6 +623,10 @@ function deleteModal(modal) {
   localStorage.setItem('modals', JSON.stringify(modals));
 }
 
+// hàm chỉnh sửa thông tin sản phẩm
+
+
+
 
 
 
@@ -648,6 +655,12 @@ window.addEventListener('load', function() {
  var modalImage = document.querySelector('.modal img');
  var delPros=document.querySelectorAll('.delete');
  var adjusts=document.querySelectorAll('.rewrite');
+ var modal_adjust=document.querySelector('.modal-ADJUST');
+ var close_adjust=document.querySelector('.modal-container_ADJUST .icon')
+
+ close_adjust.addEventListener('click',function(){
+  modal_adjust.classList.add('invisible');
+ })
 
  delPros.forEach((del,index) => {
   del.addEventListener('click',function(){
@@ -665,6 +678,7 @@ window.addEventListener('load', function() {
  adjusts.forEach((adjust,index) => {
   adjust.addEventListener('click',function(){
     console.log('đã click adjust');
+    modal_adjust.classList.remove('invisible');
   })
   adjust.addEventListener('click',function(event){
     event.stopPropagation();
