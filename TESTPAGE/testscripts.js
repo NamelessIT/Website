@@ -284,7 +284,7 @@ var add=document.querySelector('.modal-admin');
 var InPropertie_admin = document.querySelector('.modal-admin .modal-container');
 var close_admin = document.querySelector('.modal-admin .close');
 var modalImage_admin = document.querySelector('.modal-admin .modal-body img');
-var modalImage_adjust=document.querySelector('.modal-ADJUST .modal-body_ADJUST img')
+var modalImage_adjust=document.querySelector('.modal-ADJUST .modal-body_ADJUST img');
 var inputs=document.querySelectorAll('.SoLuong');
 var accept=document.querySelector('.Accept');
 
@@ -408,59 +408,59 @@ class Modal {
     this.element.classList.add('modal');
     this.element.classList.add('invisible');
 
-    this.modalContainer = document.createElement('div');
-    this.modalContainer.classList.add('modal-container');
-    this.modalContainer.classList.add('animationTransmision');
+    const modalContainer = document.createElement('div');
+    modalContainer.classList.add('modal-container');
+    modalContainer.classList.add('animationTransmision');
 
-    this.closeButton = document.createElement('i');
-    this.closeButton.classList.add('fa');
-    this.closeButton.classList.add('fa-times');
-    this.closeButton.classList.add('icon');
-    this.closeButton.classList.add('close');
+    const closeButton = document.createElement('i');
+    closeButton.classList.add('fa');
+    closeButton.classList.add('fa-times');
+    closeButton.classList.add('icon');
+    closeButton.classList.add('close');
 
-    this.modalBody = document.createElement('div');
-    this.modalBody.classList.add('modal-body');
+    const modalBody = document.createElement('div');
+    modalBody.classList.add('modal-body');
 
-    this.imgDiv = document.createElement('div');
-    this.imgDiv.classList.add('img');
-    this.img = document.createElement('img');
-    this.img.src = this.imgSrc;
-    this.imgDiv.appendChild(this.img);
+    const imgDiv = document.createElement('div');
+    imgDiv.classList.add('img');
+    const img = document.createElement('img');
+    img.src = imgSrc;
+    imgDiv.appendChild(img);
 
-    this.propertiesDiv = document.createElement('div');
-    this.propertiesDiv.classList.add('properties');
-    this.nameH2 = document.createElement('h2');
-    this.nameH2.style.marginBottom = '15px';
-    this.nameH2.style.color = 'red';
-    this.nameH2.textContent = this.name;
-    this.priceH4 = document.createElement('h4');
-    this.priceH4.style.margin = '5px';
-    this.priceH4.textContent = price;
-    this.quantityH4 = document.createElement('h4');
-    this.quantityH4.style.margin = '8px 5px';
-    this.quantityH4.textContent = 'Số lượng:';
-    this.quantityInput = document.createElement('input');
-    this.quantityInput.type = 'number';
-    this.quantityInput.pattern = '[1-9]+';
-    this.quantityInput.style.display='inline';
-    this.buyButton = document.createElement('button');
-    this.buyButton.classList.add('Mua');
-    this.buyButton.innerHTML = '<i class="fa fa-shopping-cart cart"></i>MUA';
+    const propertiesDiv = document.createElement('div');
+    propertiesDiv.classList.add('properties');
+    const nameH2 = document.createElement('h2');
+    nameH2.style.marginBottom = '15px';
+    nameH2.style.color = 'red';
+    nameH2.textContent = name;
+    const priceH4 = document.createElement('h4');
+    priceH4.style.margin = '5px';
+    priceH4.textContent = price;
+    const quantityH4 = document.createElement('h4');
+    quantityH4.style.margin = '8px 5px';
+    quantityH4.textContent = 'Số lượng:';
+    const quantityInput = document.createElement('input');
+    quantityInput.type = 'number';
+    quantityInput.pattern = '[1-9]+';
+    quantityInput.style.display='inline';
+    const buyButton = document.createElement('button');
+    buyButton.classList.add('Mua');
+    buyButton.innerHTML = '<i class="fa fa-shopping-cart cart"></i>MUA';
 
     
-    this.propertiesDiv.appendChild(this.nameH2);
-    this.propertiesDiv.appendChild(this.priceH4);
-    this.propertiesDiv.appendChild(this.quantityH4);
-    this.propertiesDiv.appendChild(this.quantityInput);
-    this.propertiesDiv.appendChild(this.buyButton);
-    this.quantityH4.appendChild(this.quantityInput);
+    propertiesDiv.appendChild(nameH2);
+    propertiesDiv.appendChild(priceH4);
+    propertiesDiv.appendChild(quantityH4);
+    propertiesDiv.appendChild(quantityInput);
+    propertiesDiv.appendChild(buyButton);
+    quantityH4.appendChild(quantityInput);
 
-    this.modalBody.appendChild(this.imgDiv);
-    this.modalBody.appendChild(this.propertiesDiv);
+    modalBody.appendChild(imgDiv);
+    modalBody.appendChild(propertiesDiv);
 
-    this.modalContainer.appendChild(this.closeButton);
-    this.modalContainer.appendChild(this.modalBody);
-    this.element.appendChild(this.modalContainer);
+    modalContainer.appendChild(closeButton);
+    modalContainer.appendChild(modalBody);
+    this.element.appendChild(modalContainer);
 
     // this.modalContainer.addEventListener('click', (event) => {
     //   if (event.target === this.modalContainer || event.target === this.closeButton) {
@@ -493,6 +493,7 @@ function LayAnh() {
     const reader = new FileReader();
     reader.onload = function(e) {
       modalImage_admin.src = e.target.result;
+      modalImage_adjust.src=e.target.result;
       productImage.src = e.target.result;   // biến chứa url ảnh
     };
 
@@ -500,7 +501,9 @@ function LayAnh() {
   });
 
   input.click();
-};
+}; 
+//
+
 
 //KẾT THÚC
 
@@ -544,6 +547,7 @@ function getModals() {
   return modals;
 }
 
+
 // Khi bấm vào nút `Accept`, lưu trữ thông tin của sản phẩm mới vào local storage.
 accept.addEventListener('click', chapnhan);
   function chapnhan() {
@@ -561,10 +565,11 @@ accept.addEventListener('click', chapnhan);
     // Không thực hiện các hành động tiếp theo
     return false;
   }
-  const newmodal = new Modal(MODAL,productImage.src, tenSanPham,"Giá: "+giaBan);
-  const newPro = new Pro(proContainer, productImage.src," #" +ma, tieude, tenSanPham, giaBan+"đ");
+  const newmodal = new Modal(MODAL,productImage.src, tenSanPham,giaBan);
+  const newPro = new Pro(proContainer, productImage.src,ma, tieude, tenSanPham, giaBan); 
+  
 
-  // Lưu trữ thông tin của sản phẩm mới vào local storage.
+  // Lưu trữ thông tin của sản phẩm mới vào local storage. ở dạng String
   saveProduct(newPro);
   saveModal(newmodal);
   reload();
@@ -588,17 +593,17 @@ function reload() {
 
 // xóa product khỏi local storage
 
-function deleteProduct(product) {
+function deleteProduct(position) {
   // Lấy danh sách các sản phẩm từ local storage
-  const products = JSON.parse(localStorage.getItem('products') || '[]');
+  const products = getProducts();
 
-  // Tìm vị trí của sản phẩm cần xóa
-  const index = products.findIndex((p) => p.id === product.id);
-
-  // Nếu tìm thấy, thì xóa sản phẩm khỏi danh sách
-  if (index !== -1) {
-    products.splice(index, 1);
+  // Kiểm tra vị trí xóa có hợp lệ hay không
+  if (position < 0 || position >= products.length) {
+    return;
   }
+
+  // Xóa sản phẩm khỏi danh sách tại vị trí được truyền vào
+  products.splice(position, 1);
 
   // Lưu lại danh sách các sản phẩm đã cập nhật vào local storage
   localStorage.setItem('products', JSON.stringify(products));
@@ -606,24 +611,99 @@ function deleteProduct(product) {
 
 
 
+
 // xóa modal khỏi local storage
-function deleteModal(modal) {
+function deleteModal(position) {
   // Lấy danh sách các modal từ local storage
-  const modals = JSON.parse(localStorage.getItem('modals') || '[]');
+  const modals = getModals();
 
-  // Tìm vị trí của modal cần xóa
-  const index = modals.findIndex((m) => m.id === modal.id);
-
-  // Nếu tìm thấy, thì xóa modal khỏi danh sách
-  if (index !== -1) {
-    modals.splice(index, 1);
+  // Kiểm tra vị trí xóa có hợp lệ hay không
+  if (position < 0 || position >= modals.length) {
+    return;
   }
+
+  // Xóa modal khỏi danh sách tại vị trí được truyền vào
+  modals.splice(position, 1);
 
   // Lưu lại danh sách các modal đã cập nhật vào local storage
   localStorage.setItem('modals', JSON.stringify(modals));
 }
 
+var modal_adjust=document.querySelector('.modal-ADJUST');
+
 // hàm chỉnh sửa thông tin sản phẩm
+function updateProduct(index) {
+
+
+  // Chuyển đổi chuỗi JSON thành mảng các đối tượng
+  const products = getProducts();
+
+  // Kiểm tra vị trí hợp lệ
+  if (index >= 0 && index < products.length) {
+    // Lấy đối tượng cần chỉnh sửa dựa trên vị trí
+    const myObject = products[index];
+
+    const adjust=document.querySelector('.ADJUST');
+    adjust.addEventListener('click',function(){
+      const newMa = document.getElementById('MaSanPham-SUA').value;
+      const newTieude = document.getElementById('TIEUDE-SUA').value;
+      const newName = document.getElementById('TenSanPham-SUA').value;
+      const newPrice = document.getElementById('GiaBan-SUA').value;
+      console.log("co hoạt động");
+      myObject.img = productImage.src;
+      myObject.ma = newMa;
+      myObject.tieude = newTieude;
+      myObject.name = newName;
+      myObject.price = newPrice;
+          // Lưu lại mảng các đối tượng đã được chỉnh sửa vào local storage
+      modal_adjust.classList.add('invisible');
+      localStorage.setItem('products', JSON.stringify(products));
+      reload();
+    })
+    
+
+
+  } else {
+    console.log('Vị trí không hợp lệ');
+  }
+}
+
+function updateModal(index) {
+  // localStorage.removeItem('modals');
+
+  // Chuyển đổi chuỗi JSON thành mảng các đối tượng
+  const modals = getModals();
+
+  // Kiểm tra vị trí hợp lệ
+  if (index >= 0 && index < modals.length) {
+    // Lấy đối tượng cần chỉnh sửa dựa trên vị trí
+    const newModal = modals.slice(index, index + 1)[0];
+
+    const adjust=document.querySelector('.ADJUST');
+    adjust.addEventListener('click',function(){
+      const newName = document.getElementById('TenSanPham-SUA').value;
+      const newPrice = document.getElementById('GiaBan-SUA').value;
+      newModal.imgSrc=productImage.src;
+      newModal.name=newName;
+      newModal.price=newPrice;
+          // Lưu lại mảng các đối tượng đã được chỉnh sửa vào local storage
+      localStorage.setItem('modals', JSON.stringify(modals));
+      reload();
+    })
+    
+
+
+  } else {
+    console.log('Vị trí không hợp lệ');
+  }
+}
+
+
+
+
+
+
+
 
 
 
@@ -632,21 +712,21 @@ function deleteModal(modal) {
 
 // Khi trang được tải, lấy thông tin của sản phẩm từ local storage và hiển thị chúng trên trang.
 window.addEventListener('load', function() {
-  const products = getProducts();
-  const modals=getModals();
-// tất cả các products được load lên từ local storage dưới dạng text lên window
-  for (const pro of products) {
-    const newPro = new Pro(proContainer, pro.img,pro.ma, pro.tieude, pro.name, pro.price);
-  }
-  for(const modal of modals){
-    const newmodal=new Modal(MODAL,modal.imgSrc,modal.name,modal.price);
-  }
-// tạo 1 list pro và modal dưới dạng js
+    const products = getProducts();
+    const modals=getModals();
+  // tất cả các products được load lên từ local storage dưới dạng text lên window
+    for (const pro of products) {
+      const newPro = new Pro(proContainer, pro.img," #" +pro.ma, pro.tieude, pro.name, pro.price+"đ");
+    }
+    for(const modal of modals){
+      const newmodal=new Modal(MODAL,modal.imgSrc,modal.name,"Giá: "+modal.price);
+    }
+  // tạo 1 list pro và modal dưới dạng js
 
 
 
-  const productElements = Array.from(document.querySelectorAll('.pro'));
-  const modalElements=Array.from(document.querySelectorAll('.modal'));
+    const productElements = Array.from(document.querySelectorAll('.pro'));
+    const modalElements=Array.from(document.querySelectorAll('.modal'));
 //  tạo list dạng nodediv
 
   // các biến và hàm cho sản phẩm
@@ -658,15 +738,16 @@ window.addEventListener('load', function() {
  var modal_adjust=document.querySelector('.modal-ADJUST');
  var close_adjust=document.querySelector('.modal-container_ADJUST .icon')
 
+ var delAll=this.document.querySelector('.pro-container .pro-admin-delete');
+
  close_adjust.addEventListener('click',function(){
   modal_adjust.classList.add('invisible');
  })
 
  delPros.forEach((del,index) => {
   del.addEventListener('click',function(){
-    console.log('đã click delete');
-    deleteProduct(products[index]);
-    deleteModal(modals[index]);
+    deleteProduct(index);
+    deleteModal(index);
     reload();
   })
 
@@ -679,6 +760,8 @@ window.addEventListener('load', function() {
   adjust.addEventListener('click',function(){
     console.log('đã click adjust');
     modal_adjust.classList.remove('invisible');
+    updateProduct(index);
+    updateModal(index);
   })
   adjust.addEventListener('click',function(event){
     event.stopPropagation();
@@ -702,64 +785,55 @@ window.addEventListener('load', function() {
    modalImage.src = imageURL;
    });
   });
-  modalElements.forEach((modalElement,index) => {
-      var close=document.querySelector('.close');
-      var container=document.querySelector('.modal-container');
-      function closeB(){
-        modalElement.classList.add('invisible');
-      }
-      close.addEventListener('click',closeB);
-      modalElement.addEventListener('click',closeB);
-      container.addEventListener('click',function(event){
-        event.stopPropagation();
-      })
+  // modalElements.forEach((modalElement,index) => {
+  //     var close=document.querySelector('.close');
+  //     var container=document.querySelector('.modal-container');
+  //     function closeB(){
+  //       modalElement.classList.add('invisible');
+  //     }
+  //     close.addEventListener('click',closeB);
+  //     modalElement.addEventListener('click',closeB);
+  //     container.addEventListener('click',function(event){
+  //       event.stopPropagation();
+  //     })
+  // });
+  modalElements.forEach((modalElement, index) => {
+    var close = modalElement.querySelector('.close');
+    var container = modalElement.querySelector('.modal-container');
+  
+    function closeB() {
+      modalElement.classList.add('invisible');
+    }
+  
+    close.addEventListener('click', closeB);
+    modalElement.addEventListener('click', closeB);
+    container.addEventListener('click', function (event) {
+      event.stopPropagation();
+    });
   });
 
  // KẾT THÚC MỞ MODAL và ĐÓNG MODAL
 //  chỉnh sửa và xóa pro
+const modal = document.querySelector(".modal-del");
+const co = document.querySelector(".modal-del .co");
+const khong = document.querySelector(".modal-del .khong");
 
+function showModal() {
+  modal.classList.remove('invisible');
+}
+delAll.addEventListener('click',showModal);
 
- 
-
-//  kết thúc hàm
+co.addEventListener("click", function() {
+  localStorage.clear();
+  reload();
 });
 
+khong.addEventListener("click", function() {
+  // Hủy lệnh
+  modal.classList.add('invisible');
+});
+});
 
-
- // HÀM SHOW CHI TIẾT CHO SẢN PHẨM
-
-
-
-
- 
- 
- // ĐÓNG MỞ MENU CHỈNH SỬA , XÓA SẢN PHẨM
- 
- 
- 
-
-
-// xóa sản phẩm
-
-
-// // Lấy danh sách các sản phẩm được lưu trữ trong local storage.
-// const products = JSON.parse(localStorage.getItem('products') || '[]');
-
-// // Tìm kiếm sản phẩm cần xóa.
-// const proToDelete = products.find(pro => pro.img === 'img/pro1.png');
-
-// // Xóa sản phẩm khỏi danh sách.
-// products.splice(products.indexOf(proToDelete), 1);
-
-// // Lưu lại danh sách sản phẩm đã cập nhật.
-// localStorage.setItem('products', JSON.stringify(products));
-
-// // Xóa vĩnh viễn sản phẩm.
-// localStorage.removeItem('products');
-
-
-
-// localStorage.clear();
 
 
 // KẾT THÚC
