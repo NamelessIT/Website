@@ -1,3 +1,5 @@
+
+
 // mốt chỉnh đăng nhập thành .dangnhap khi bấm vào icon user sẽ ra 1 hình chữ nhật hiện gồm tài khoản(nếu đã đăng nhập) và đăng xuất
 var dangnhap = document.querySelector('.fa-user');
 var menu = document.querySelector('.js-nav');
@@ -396,7 +398,7 @@ class Pro {
 }
 
 // class modal 
-
+//SẼ CÓ THÊM CHI TIẾT CHO MODAL LÀM XONG SAU KHI LÀM XONG CART
 class Modal {
   constructor(MODAL,imgSrc, name,price) {
     this.MODAL=MODAL;
@@ -432,6 +434,7 @@ class Modal {
     const nameH2 = document.createElement('h2');
     nameH2.style.marginBottom = '15px';
     nameH2.style.color = 'red';
+    nameH2.style.textAlign='center';
     nameH2.textContent = name;
     const priceH4 = document.createElement('h4');
     priceH4.style.margin = '5px';
@@ -443,6 +446,256 @@ class Modal {
     quantityInput.type = 'number';
     quantityInput.pattern = '[1-9]+';
     quantityInput.style.display='inline';
+    // input checkbox
+    // box Đường
+    const boxDuong = document.createElement('div');
+    boxDuong.classList.add('Duong');
+
+    const ChuDuong=document.createElement('h4');
+    ChuDuong.classList.add('ChuDuong');
+    ChuDuong.textContent='Đường: ';
+
+    const checkboxIt = document.createElement('input');
+    checkboxIt.type = 'checkbox';
+    checkboxIt.name = 'checkbox';
+    checkboxIt.value = 'ít';
+    checkboxIt.parent = boxDuong;
+
+    const ChuVua=document.createElement('h4');
+    ChuVua.classList.add('Chu');
+    ChuVua.textContent='Vừa';
+
+    
+    const checkboxVua = document.createElement('input');
+    checkboxVua.type = 'checkbox';
+    checkboxVua.name = 'checkbox';
+    checkboxVua.value = 'vừa';
+    checkboxVua.parent = boxDuong;
+
+    const ChuIt=document.createElement('h4');
+    ChuIt.classList.add('Chu');
+    ChuIt.textContent='Ít';
+    
+    // Sự kiện change
+    checkboxIt.addEventListener('change', () => {
+      // Kiểm tra xem checkbox nào đang được chọn
+      if (checkboxIt.checked) {
+        // Nếu checkbox ít được chọn, thì bỏ chọn checkbox vừa
+        checkboxVua.checked = false;
+      }
+    });
+    
+    checkboxVua.addEventListener('change', () => {
+      // Kiểm tra xem checkbox nào đang được chọn
+      if (checkboxVua.checked) {
+        // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+        checkboxIt.checked = false;
+      }
+    });
+
+    // box Đá
+    const boxDa = document.createElement('div');
+    boxDa.classList.add('Duong');
+
+    const ChuDa=document.createElement('h4');
+    ChuDa.classList.add('ChuDuong');
+    ChuDa.textContent='Đá: ';
+
+    const checkboxKhongDa = document.createElement('input');
+    checkboxKhongDa.type = 'checkbox';
+    checkboxKhongDa.name = 'checkbox';
+    checkboxKhongDa.value = 'Không';
+    checkboxKhongDa.parent = boxDa;
+
+    const ChuKhongDa=document.createElement('h4');
+    ChuKhongDa.classList.add('Chu');
+    ChuKhongDa.textContent='Không';
+
+    
+    const checkboxItDa = document.createElement('input');
+    checkboxItDa.type = 'checkbox';
+    checkboxItDa.name = 'checkbox';
+    checkboxItDa.value = 'Ít';
+    checkboxItDa.parent = boxDa;
+
+    const ChuItDa=document.createElement('h4');
+    ChuItDa.classList.add('Chu');
+    ChuItDa.textContent='Ít';
+
+    const checkboxNhieuDa = document.createElement('input');
+    checkboxNhieuDa.type = 'checkbox';
+    checkboxNhieuDa.name = 'checkbox';
+    checkboxNhieuDa.value = 'Nhiều';
+    checkboxNhieuDa.parent = boxDa;
+
+    const ChuNhieuDa=document.createElement('h4');
+    ChuNhieuDa.classList.add('Chu');
+    ChuNhieuDa.textContent='Nhiều';
+    
+    // Sự kiện change
+    checkboxKhongDa.addEventListener('change', () => {
+      // Kiểm tra xem checkbox nào đang được chọn
+      if (checkboxKhongDa.checked) {
+        // Nếu checkbox ít được chọn, thì bỏ chọn checkbox vừa
+        checkboxItDa.checked = false;
+        checkboxNhieuDa.checked=false;
+      }
+    });
+    
+    checkboxItDa.addEventListener('change', () => {
+      // Kiểm tra xem checkbox nào đang được chọn
+      if (checkboxItDa.checked) {
+        // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+        checkboxKhongDa.checked = false;
+        checkboxNhieuDa.checked=false;
+      }
+    });
+    checkboxNhieuDa.addEventListener('change', () => {
+      // Kiểm tra xem checkbox nào đang được chọn
+      if (checkboxNhieuDa.checked) {
+        // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+        checkboxKhongDa.checked = false;
+        checkboxItDa.checked=false;
+      }
+    });
+
+// SIZE
+
+const boxSize = document.createElement('div');
+boxSize.classList.add('Duong');
+
+const ChuSize=document.createElement('h4');
+ChuSize.classList.add('ChuDuong');
+ChuSize.textContent='Size: ';
+
+const checkboxSizeM = document.createElement('input');
+checkboxSizeM.type = 'checkbox';
+checkboxSizeM.name = 'checkbox';
+checkboxSizeM.value = 'Size M';
+checkboxSizeM.parent = boxSize;
+
+const ChuM=document.createElement('h4');
+ChuM.classList.add('Chu');
+ChuM.textContent='M';
+
+
+const checkboxSizeX= document.createElement('input');
+checkboxSizeX.type = 'checkbox';
+checkboxSizeX.name = 'checkbox';
+checkboxSizeX.value = 'Size X';
+checkboxSizeX.parent = boxSize;
+
+const ChuX=document.createElement('h4');
+ChuX.classList.add('Chu');
+ChuX.textContent='X';
+
+const checkboxSizeXL = document.createElement('input');
+checkboxSizeXL.type = 'checkbox';
+checkboxSizeXL.name = 'checkbox';
+checkboxSizeXL.value = 'Size XL';
+checkboxSizeXL.parent = boxSize;
+
+const ChuXL=document.createElement('h4');
+ChuXL.classList.add('Chu');
+ChuXL.textContent='XL';
+
+// Sự kiện change
+checkboxSizeM.addEventListener('change', () => {
+  // Kiểm tra xem checkbox nào đang được chọn
+  if (checkboxSizeM.checked) {
+    // Nếu checkbox ít được chọn, thì bỏ chọn checkbox vừa
+    checkboxSizeX.checked = false;
+    checkboxSizeXL.checked=false;
+  }
+});
+
+checkboxSizeX.addEventListener('change', () => {
+  // Kiểm tra xem checkbox nào đang được chọn
+  if (checkboxSizeX.checked) {
+    // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+    checkboxSizeM.checked = false;
+    checkboxSizeXL.checked=false;
+  }
+});
+checkboxSizeXL.addEventListener('change', () => {
+  // Kiểm tra xem checkbox nào đang được chọn
+  if (checkboxSizeXL.checked) {
+    // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+    checkboxSizeM.checked = false;
+    checkboxSizeX.checked=false;
+  }
+});
+
+// TOPPING
+const boxTopping = document.createElement('div');
+boxTopping.classList.add('Duong');
+
+const ChuTopping=document.createElement('h4');
+ChuTopping.classList.add('ChuDuong');
+ChuTopping.textContent='Topping: ';
+
+const checkboxChanTrau = document.createElement('input');
+checkboxChanTrau.type = 'checkbox';
+checkboxChanTrau.name = 'checkbox';
+checkboxChanTrau.value = 'Trân Châu';
+checkboxChanTrau.parent = boxTopping;
+
+const ChuChanTrau=document.createElement('h5');
+ChuChanTrau.classList.add('Chu');
+ChuChanTrau.textContent='Chân Trâu';
+
+
+const checkboxRauCau= document.createElement('input');
+checkboxRauCau.type = 'checkbox';
+checkboxRauCau.name = 'checkbox';
+checkboxRauCau.value = 'Râu Câu';
+checkboxRauCau.parent = boxTopping;
+
+const ChuRauCau=document.createElement('h5');
+ChuRauCau.classList.add('Chu');
+ChuRauCau.textContent='Râu Câu';
+
+const checkboxPhoMai = document.createElement('input');
+checkboxPhoMai.type = 'checkbox';
+checkboxPhoMai.name = 'checkbox';
+checkboxPhoMai.value = 'Phô Mai';
+checkboxPhoMai.parent = boxTopping;
+
+const ChuPhoMai=document.createElement('h5');
+ChuPhoMai.classList.add('Chu');
+ChuPhoMai.textContent='Phô Mai';
+
+// Sự kiện change
+checkboxRauCau.addEventListener('change', () => {
+  // Kiểm tra xem checkbox nào đang được chọn
+  if (checkboxRauCau.checked) {
+    // Nếu checkbox ít được chọn, thì bỏ chọn checkbox vừa
+    checkboxChanTrau.checked = false;
+    checkboxPhoMai.checked=false;
+  }
+});
+
+checkboxChanTrau.addEventListener('change', () => {
+  // Kiểm tra xem checkbox nào đang được chọn
+  if (checkboxChanTrau.checked) {
+    // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+    checkboxRauCau.checked = false;
+    checkboxPhoMai.checked=false;
+  }
+});
+checkboxPhoMai.addEventListener('change', () => {
+  // Kiểm tra xem checkbox nào đang được chọn
+  if (checkboxPhoMai.checked) {
+    // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+    checkboxChanTrau.checked = false;
+    checkboxRauCau.checked=false;
+  }
+});
+
+
+
+    
+// hết input checkbox;
     const buyButton = document.createElement('button');
     buyButton.classList.add('Mua');
     buyButton.innerHTML = '<i class="fa fa-shopping-cart cart"></i>MUA';
@@ -452,8 +705,42 @@ class Modal {
     propertiesDiv.appendChild(priceH4);
     propertiesDiv.appendChild(quantityH4);
     propertiesDiv.appendChild(quantityInput);
+    propertiesDiv.appendChild(boxDuong);
+    propertiesDiv.appendChild(boxDa);
+    propertiesDiv.appendChild(boxSize);
+    propertiesDiv.appendChild(boxTopping);
     propertiesDiv.appendChild(buyButton);
     quantityH4.appendChild(quantityInput);
+
+    boxDuong.appendChild(ChuDuong);
+    ChuDuong.appendChild(ChuIt);
+    ChuIt.appendChild(checkboxIt);
+    ChuDuong.appendChild(ChuVua);
+    ChuVua.appendChild(checkboxVua);
+
+    boxDa.appendChild(ChuDa);
+    ChuDa.appendChild(ChuKhongDa);
+    ChuDa.appendChild(ChuItDa);
+    ChuDa.appendChild(ChuNhieuDa);
+    ChuKhongDa.appendChild(checkboxKhongDa);
+    ChuItDa.appendChild(checkboxItDa);
+    ChuNhieuDa.appendChild(checkboxNhieuDa);
+
+    boxSize.appendChild(ChuSize);
+    ChuSize.appendChild(ChuM);
+    ChuSize.appendChild(ChuX);
+    ChuSize.appendChild(ChuXL);
+    ChuM.appendChild(checkboxSizeM);
+    ChuX.appendChild(checkboxSizeX);
+    ChuXL.appendChild(checkboxSizeXL);
+
+    boxTopping.appendChild(ChuTopping);
+    ChuTopping.appendChild(ChuChanTrau);
+    ChuTopping.appendChild(ChuRauCau);
+    ChuTopping.appendChild(ChuPhoMai);
+    ChuChanTrau.appendChild(checkboxChanTrau);
+    ChuPhoMai.appendChild(checkboxPhoMai);
+    ChuRauCau.appendChild(checkboxRauCau);
 
     modalBody.appendChild(imgDiv);
     modalBody.appendChild(propertiesDiv);
@@ -470,6 +757,44 @@ class Modal {
     this.MODAL.appendChild(this.element);
   }
 
+}
+
+// Cart
+class Pro_Chart{
+  constructor(CHART_BOX,img,tensp,soluong,thanhtien){
+    this.CHART_BOX=CHART_BOX;
+    this.img=img;
+    this.tensp=tensp;
+    this.soluong=soluong;
+    this.thanhtien=thanhtien;
+  
+  this.element=document.createElement('div');
+  this.element.classList.add('chart');
+  this.element.setAttribute('data-img',img);
+
+  const chartImage=document.createElement('img');
+  chartImage.classList.add('ChartImage');
+  chartImage.src=img;
+  chartImage.alt=tensp;
+
+  const ChartTsp=document.createElement('h5');
+  ChartTsp.classList.add('ChartTsp');
+  ChartTsp.textContent=tensp;
+
+  const ChartSoLuong=document.createElement('h5');
+  ChartSoLuong.classList.add('ChartSL');
+  ChartSoLuong.textContent=soluong;
+
+  const ChartTien=document.createElement('h5');
+  ChartTien.classList.add('ChartTien');
+  ChartTien.textContent=thanhtien;
+
+  this.CHART_BOX.appendChild(this.element);
+  this.element.appendChild(chartImage);
+  this.element.appendChild(ChartTsp);
+  this.element.appendChild(ChartSoLuong);
+  this.element.appendChild(ChartTien);
+  }
 }
 
 
@@ -510,6 +835,7 @@ function LayAnh() {
 
 const proContainer = document.querySelector('.pro-container');
 const MODAL=document.getElementById("MODAL")
+const CHART_BOX=document.getElementById("CHART_SHOW");
 
 
 // Lưu trữ thông tin của sản phẩm vào local storage.
@@ -536,6 +862,16 @@ function saveModal(modal){
     localStorage.setItem('modals',JSON.stringify(modals));
   }
 }
+function saveChart(Pro_Chart){
+    if(ma.length!==4){
+    return;
+  }
+  else{
+    const charts=JSON.parse(localStorage.getItem('charts') || '[]');
+    charts.push(Pro_Chart);
+    localStorage.setItem('charts',JSON.stringify(charts));
+  }
+}
 
 // Lấy thông tin của sản phẩm từ local storage.
 function getProducts() {
@@ -545,6 +881,10 @@ function getProducts() {
 function getModals() {
   const modals=JSON.parse(localStorage.getItem('modals') || '[]')
   return modals;
+}
+function getCharts(){
+  const charts=JSON.parse(localStorage.getItem('charts')||'[]');
+  return charts;
 }
 
 
@@ -564,6 +904,9 @@ accept.addEventListener('click', chapnhan);
 
     // Không thực hiện các hành động tiếp theo
     return false;
+  }
+  if(productImage.src===''){
+    productImage.src='img/white.png';
   }
   const newmodal = new Modal(MODAL,productImage.src, tenSanPham,giaBan);
   const newPro = new Pro(proContainer, productImage.src,ma, tieude, tenSanPham, giaBan); 
@@ -586,8 +929,8 @@ accept.addEventListener('click', chapnhan);
   modalImage_admin.src = 'img/add.png';
   
 };
+// Tải lại trang
 function reload() {
-  // Tải lại trang
   location.reload();
 }
 
@@ -646,10 +989,22 @@ function updateProduct(index) {
     const adjust=document.querySelector('.ADJUST');
     adjust.addEventListener('click',function(){
       const newMa = document.getElementById('MaSanPham-SUA').value;
+      if (newMa.length !== 4) {
+        // Hiển thị thông báo lỗi
+        alert('Vui lòng nhập mã sản phẩm có 4 chữ số!');
+    
+        // Đặt lại giá trị của mã sản phẩm
+        document.getElementById('MaSanPham-SUA').value = '';
+    
+        // Không thực hiện các hành động tiếp theo
+        return false;
+      }
       const newTieude = document.getElementById('TIEUDE-SUA').value;
       const newName = document.getElementById('TenSanPham-SUA').value;
       const newPrice = document.getElementById('GiaBan-SUA').value;
-      console.log("co hoạt động");
+      if(productImage.src===''){
+        productImage.src='img/white.png';
+      }
       myObject.img = productImage.src;
       myObject.ma = newMa;
       myObject.tieude = newTieude;
@@ -681,8 +1036,16 @@ function updateModal(index) {
 
     const adjust=document.querySelector('.ADJUST');
     adjust.addEventListener('click',function(){
+      const newMa = document.getElementById('MaSanPham-SUA').value;
+      if (newMa.length !== 4) {    
+        // Không thực hiện các hành động tiếp theo
+        return false;
+      }
       const newName = document.getElementById('TenSanPham-SUA').value;
       const newPrice = document.getElementById('GiaBan-SUA').value;
+      if(productImage.src===''){
+        productImage.src='img/white.png';
+      }
       newModal.imgSrc=productImage.src;
       newModal.name=newName;
       newModal.price=newPrice;
@@ -758,7 +1121,6 @@ window.addEventListener('load', function() {
  });
  adjusts.forEach((adjust,index) => {
   adjust.addEventListener('click',function(){
-    console.log('đã click adjust');
     modal_adjust.classList.remove('invisible');
     updateProduct(index);
     updateModal(index);
@@ -785,18 +1147,7 @@ window.addEventListener('load', function() {
    modalImage.src = imageURL;
    });
   });
-  // modalElements.forEach((modalElement,index) => {
-  //     var close=document.querySelector('.close');
-  //     var container=document.querySelector('.modal-container');
-  //     function closeB(){
-  //       modalElement.classList.add('invisible');
-  //     }
-  //     close.addEventListener('click',closeB);
-  //     modalElement.addEventListener('click',closeB);
-  //     container.addEventListener('click',function(event){
-  //       event.stopPropagation();
-  //     })
-  // });
+
   modalElements.forEach((modalElement, index) => {
     var close = modalElement.querySelector('.close');
     var container = modalElement.querySelector('.modal-container');
@@ -835,8 +1186,17 @@ khong.addEventListener("click", function() {
 });
 
 
+// giỏ hàng
+var carts=document.querySelectorAll('.cart');
+carts.forEach((cart,index) => {
+  cart.addEventListener('click',function(){
+      console.log('đã bấm');
+  })
+
+    cart.addEventListener('click',function(event){
+      event.stopPropagation();
+    })
+
+ });
 
 // KẾT THÚC
-
-
-
