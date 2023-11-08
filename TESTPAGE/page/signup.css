@@ -14,24 +14,28 @@ body {
 }
 
 .signup-img {
-    width: 60%;
+    width: 70%;
     height: 100%;
     background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-image: url('../img/login-background.jpeg');
 }
 .signup-de {
-    width: 40%;
+    width: 30%;
     height: 100%;
     justify-content: center;
     align-items: center;
     display: flex;
     
-    /* background-color: aqua; */
+    background-color: rgba(225, 169, 80, 0.916);
 }
 .wrapper {
     display: flex;
-    width: 60%;
-    height: 100%;
+    width: 70%;
+    height: 90%;
+    
     justify-content: center;
     align-items: center;
     text-align: left;
@@ -39,7 +43,8 @@ body {
 }.input-box {
     background-color: white;
     height: 100%;
-    
+    border: 3px solid black;
+    border-radius: 20px;
     text-align: center;
     flex-grow: 1;
     padding: 100px 30px 40px;
@@ -58,6 +63,14 @@ body {
     margin-bottom: 50px;
     display: flex;
 }
+
+.fa-eye {
+  cursor: pointer;
+}
+.fa-eye-slash {
+  cursor: pointer;
+}
+
 .form-group i {
     /* color: #fff; */
     font-size: 20px;
@@ -185,3 +198,143 @@ body {
       opacity: 0;
     }
   }
+
+
+  /* ĐĂNG KÝ */
+
+  /* modal đăng ký */
+.modal {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  /*border: solid red 2px;*/
+}  
+
+.modal-content {
+  /*border: solid blue 2px;*/
+  background-color: #fff;
+  position: absolute;
+  height: 80%;
+  width: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.close-style {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.close {
+  position: absolute;
+  height: 0;
+  right: 0;
+  margin-left: 90%;
+  color: #aaa;  
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}
+
+/* form đăng ký */
+.signup-body {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border: #0e0e0e solid 2px;
+  padding: 0 30px;
+}
+
+.signup_form-heading {
+  font-weight: 400;
+}
+
+.signup_form-form {
+  margin-top: 40px;
+}
+
+.sign_form-input {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 14px;
+  padding: 0 12px;
+  border-radius: 2px;
+  border: 1px solid 
+}
+
+.signup_form-aside {
+  margin-top: 16px;
+  margin-bottom: 18px;
+  font-size: 15px;
+}
+
+.signup_form-text {
+  font-size: 1.0rem;
+  line-height: 1.8rem;
+  text-align: center;
+  padding: 0 5px;
+}
+
+.signup_form-textlink {
+  text-decoration: none;
+  color: red;
+  cursor: text;
+}
+
+.signup_control {
+  margin-top: 20px;
+}
+
+.btn {
+  min-width: 142px;
+  height: 36px;
+  text-decoration: none;
+  border: none;
+  border-radius: 2px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.btn.btn.form_signup:hover {
+  background-color: rgb(242, 37, 1);
+}
+
+.btn.form_signup {
+  background-color: rgba(243, 54, 21, 0.919);
+  color: white;
+}
+
+.signup_form-group {
+  position: relative;
+  display: flex;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 40%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+#PASSWORD,
+#PASSWORD-CFT {
+  padding-right: 30px;
+}
+
+.error-message {
+  display: none;
+  color: red;
+  font-size: 14px;
+}

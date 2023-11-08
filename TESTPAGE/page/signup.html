@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" /></head>
 </head>
 <body id="signup">
-    <section class="signup-img">      
+    <section class="signup-img">    
     </section>
     <section class="signup-de">
         <div class="wrapper">   
-        <form class="input-box">
-            <h1>Sign in</h1>
+          <form class="input-box">
+            <h1>Log in</h1>
             <div class="form-group">
                 <i class="fa fa-key"></i>
                 <input placeholder="Email" id="USERNAME" class="form-input username" type="text" required>
@@ -29,7 +29,7 @@
             <h1 id="OR">------Or------</h1>
             <input type="submit" value="Sign up" class="form-submit signup">
 
-        </form>
+          </form>
         </div>
     </section>
 <!-- THONG BAO -->
@@ -108,6 +108,56 @@ function toast({ title = "", message = "", type = "info", duration = 3000 }) {
 </script>
 <!-- KẾT THÚC THÔNG BÁO -->
 
+<!--ĐĂNG KÝ-->
+<div id="signupModal" class="modal">
+  <div class="modal-content">
+    <!-- Nội dung đăng ký -->
+    <div class="signup-body">
+      <div class="close-style"><span class="close">&times;</span></div>
+      <form>
+        <h1 class="signup_form-heading">Sign up</h1>
+
+        <div class="signup_form-form">
+          <div class="signup_form-group">
+            <input placeholder="Email" id="USERNAME-Sign" class="sign_form-input username" type="text" required>
+          </div>
+          <div class="signup_form-group">
+            <input placeholder="Password" id="PASSWORD-Sign" class="sign_form-input password" type="password" required>
+            <div id="eyes" data-target="PASSWORD-Sign">
+              <i class="fa fa-eye eye-icon"></i>
+            </div>
+          </div>
+          <div class="signup_form-group">            
+            <input placeholder="Password confirmation" id="PASSWORD-CFT" class="sign_form-input password" type="password" required>
+            <div id="eyes" data-target="PASSWORD-CFT">
+              <i class="fa fa-eye eye-icon"></i>
+            </div> 
+          </div>
+        </div>
+
+        <div class="signup_form-aside">
+          <p class="signup_form-text">
+            Bằng việc đăng kí, bạn đồng ý với SGU Coffee về
+            <a href="" class="signup_form-textlink">Điều khoản dịch vụ</a> & 
+            <a href="" class="signup_form-textlink">Chính sách bảo mật</a>
+          </p>
+        </div>
+
+        <div class="signup_control">
+          <input type="submit" value="Sign up" class="btn form_signup">
+        </div>
+
+      </form>
+
+      <div id="error-message" class="error-message"></div><div></div>
+      
+    </div>
+  </div>
+</div>
+
+
+
     
 </body>
 </html>
+
