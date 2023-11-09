@@ -150,15 +150,71 @@ body {
 .bar#user .a{
     position: relative;
 }
+.bar#user .CHART{
+    padding: 5px 0;
+}
+ul.CHART:hover >div#CHART_SHOW{
+    visibility: visible !important;
+}
+#CHART_SHOW::before {
+    content: "";
+    position: absolute;
+    top: -33px;
+    right: -1px;
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 36px solid white;
+    border-radius: 2px;
+  }
 #CHART_SHOW{
     position: absolute;
-    min-height: 25px;
+    min-height: 20px;
     background-color: white;
     box-shadow: 0 10px 20px #cec9c9;
-    width: 20%;
-    display: block;
-    right: 75px;
+    min-width: 300%;
+    /* display: block; */
+    right: -10%;
     border-radius: 5px;
+    top: 170%;
+    visibility: hidden;
+}
+#CHART_SHOW .chart{
+    width: 304px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px 0px;
+}
+#CHART_SHOW .chart:hover{
+    opacity: 0.6;
+    background-color: #ccc;
+}
+#CHART_SHOW .chart img{
+    width: 30%;
+    display: inline;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-left: 3px;
+}
+#CHART_SHOW .chart .ChartTsp,#CHART_SHOW .chart .ChartSL
+,#CHART_SHOW .chart .ChartTien{
+    margin: 0 5px;
+    text-align: center;
+    width: 15%;
+}
+#CHART_SHOW .chart .ChartTsp{
+    display: inline;
+    margin-left: 0;
+}
+#CHART_SHOW .chart .ChartSL{
+    display: inline;
+}
+#CHART_SHOW .chart .ChartTien{
+    display: inline;
 }
 .bar .nav{
     min-width: 125px;
@@ -495,7 +551,7 @@ body {
     border-radius: 20%;
  }
  .modal .modal-body .properties,.modal-admin .modal-body .properties,.modal-ADJUST .modal-body_ADJUST .properties{
-    width: 50%;
+    width: 58%;
  }
  .modal-admin .properties .flex-box,.modal-ADJUST .properties .flex-box{
     display: flex;
@@ -511,7 +567,7 @@ body {
 
  .modal .modal-body input,.modal-admin .modal-body input,.modal-ADJUST .modal-body_ADJUST input{
     width: 65px;
-    border-radius: 10px;
+    border-radius: 5px;
     height: 25px;
     text-align: center;
  }
@@ -539,7 +595,7 @@ body {
  .modal .modal-body .properties .Mua,.modal-admin .modal-body .properties .Accept,.modal-ADJUST .modal-body_ADJUST .properties .ADJUST{
     background-color: orange;
     display: block;
-    width: 100%;
+    width: 90%;
     text-decoration: none;
     color: #fff;
     height: 45px;
