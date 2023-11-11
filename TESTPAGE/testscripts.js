@@ -762,11 +762,15 @@ checkboxPhoMai.addEventListener('change', () => {
 
 // Cart
 class Pro_Chart{
-  constructor(CHART_BOX,img,tensp,soluong,thanhtien){
+  constructor(CHART_BOX,img,tensp,soluong,duong,da,size,topping,thanhtien){
     this.CHART_BOX=CHART_BOX;
     this.img=img;
     this.tensp=tensp;
     this.soluong=soluong;
+    this.duong=duong;
+    this.da=da;
+    this.size=size;
+    this.topping=topping;
     this.thanhtien=thanhtien;
   
   this.element=document.createElement('div');
@@ -785,6 +789,26 @@ class Pro_Chart{
   const ChartSoLuong=document.createElement('h5');
   ChartSoLuong.classList.add('ChartSL');
   ChartSoLuong.textContent=soluong;
+
+  const ChartDuong=document.createElement('h5');
+  ChartDuong.classList.add('ChartDuong');
+  ChartDuong.classList.add('invisible');
+  ChartDuong.textContent=duong;
+
+  const ChartDa=document.createElement('h5');
+  ChartDa.classList.add('ChartDa');
+  ChartDa.classList.add('invisible');
+  ChartDa.textContent=da;
+
+  const ChartSize=document.createElement('h5');
+  ChartSize.classList.add('ChartSize');
+  ChartSize.classList.add('invisible');
+  ChartSize.textContent=size;
+
+  const ChartTopping=document.createElement('h5');
+  ChartTopping.classList.add('ChartTopping');
+  ChartTopping.classList.add('invisible');
+  ChartTopping.textContent=topping;
 
   const ChartTien=document.createElement('h5');
   ChartTien.classList.add('ChartTien');
@@ -957,28 +981,6 @@ function deleteProduct(position) {
 
 
 
-
-// xóa modal khỏi local storage
-function deleteModal(position) {
-  // Lấy danh sách các modal từ local storage
-  const modals = getModals();
-
-  // Kiểm tra vị trí xóa có hợp lệ hay không
-  if (position < 0 || position >= modals.length) {
-    return;
-  }
-
-  // Xóa modal khỏi danh sách tại vị trí được truyền vào
-  modals.splice(position, 1);
-
-  // Lưu lại danh sách các modal đã cập nhật vào local storage
-  localStorage.setItem('modals', JSON.stringify(modals));
-}
-
-// KẾT THÚC DELETE
-
-
-
 var modal_adjust=document.querySelector('.modal-ADJUST'); //khai báo biến cho hàm UpdateProducts
 
 // hàm chỉnh sửa thông tin sản phẩm
@@ -1075,10 +1077,13 @@ function AddChart(index) {
     const tensp = myObject.name;
     const soluong = 1;
     const gia = myObject.price;
+    const duong="Ít";
+    const da="Ít";
+    const size="M";
+    const topping="không";
     const thanhtien = soluong * gia; // tính thành tiền
 
-    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluong, thanhtien); // truyền thành tiền vào
-
+    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluong,duong,da,size,topping,thanhtien); // truyền thành tiền vào
     charts.push(newChart); // Thêm chart mới vào mảng charts
 
     // Lưu trữ thông tin của sản phẩm mới vào local storage. ở dạng String
@@ -1132,7 +1137,7 @@ window.addEventListener('load', function() {
       const newmodal=new Modal(MODAL,modal.img,modal.name,"Giá: "+modal.price,modal.check);
     }
     for(const chart of charts){
-      const newChart = new Pro_Chart(CHART_BOX, chart.img, chart.tensp, "SL:"+chart.soluong, "TONG:"+chart.thanhtien);
+      const newChart = new Pro_Chart(CHART_BOX, chart.img, chart.tensp, "SL:"+chart.soluong,chart.duong,chart.da,chart.size,chart.topping, "TONG:"+chart.thanhtien);
     }
   // tạo 1 list pro và modal dưới dạng js
 
@@ -1161,7 +1166,6 @@ window.addEventListener('load', function() {
  delPros.forEach((del,index) => {
   del.addEventListener('click',function(){
     deleteProduct(index);
-    deleteModal(index);
     DeleteChart(products[index].img,products[index].name);
     reload();
   })
@@ -1206,8 +1210,8 @@ function openModal() {
 productElements.forEach((productElement, index) => {
   productElement.addEventListener('click', (e) => {
     // const img = document.querySelector('img');
-    modals.check=1;
     updateModal(index);
+    modals.check=1;
   });
 });
 

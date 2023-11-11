@@ -201,7 +201,8 @@ ul.CHART:hover >div#CHART_SHOW{
     margin-left: 3px;
 }
 #CHART_SHOW .chart .ChartTsp,#CHART_SHOW .chart .ChartSL
-,#CHART_SHOW .chart .ChartTien{
+,.chart .ChartDuong,.chart .ChartDa,.chart .ChartSize,.chart .ChartTopping,
+#CHART_SHOW .chart .ChartTien{
     margin: 0 5px;
     text-align: center;
     width: 15%;
