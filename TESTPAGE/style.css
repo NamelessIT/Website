@@ -146,6 +146,7 @@ body {
     opacity: 0.8;
     cursor: pointer;
 }
+
 /* show giỏ hàng */
 .bar#user .a{
     position: relative;
@@ -246,6 +247,37 @@ ul.CHART:hover >div#CHART_SHOW{
 }
 #header .icon-bar .a{
     margin-left: 5px;
+}
+#header li > h3.user{
+    position: relative;
+}
+#header  li.user-block:hover > ul.account{
+    display: block !important;
+}
+#header li > ul.account{
+    position: absolute;
+    background-color: #668cba;
+    border-radius: 5px;
+    border: 2px solid #0d14e7;
+    right: 10px;
+    min-width: 175px;
+    text-align: center;
+    top: 174%;
+    display: none;
+    color: #ccc;
+}
+li >ul.account::before{
+    position: absolute;
+    content: "";
+    width: 50px;
+    height: 40px;
+    top: -40px;
+    right: 0;
+}
+ul.account li:hover{
+    color: #fff;
+    background-color: #333;
+    cursor: pointer;
 }
 
 /* .bar li a.active::after,

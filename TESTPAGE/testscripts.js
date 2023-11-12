@@ -399,12 +399,16 @@ class Pro {
 // class modal 
 //SẼ CÓ THÊM CHI TIẾT CHO MODAL LÀM XONG SAU KHI LÀM XONG CART
 class Modal {
-  constructor(MODAL,img, name,price,check) {
+  constructor(MODAL,img, name,price,check,Duong,Da,Size,Topping) {
     this.MODAL=MODAL;
     this.img = img;
     this.name = name;
     this.price=price;
     this.check=Number(check);
+    this.Duong=Duong;
+    this.Da=Da;
+    this.Size=Size;
+    this.Topping=Topping;
 
     this.element=document.createElement('div');
     this.element.classList.add('modal');
@@ -444,6 +448,7 @@ class Modal {
     quantityH4.style.margin = '8px 5px';
     quantityH4.textContent = 'Số lượng:';
     const quantityInput = document.createElement('input');
+    quantityInput.id='SoLuongMua';
     quantityInput.type = 'number';
     quantityInput.pattern = '[1-9]+';
     quantityInput.style.display='inline';
@@ -451,6 +456,8 @@ class Modal {
     // box Đường
     const boxDuong = document.createElement('div');
     boxDuong.classList.add('Duong');
+    boxDuong.classList.add('boxDuong');
+
 
     const ChuDuong=document.createElement('h4');
     ChuDuong.classList.add('ChuDuong');
@@ -461,6 +468,7 @@ class Modal {
     checkboxIt.name = 'checkbox';
     checkboxIt.value = 'ít';
     checkboxIt.parent = boxDuong;
+    checkboxIt.classList.add('Duong');
 
     const ChuVua=document.createElement('h4');
     ChuVua.classList.add('Chu');
@@ -472,6 +480,7 @@ class Modal {
     checkboxVua.name = 'checkbox';
     checkboxVua.value = 'vừa';
     checkboxVua.parent = boxDuong;
+    checkboxVua.classList.add('Duong');
 
     const ChuIt=document.createElement('h4');
     ChuIt.classList.add('Chu');
@@ -482,7 +491,9 @@ class Modal {
       // Kiểm tra xem checkbox nào đang được chọn
       if (checkboxIt.checked) {
         // Nếu checkbox ít được chọn, thì bỏ chọn checkbox vừa
+        this.Duong=checkboxIt.value;
         checkboxVua.checked = false;
+      
       }
     });
     
@@ -490,6 +501,7 @@ class Modal {
       // Kiểm tra xem checkbox nào đang được chọn
       if (checkboxVua.checked) {
         // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+        this.Duong=checkboxVua.value;
         checkboxIt.checked = false;
       }
     });
@@ -497,6 +509,7 @@ class Modal {
     // box Đá
     const boxDa = document.createElement('div');
     boxDa.classList.add('Duong');
+    boxDa.classList.add('boxDa');
 
     const ChuDa=document.createElement('h4');
     ChuDa.classList.add('ChuDuong');
@@ -507,6 +520,7 @@ class Modal {
     checkboxKhongDa.name = 'checkbox';
     checkboxKhongDa.value = 'Không';
     checkboxKhongDa.parent = boxDa;
+    checkboxKhongDa.classList.add('Da');
 
     const ChuKhongDa=document.createElement('h4');
     ChuKhongDa.classList.add('Chu');
@@ -518,6 +532,7 @@ class Modal {
     checkboxItDa.name = 'checkbox';
     checkboxItDa.value = 'Ít';
     checkboxItDa.parent = boxDa;
+    checkboxItDa.classList.add('Da');
 
     const ChuItDa=document.createElement('h4');
     ChuItDa.classList.add('Chu');
@@ -528,6 +543,7 @@ class Modal {
     checkboxNhieuDa.name = 'checkbox';
     checkboxNhieuDa.value = 'Nhiều';
     checkboxNhieuDa.parent = boxDa;
+    checkboxNhieuDa.classList.add('Da');
 
     const ChuNhieuDa=document.createElement('h4');
     ChuNhieuDa.classList.add('Chu');
@@ -538,8 +554,10 @@ class Modal {
       // Kiểm tra xem checkbox nào đang được chọn
       if (checkboxKhongDa.checked) {
         // Nếu checkbox ít được chọn, thì bỏ chọn checkbox vừa
+        this.Da=checkboxKhongDa.value;
         checkboxItDa.checked = false;
         checkboxNhieuDa.checked=false;
+
       }
     });
     
@@ -547,16 +565,21 @@ class Modal {
       // Kiểm tra xem checkbox nào đang được chọn
       if (checkboxItDa.checked) {
         // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+        this.Da=checkboxItDa.value;
         checkboxKhongDa.checked = false;
         checkboxNhieuDa.checked=false;
+
+
       }
     });
     checkboxNhieuDa.addEventListener('change', () => {
       // Kiểm tra xem checkbox nào đang được chọn
       if (checkboxNhieuDa.checked) {
         // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+        this.Da=checkboxNhieuDa.value;
         checkboxKhongDa.checked = false;
         checkboxItDa.checked=false;
+
       }
     });
 
@@ -564,6 +587,7 @@ class Modal {
 
 const boxSize = document.createElement('div');
 boxSize.classList.add('Duong');
+boxSize.classList.add('boxSize');
 
 const ChuSize=document.createElement('h4');
 ChuSize.classList.add('ChuDuong');
@@ -574,6 +598,7 @@ checkboxSizeM.type = 'checkbox';
 checkboxSizeM.name = 'checkbox';
 checkboxSizeM.value = 'Size M';
 checkboxSizeM.parent = boxSize;
+checkboxSizeM.classList.add('Size');
 
 const ChuM=document.createElement('h4');
 ChuM.classList.add('Chu');
@@ -585,6 +610,7 @@ checkboxSizeX.type = 'checkbox';
 checkboxSizeX.name = 'checkbox';
 checkboxSizeX.value = 'Size X';
 checkboxSizeX.parent = boxSize;
+checkboxSizeX.classList.add('Size');
 
 const ChuX=document.createElement('h4');
 ChuX.classList.add('Chu');
@@ -595,6 +621,7 @@ checkboxSizeXL.type = 'checkbox';
 checkboxSizeXL.name = 'checkbox';
 checkboxSizeXL.value = 'Size XL';
 checkboxSizeXL.parent = boxSize;
+checkboxSizeXL.classList.add('Size');
 
 const ChuXL=document.createElement('h4');
 ChuXL.classList.add('Chu');
@@ -605,8 +632,10 @@ checkboxSizeM.addEventListener('change', () => {
   // Kiểm tra xem checkbox nào đang được chọn
   if (checkboxSizeM.checked) {
     // Nếu checkbox ít được chọn, thì bỏ chọn checkbox vừa
+    this.Size=checkboxSizeM.value;
     checkboxSizeX.checked = false;
     checkboxSizeXL.checked=false;
+
   }
 });
 
@@ -614,22 +643,27 @@ checkboxSizeX.addEventListener('change', () => {
   // Kiểm tra xem checkbox nào đang được chọn
   if (checkboxSizeX.checked) {
     // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+    this.Size=checkboxSizeX.value;
     checkboxSizeM.checked = false;
     checkboxSizeXL.checked=false;
+
   }
 });
 checkboxSizeXL.addEventListener('change', () => {
   // Kiểm tra xem checkbox nào đang được chọn
   if (checkboxSizeXL.checked) {
     // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+    this.Size=checkboxSizeXL.value;
     checkboxSizeM.checked = false;
     checkboxSizeX.checked=false;
+
   }
 });
 
 // TOPPING
 const boxTopping = document.createElement('div');
 boxTopping.classList.add('Duong');
+boxTopping.classList.add('boxTopping');
 
 const ChuTopping=document.createElement('h4');
 ChuTopping.classList.add('ChuDuong');
@@ -640,6 +674,7 @@ checkboxChanTrau.type = 'checkbox';
 checkboxChanTrau.name = 'checkbox';
 checkboxChanTrau.value = 'Trân Châu';
 checkboxChanTrau.parent = boxTopping;
+checkboxChanTrau.classList.add('Topping');
 
 const ChuChanTrau=document.createElement('h5');
 ChuChanTrau.classList.add('Chu');
@@ -651,6 +686,7 @@ checkboxRauCau.type = 'checkbox';
 checkboxRauCau.name = 'checkbox';
 checkboxRauCau.value = 'Râu Câu';
 checkboxRauCau.parent = boxTopping;
+checkboxRauCau.classList.add('Topping');
 
 const ChuRauCau=document.createElement('h5');
 ChuRauCau.classList.add('Chu');
@@ -661,6 +697,7 @@ checkboxPhoMai.type = 'checkbox';
 checkboxPhoMai.name = 'checkbox';
 checkboxPhoMai.value = 'Phô Mai';
 checkboxPhoMai.parent = boxTopping;
+checkboxPhoMai.classList.add('Topping');
 
 const ChuPhoMai=document.createElement('h5');
 ChuPhoMai.classList.add('Chu');
@@ -671,8 +708,10 @@ checkboxRauCau.addEventListener('change', () => {
   // Kiểm tra xem checkbox nào đang được chọn
   if (checkboxRauCau.checked) {
     // Nếu checkbox ít được chọn, thì bỏ chọn checkbox vừa
+    this.Topping=checkboxRauCau.value;
     checkboxChanTrau.checked = false;
     checkboxPhoMai.checked=false;
+
   }
 });
 
@@ -680,16 +719,20 @@ checkboxChanTrau.addEventListener('change', () => {
   // Kiểm tra xem checkbox nào đang được chọn
   if (checkboxChanTrau.checked) {
     // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+    this.Topping=checkboxChanTrau.value;
     checkboxRauCau.checked = false;
     checkboxPhoMai.checked=false;
+
   }
 });
 checkboxPhoMai.addEventListener('change', () => {
   // Kiểm tra xem checkbox nào đang được chọn
   if (checkboxPhoMai.checked) {
     // Nếu checkbox vừa được chọn, thì bỏ chọn checkbox ít
+    this.Topping=checkboxPhoMai.value;
     checkboxChanTrau.checked = false;
     checkboxRauCau.checked=false;
+
   }
 });
 
@@ -1070,7 +1113,7 @@ function AddChart(index) {
   const charts = getCharts();
 
   // Kiểm tra vị trí hợp lệ
-  if (index >= 0 && index < products.length) {
+  // if (index >= 0 && index < products.length) {
     // Lấy đối tượng cần chỉnh sửa dựa trên vị trí
     const myObject = products[index];
     const image = myObject.img;
@@ -1089,9 +1132,9 @@ function AddChart(index) {
     // Lưu trữ thông tin của sản phẩm mới vào local storage. ở dạng String
     localStorage.setItem('charts', JSON.stringify(charts));
     reload();
-  } else {
-    console.log('Vị trí không hợp lệ');
-  }
+  // } else {
+  //   console.log('Vị trí không hợp lệ');
+  // }
 }
 
 // xóa chart
@@ -1126,9 +1169,7 @@ window.addEventListener('load', function() {
     const products = getProducts();
     const modals=getModals();
     const charts=getCharts();
-          // constructor(container, img, ma, tieude, name, price, icon)
-      // constructor(MODAL,imgSrc, name,price)
-      // constructor(CHART_BOX,img,tensp,soluong,thanhtien)
+
   // tất cả các products được load lên từ local storage dưới dạng text lên window
     for (const pro of products) {
       const newPro = new Pro(proContainer, pro.img," #" +pro.ma, pro.tieude, pro.name, pro.price+"đ");
@@ -1194,17 +1235,24 @@ window.addEventListener('load', function() {
 //   }
 //  }
 function openModal() {
-  const modals=getModals();
+  const modals = getModals();
   const myObject = modals[0];
-  if(myObject.check === 1){
+
+  if (myObject && myObject.check === 1) {
+    // Xử lý khi modal đã tồn tại và check === 1
     for (const modalElement of modalElements) {
       modalElement.classList.remove('invisible');
     }
-  }
-    const newModal=modals.splice(0,1)[0];
-    newModal.check=0;
+    const newModal = modals.splice(0, 1)[0];
+    newModal.check = 0;
     modals.push(newModal);
-    localStorage.setItem('modals',JSON.stringify(modals));
+    localStorage.setItem('modals', JSON.stringify(modals));
+  } else if(modals.length===0){
+    // Xử lý khi không có modal hoặc check !== 1
+    const newModal = new Modal(MODAL, '', '', '000000', 0, '', '', '', '');
+    modals.push(newModal);
+    localStorage.setItem('modals', JSON.stringify(modals));
+  }
 }
 
 productElements.forEach((productElement, index) => {
@@ -1214,26 +1262,6 @@ productElements.forEach((productElement, index) => {
     modals.check=1;
   });
 });
-
- productElements.forEach((productElement,index) => {
-   productElement.addEventListener('click', (e) => {
-    const img=document.querySelector('img');
-      updateModal(index);
-      window.addEventListener('load', () => {
-        const promise = new Promise((resolve, reject) => {
-          location.reload();
-          resolve();
-        });
-        
-        // Khi Promise được resolved, ta sẽ chạy hàm cần chạy
-        promise.then(() => {
-          // Chạy hàm cần chạy
-          openModal();
-          
-        });
-      });
-    });
-  });
 
   modalElements.forEach((modalElement, index) => {
     var close = modalElement.querySelector('.close');
@@ -1276,7 +1304,6 @@ khong.addEventListener("click", function() {
 var carts=document.querySelectorAll('.cart');
 carts.forEach((cart,index) => {
   cart.addEventListener('click',function(){
-      console.log('đã bấm');
       AddChart(index-1);
   })
 
@@ -1285,6 +1312,88 @@ carts.forEach((cart,index) => {
     })
 
  });
+
+
+//  var boxDuong=document.querySelector('boxDuong');
+//  var boxDa=document.querySelector('boxDa');
+//  var boxSize=document.querySelector('boxSize');
+//  var boxTopping=document.querySelector('boxTopping')
+var selectedDuongValue; // Biến để lưu giá trị checkbox được chọn
+var selectedDaValue;
+var selectedSizeValue;
+var selectedToppingValue;
+  function getDuong(){
+        var checkboxesDuong = document.querySelectorAll('.Duong');
+        checkboxesDuong.forEach(checkboxDuong => {
+          if(checkboxDuong.checked){
+            selectedDuongValue = checkboxDuong.value;
+          }
+        });
+  }
+  function getDa(){
+    var checkboxesDa = document.querySelectorAll('.Da');
+    checkboxesDa.forEach(checkboxDa => {
+      if(checkboxDa.checked){
+        selectedDaValue = checkboxDa.value;
+      }
+    });
+  }
+  function getSize(){
+    var checkboxesSize = document.querySelectorAll('.Size');
+    checkboxesSize.forEach(checkboxSize => {
+      if(checkboxSize.checked){
+        selectedSizeValue = checkboxSize.value;
+      }
+    });
+  }
+  function getTopping(){
+    var checkboxesTopping = document.querySelectorAll('.Topping');
+    checkboxesTopping.forEach(checkboxTopping => {
+      if(checkboxTopping.checked){
+        selectedToppingValue = checkboxTopping.value;
+      }
+    });
+  }
+
+            // constructor(container, img, ma, tieude, name, price, icon)
+      // constructor(MODAL,img, name,price,check,Duong,Da,Size,Topping)
+      // constructor(CHART_BOX,img,tensp,soluong,thanhtien)
+
+ var BUY=document.querySelector('.Mua');
+ BUY.addEventListener('click',function(){
+    getDuong();
+    getDa();
+    getSize();
+    getTopping();
+    const soluongmua=document.getElementById('SoLuongMua').value;
+    const modals=getModals();
+    const modal=modals[0];
+    const image=modal.img;
+    const tensp=modal.name;
+    const gia=modal.price;
+    let thanhtien=gia*soluongmua;
+    const duong=selectedDuongValue;
+    const da=selectedDaValue;
+    const size=selectedSizeValue;
+    if(size==='Size X'){
+      thanhtien=thanhtien+5000;
+    }
+    else if(size==='Size XL'){
+      thanhtien=thanhtien+10000;
+    }
+    const topping=selectedToppingValue;
+    if(topping!==''){
+      thanhtien=thanhtien+5000;
+    }
+
+    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien); // truyền thành tiền vào
+    charts.push(newChart); // Thêm chart mới vào mảng charts
+
+    // Lưu trữ thông tin của sản phẩm mới vào local storage. ở dạng String
+    localStorage.setItem('charts', JSON.stringify(charts));
+    reload();
+    
+ })
 
 // KẾT THÚC CỦA GIỎ HÀNG
 
@@ -1309,3 +1418,4 @@ chartElements.forEach((chart, index) => {
 
 // KẾT THÚC CỦA LOAD WINDOW
 });
+
