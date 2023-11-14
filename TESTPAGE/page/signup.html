@@ -12,22 +12,22 @@
     </section>
     <section class="signup-de">
         <div class="wrapper">   
-          <form class="input-box">
-            <h1>Log in</h1>
+          <form id="form-login1" class="input-box">
+            <h1>Đăng nhập</h1>
             <div class="form-group">
                 <i class="fa fa-key"></i>
-                <input placeholder="Email" id="USERNAME" class="form-input username" type="text" required>
+                <input placeholder="Email" id="USERNAME" class="form-input username" type="text" autocomplete="off">
             </div>
             <div class="form-group">
                 <i class="fa fa-lock"></i>
-                    <input type="password" id="PASSWORD" class="form-input password" placeholder="Password" required>
+                    <input type="password" id="PASSWORD" class="form-input password" placeholder="Mật khẩu" required>
                 <div id="eyes">
                     <i class="fa fa-eye"></i>
                 </div>
             </div>
-            <input type="submit" value="Login" class="form-submit login">
+            <input type="submit" value="Đăng nhập" class="form-submit login">
             <h1 id="OR">------Or------</h1>
-            <input type="submit" value="Sign up" class="form-submit signup">
+            <input type="submit" value="Đăng ký" class="form-submit signup">
 
           </form>
         </div>
@@ -114,21 +114,27 @@ function toast({ title = "", message = "", type = "info", duration = 3000 }) {
     <!-- Nội dung đăng ký -->
     <div class="signup-body">
       <div class="close-style"><span class="close">&times;</span></div>
-      <form>
-        <h1 class="signup_form-heading">Sign up</h1>
+      <form id="form-signup1">
+        <h1 class="signup_form-heading">Đăng ký thành viên</h1>
 
         <div class="signup_form-form">
           <div class="signup_form-group">
-            <input placeholder="Email" id="USERNAME-Sign" class="sign_form-input username" type="text" required>
+            <label for="Email-Sign" class="form-label">Email</label>
+            <input placeholder="Nhập Email" id="Email-Sign" class="sign_form-input username" type="text" required>
+            <span class="form-message"></span>
           </div>
           <div class="signup_form-group">
-            <input placeholder="Password" id="PASSWORD-Sign" class="sign_form-input password" type="password" required>
+            <label for="PASSWORD-Sign" class="form-label">Mật khẩu</label>
+            <input placeholder="Nhập mật khẩu" id="PASSWORD-Sign" class="sign_form-input password" type="password" required>
+            <span class="form-message"></span>
             <div id="eyes" data-target="PASSWORD-Sign">
               <i class="fa fa-eye eye-icon"></i>
             </div>
           </div>
-          <div class="signup_form-group">            
-            <input placeholder="Password confirmation" id="PASSWORD-CFT" class="sign_form-input password" type="password" required>
+          <div class="signup_form-group"> 
+            <label for="PASSWORD-CFT" class="form-label">Nhập lại mật khẩu</label>
+            <input placeholder="Nhập lại mật khẩu" id="PASSWORD-CFT" class="sign_form-input password" type="password" required>
+            <span class="form-message"></span>
             <div id="eyes" data-target="PASSWORD-CFT">
               <i class="fa fa-eye eye-icon"></i>
             </div> 
@@ -149,11 +155,27 @@ function toast({ title = "", message = "", type = "info", duration = 3000 }) {
 
       </form>
 
-      <div id="error-message" class="error-message"></div><div></div>
       
     </div>
   </div>
 </div>
+
+<!--message erro-->
+<script>
+
+  Validator({
+    form: '#form-signup1',
+    errorSelector: '.form-message',
+    rules: [
+      Validator.isEmail('#Email-Sign'),
+      Validator.minLength('#PASSWORD-Sign', 6),
+      Validator.isConfirmed('#PASSWORD-CFT', function(){
+        return document.querySelector('#form-signup1 #PASSWORD-Sign').value;
+      }, 'Mật khẩu không trung khớp'),
+    ]
+  })
+
+</script>
 
 
 

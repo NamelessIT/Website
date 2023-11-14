@@ -45,11 +45,11 @@ closeBtn.onclick = function() {
 }
 
 // Khi người dùng click bất kỳ đâu bên ngoài modal, modal cũng sẽ đóng
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+// window.onclick = function(event) {
+//   if (event.target == modal) {
+//     modal.style.display = "none";
+//   }
+// }
 }
 
 // Khi click vào mắt ở phần password của đăng nhập sẽ thấy nội dung của Login
@@ -94,22 +94,89 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 //Cảnh báo khi bỏ trống ô thông tin
-document.addEventListener("DOMContentLoaded", function() {
-  const signupForm = document.getElementById("signup-form");
-  const errorMessage = document.getElementById("error-message");
+function Validator(options){
 
-  signupForm.addEventListener("submit", function(e) {
-    const usernameInput = document.getElementById("USERNAME-Sign");
-    const passwordSignInput = document.getElementById("PASSWORD-Sign");
-    const passwordCftInput = document.getElementById("PASSWORD-CFT");
+  // Hàm thực hiện validate
+  function Validate(inputElement, rule){
+    var errorMessage = rule.test(inputElement.value);
+    var errorElement = inputElement.parentElement.querySelector(options.errorSelector);
 
-    if (usernameInput.value === "" || passwordSignInput.value === "" || passwordCftInput.value === "") {
-      errorMessage.textContent = "Vui lòng điền đầy đủ thông tin.";
-      errorMessage.style.display = "block";
-      e.preventDefault(); // Ngăn chặn việc gửi biểu mẫu nếu có lỗi
-    } else {
-      errorMessage.textContent = "";
-      errorMessage.style.display = "none";
+          if(errorMessage){
+            errorElement.innerText = errorMessage; 
+            inputElement.parentElement.classList.add('invalid');
+          }else{
+            errorElement.innerText = '';
+            inputElement.parentElement.classList.remove('invalid');
+          }
+  }
+
+  // lấy element của form cần validate
+  var formElement = document.querySelector(options.form);
+  
+  if(formElement){
+    
+    options.rules.forEach(function(rule){
+
+      var inputElement = formElement.querySelector(rule.selector);
+      
+      
+      if(inputElement){
+        // Xử lí trường hợp blur khỏi input
+        inputElement.onblur = function(){
+          Validate(inputElement, rule);
+          
+        }
+
+        // Xủ lý khi nhập vào input
+        inputElement.oninput = function(){
+          var errorElement = inputElement.parentElement.querySelector(options.errorSelector);
+          errorElement.innerText = '';
+          inputElement.parentElement.classList.remove('invalid');
+        }
+      }
+
+    });
+
+  }
+
+}
+// Định nghĩa rules
+// Nguyên tắc rules:
+// 1. Khi có lỗi => message lỗi
+// 2. Khi hợp lệ => undefined
+Validator.isEmail = function(selector, message){
+  return {
+    selector: selector,
+    test: function(value) {
+      var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      return regex.test(value) ? undefined : message || 'Vui lòng nhập email';
     }
-  });
-});
+  };
+}
+
+Validator.isRequired = function(selector, message){
+  return {
+    selector: selector,
+    test: function(value) {
+      return value.trim() ? undefined : message || 'Vui lòng nhập thông tin';
+    }
+  };
+}
+
+Validator.minLength = function(selector, min, message){
+  return {
+    selector: selector,
+    test: function(value) {
+      return value.length >= 6 ? undefined : message || `Vui lòng nhập tối thiểu ${min} ký tự`;
+    }
+  };
+}
+
+Validator.isConfirmed = function(selector, getConfirmValue, message){
+  return {
+    selector: selector,
+    test: function(value) {
+      return value === getConfirmValue() ? undefined : message || 'Giá trị nhập vào không chính xác';
+    }
+  };
+}
