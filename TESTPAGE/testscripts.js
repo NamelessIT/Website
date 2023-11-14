@@ -1376,14 +1376,14 @@ var selectedToppingValue;
     const da=selectedDaValue;
     const size=selectedSizeValue;
     if(size==='Size X'){
-      thanhtien=thanhtien+5000;
+      thanhtien=thanhtien+(gia*0.1*soluongmua);
     }
     else if(size==='Size XL'){
-      thanhtien=thanhtien+10000;
+      thanhtien=thanhtien+(gia*0.2*soluongmua);
     }
     const topping=selectedToppingValue;
     if(topping!==''){
-      thanhtien=thanhtien+5000;
+      thanhtien=thanhtien+(gia*0.1*soluongmua);
     }
 
     const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien); // truyền thành tiền vào
@@ -1417,5 +1417,18 @@ chartElements.forEach((chart, index) => {
 // KẾT thúc
 
 // KẾT THÚC CỦA LOAD WINDOW
+
+
+// CHI TIẾT HÓA ĐƠN
+const MoChitiethoadon=document.querySelector('.CHART');
+const ChitietHoadon=document.querySelector('.CHITIETHOADON');
+MoChitiethoadon.addEventListener('click',function(){
+  ChitietHoadon.classList.remove('invisible');
+})
+chartElements.forEach(cart => {
+  cart.addEventListener('click',function(event){
+    event.stopPropagation();
+  })
+});
 });
 

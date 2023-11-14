@@ -65,7 +65,7 @@ body {
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 999;
+    z-index: 5;
     
     
 }
@@ -147,6 +147,19 @@ body {
     cursor: pointer;
 }
 
+@keyframes bung-ra {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+      /* transform-origin: top; Định vị gốc biến đổi ở góc phải trên */
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+      /* transform-origin: bottom; Định vị gốc biến đổi ở góc trái trên */
+    }
+  }
+
 /* show giỏ hàng */
 .bar#user .a{
     position: relative;
@@ -154,8 +167,12 @@ body {
 .bar#user .CHART{
     padding: 5px 0;
 }
+.bar#user .CHART:hover i{
+    font-size: 20px;
+}
 ul.CHART:hover >div#CHART_SHOW{
     visibility: visible !important;
+    animation: bung-ra 0.5s ease-in-out;
 }
 #CHART_SHOW::before {
     content: "";
@@ -688,4 +705,17 @@ body {
     float: left;
     flex: 1;
   }
+
+  /* CHI TIẾT HÓA ĐƠN */
+#CHITIETHOADON .CHITIETHOADON{
+    position: fixed;
+    background-color: #ccc;
+    top: 0;
+    bottom: 0;
+    right:0;
+    left: 0;
+    opacity: 0.9;
+    height: 100%;
+    z-index: 6;
+}
  
