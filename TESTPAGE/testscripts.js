@@ -1182,11 +1182,9 @@ window.addEventListener('load', function() {
     }
   // tạo 1 list pro và modal dưới dạng js
 
-
-
-    const productElements = Array.from(document.querySelectorAll('.pro'));
-    const modalElements=Array.from(document.querySelectorAll('.modal'));
-    const chartElements=Array.from(document.querySelectorAll('.chart'));
+  const productElements = Array.from(document.querySelectorAll('.pro'));
+  const modalElements=Array.from(document.querySelectorAll('.modal'));
+  const chartElements=Array.from(document.querySelectorAll('.chart'));
 //  tạo list dạng nodediv
 
   // các biến và hàm cho sản phẩm
@@ -1197,8 +1195,7 @@ window.addEventListener('load', function() {
  var adjusts=document.querySelectorAll('.rewrite');
  var modal_adjust=document.querySelector('.modal-ADJUST');
  var close_adjust=document.querySelector('.modal-container_ADJUST .icon')
-
- var delAll=this.document.querySelector('.pro-container .pro-admin-delete');
+//  chỉnh sửa và xóa pro
 
  close_adjust.addEventListener('click',function(){
   modal_adjust.classList.add('invisible');
@@ -1206,9 +1203,24 @@ window.addEventListener('load', function() {
 
  delPros.forEach((del,index) => {
   del.addEventListener('click',function(){
+    const modal = document.querySelector(".modal-del");
+    const co = document.querySelector(".modal-del .co");
+    const khong = document.querySelector(".modal-del .khong");
+    
+   function showModal() {
+      modal.classList.remove('invisible');
+   }
+    showModal();
+   co.addEventListener("click", function() {
     deleteProduct(index);
     DeleteChart(products[index].img,products[index].name);
     reload();
+   });
+    
+   khong.addEventListener("click", function() {
+      // Hủy lệnh
+     modal.classList.add('invisible');
+   });
   })
 
     del.addEventListener('click',function(event){
@@ -1216,6 +1228,9 @@ window.addEventListener('load', function() {
     })
 
  });
+
+
+//  chỉnh sửa 
  adjusts.forEach((adjust,index) => {
   adjust.addEventListener('click',function(){
     modal_adjust.classList.remove('invisible');
@@ -1227,13 +1242,6 @@ window.addEventListener('load', function() {
 });
  
  var input = document.querySelector('.SoLuong');
- 
-//  Add an event listener to each DOM element
-//  function openModal(){
-//   for (const modalElement of modalElements) {
-//     modalElement.classList.remove('invisible');
-//   }
-//  }
 function openModal() {
   const modals = getModals();
   const myObject = modals[0];
@@ -1279,26 +1287,6 @@ productElements.forEach((productElement, index) => {
   });
 
  // KẾT THÚC MỞ MODAL và ĐÓNG MODAL
-//  chỉnh sửa và xóa pro
-const modal = document.querySelector(".modal-del");
-const co = document.querySelector(".modal-del .co");
-const khong = document.querySelector(".modal-del .khong");
-
-function showModal() {
-  modal.classList.remove('invisible');
-}
-delAll.addEventListener('click',showModal);
-
-co.addEventListener("click", function() {
-  localStorage.clear();
-  reload();
-});
-
-khong.addEventListener("click", function() {
-  // Hủy lệnh
-  modal.classList.add('invisible');
-});
-
 
 // giỏ hàng
 var carts=document.querySelectorAll('.cart');
