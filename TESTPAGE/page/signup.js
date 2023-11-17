@@ -15,12 +15,22 @@ function login() {
   // Kiểm tra xem thông tin tài khoản và mật khẩu có hợp lệ hay không
   if (username.value === "admin" && password.value === "123456") {
     // Đăng nhập thành công
+    currentUser = 'admin';
+    localStorage.setItem('loggedInUser', 'admin');
     location.href = "../index.html";
-  } else {
+  }
+  else if(username.value==='user1' && password.value==='123'){
+    currentUser = 'user1';
+    localStorage.setItem('loggedInUser', 'user1');
+    location.href = "../index.html";
+  }
+  else {
     // Đăng nhập thất bại
     showErrorToast();
   }
 }
+
+
 
 const MDsignup = document.querySelector(".signup");
 

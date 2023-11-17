@@ -861,6 +861,10 @@ class Pro_Chart{
   this.element.appendChild(chartImage);
   this.element.appendChild(ChartTsp);
   this.element.appendChild(ChartSoLuong);
+  this.element.appendChild(ChartDuong);
+  this.element.appendChild(ChartDa);
+  this.element.appendChild(ChartSize);
+  this.element.appendChild(ChartTopping);
   this.element.appendChild(ChartTien);
   }
 }
@@ -1373,6 +1377,7 @@ var selectedToppingValue;
     if(topping!==''){
       thanhtien=thanhtien+(gia*0.1*soluongmua);
     }
+    thanhtien = thanhtien.toFixed(2);
 
     const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien); // truyền thành tiền vào
     charts.push(newChart); // Thêm chart mới vào mảng charts
@@ -1418,5 +1423,44 @@ chartElements.forEach(cart => {
     event.stopPropagation();
   })
 });
+
+
+
+// QUANLYTAIKHOAN
+var quyenadmin=document.querySelector('.Quanlytaikhoan');
+quyenadmin.addEventListener('click',function(){
+  window.location.href = 'QuyenAdmin.html';
+})
+
+// TÀI KHOẢN 
+// Kiểm tra xem người dùng đã đăng nhập hay chưa
+var loggedInUser = localStorage.getItem('loggedInUser');
+if (loggedInUser) {
+  // Đã đăng nhập, hiển thị trang giỏ hàng
+  currentUser = loggedInUser;
+  if(currentUser==='user1'){
+    // trang user
+function hideFuntion(){
+    var addProduct=document.querySelector('.pro-admin');
+    var adjusts=document.querySelectorAll('.adjust');
+    var ManageAccount=document.querySelector('.Quanlytaikhoan');
+    addProduct.classList.add('invisible');
+    adjusts.forEach(adjust => {
+        adjust.classList.add('invisible');
+    });
+    ManageAccount.classList.add('invisible');
+    }
+
+hideFuntion();
+  }
+}
+
+function logout() {
+currentUser = null;
+localStorage.removeItem('loggedInUser');
+location.href = "page/signup.html";
+}
+var DangXuat=document.querySelector('.Dangxuat');
+DangXuat.addEventListener('click',logout);
 });
 

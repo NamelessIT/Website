@@ -1,0 +1,118 @@
+.invisible{
+    display: none !important;
+}
+.container {
+    display: flex;
+    height: 96vh;
+}
+
+.sidebar {
+    width: 25%;
+    background: linear-gradient(to bottom right, #FFA500, #FF4500);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sidebar li {
+    color: white;
+    padding: 15px;
+    cursor: pointer;
+    transition: background 0.3s;
+    min-width: 200px;
+    border-radius: 5px;
+}
+
+.sidebar li.active {
+    background: black;
+}
+
+.content {
+    flex-grow: 1;
+    background: lightgray;
+    overflow: hidden;
+}
+
+.sliding-effect {
+    animation: slide 0.3s;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+.sliding-effect.slide-up {
+    animation: slide-up 0.3s;
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+/* Logo */
+.LOGO{
+    width: 20%;
+    position: absolute;
+}
+.LOGO img{
+    position: absolute;
+    width: 65%;
+    left: 28px;
+    top: 10px;
+}
+
+#QUANLYDONHANG {
+    width: 75%;
+    background-color: red;
+    height: 96%;
+    position: absolute;
+    top: 8px;
+    right: 0;
+}
+#CHART_SHOW .chart{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px 0px;
+}
+#CHART_SHOW .chart:hover{
+    opacity: 0.6;
+    background-color: #ccc;
+}
+#CHART_SHOW .chart img{
+    width: 10%;
+    display: inline;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-left: 3px;
+}
+#CHART_SHOW .chart .ChartTsp,#CHART_SHOW .chart .ChartSL
+,.chart .ChartDuong,.chart .ChartDa,.chart .ChartSize,.chart .ChartTopping,
+#CHART_SHOW .chart .ChartTien,#CHART_SHOW .chart .HUY{
+    text-align: center;
+    width: 11%;
+    display: inline;
+}
+#CHART_SHOW .chart .HUY{
+    cursor: pointer;
+    padding: 2px;
+    background-color: #fff;
+}
