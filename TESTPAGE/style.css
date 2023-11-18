@@ -149,13 +149,15 @@ body {
 
 @keyframes bung-ra {
     0% {
-      transform: scale(0);
-      opacity: 0;
+      /* transform: scale(0);
+      opacity: 0; */
+      scale: 0;
       /* transform-origin: top; Định vị gốc biến đổi ở góc phải trên */
     }
     100% {
-      transform: scale(1);
-      opacity: 1;
+        scale: 1;
+      /* transform: scale(1);
+      opacity: 1; */
       /* transform-origin: bottom; Định vị gốc biến đổi ở góc trái trên */
     }
   }
@@ -177,13 +179,14 @@ ul.CHART:hover >div#CHART_SHOW{
 #CHART_SHOW::before {
     content: "";
     position: absolute;
-    top: -33px;
-    right: -1px;
-    width: 0;
-    height: 0;
-    border-left: 30px solid transparent;
-    border-right: 30px solid transparent;
-    border-bottom: 36px solid white;
+    top: -36px;
+    right: 0px;
+    width: 59px;
+    /* background-color: #fff; */
+    height: 42px;
+    /* border-left: 30px solid transparent; */
+    /* border-right: 30px solid transparent; */
+    /* border-bottom: 36px solid white; */
     border-radius: 2px;
   }
 #CHART_SHOW{
@@ -193,7 +196,7 @@ ul.CHART:hover >div#CHART_SHOW{
     box-shadow: 0 10px 20px #cec9c9;
     min-width: 300%;
     /* display: block; */
-    right: -10%;
+    right: 0;
     border-radius: 5px;
     top: 170%;
     visibility: hidden;
@@ -559,6 +562,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 5;
  }
  .modal .modal-container,.modal-admin .modal-container,.modal-ADJUST .modal-container_ADJUST{
     background-color: #fff;

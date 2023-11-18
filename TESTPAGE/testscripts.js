@@ -1,17 +1,12 @@
 
 
 // mốt chỉnh đăng nhập thành .dangnhap khi bấm vào icon user sẽ ra 1 hình chữ nhật hiện gồm tài khoản(nếu đã đăng nhập) và đăng xuất
-var dangnhap = document.querySelector('.fa-user');
 var menu = document.querySelector('.js-nav');
 var blockmenu = document.querySelector('.nav-menu');
 var outside =document.querySelector('.outside');
 var icon=document.getElementById('iconupdown');
 var open = false;
 
-// Thêm một sự kiện click cho thẻ `fa-user` để mở trang đăng nhập.
-dangnhap.addEventListener('click', function() {
-  location.href = "page/signup.html";
-});
 
 
 
@@ -935,15 +930,31 @@ function saveModal(modal){
   }
 }
 function saveChart(Pro_Chart){
-  const ma = document.getElementById('MaSanPham').value;
-    if(ma.length!==4){
-    return;
-  }
-  else{
     const charts=JSON.parse(localStorage.getItem('charts') || '[]');
     charts.push(Pro_Chart);
     localStorage.setItem('charts',JSON.stringify(charts));
+}
+// Hàm lưu sản phẩm vào Local Storage theo tài khoản người dùng
+function saveProductToLocalStorage(username, product) {
+  // Kiểm tra xem Local Storage có sẵn dữ liệu hay không
+  let charts = localStorage.getItem('charts');
+
+  // Nếu không có dữ liệu, khởi tạo object rỗng
+  if (!charts) {
+    charts = {};
+  } else {
+    // Nếu có dữ liệu, chuyển đổi từ chuỗi JSON sang object
+    charts = JSON.parse(charts);
   }
+
+  // Tạo chart cho tài khoản người dùng nếu chưa tồn tại
+  charts[username] = charts[username] || [];
+
+  // Thêm sản phẩm vào chart của tài khoản người dùng
+  charts[username].push(product);
+
+  // Lưu lại dữ liệu vào Local Storage
+  localStorage.setItem('charts', JSON.stringify(charts));
 }
 
 // Lấy thông tin của sản phẩm từ local storage.
@@ -958,6 +969,24 @@ function getModals() {
 function getCharts(){
   const charts=JSON.parse(localStorage.getItem('charts')||'[]');
   return charts;
+}
+// Hàm lấy ra danh sách sản phẩm từ Local Storage theo tài khoản người dùng
+function getProductsFromLocalStorage(username) {
+  // Kiểm tra xem Local Storage có sẵn dữ liệu hay không
+  let charts = localStorage.getItem('charts');
+
+  // Nếu không có dữ liệu, trả về mảng rỗng
+  if (!charts) {
+    return [];
+  }
+
+  // Chuyển đổi từ chuỗi JSON sang object
+  charts = JSON.parse(charts);
+
+  // Lấy danh sách sản phẩm dựa trên tài khoản người dùng
+  const products = charts[username] || [];
+
+  return products;
 }
 
 
@@ -1111,10 +1140,10 @@ function updateModal(index) {
 }
 
 
-function AddChart(index) {
+function AddChart(index,username) {
   // Chuyển đổi chuỗi JSON thành mảng các đối tượng
   const products = getProducts();
-  const charts = getCharts();
+  const charts = getProductsFromLocalStorage(username);
 
   // Kiểm tra vị trí hợp lệ
   // if (index >= 0 && index < products.length) {
@@ -1134,32 +1163,48 @@ function AddChart(index) {
     charts.push(newChart); // Thêm chart mới vào mảng charts
 
     // Lưu trữ thông tin của sản phẩm mới vào local storage. ở dạng String
-    localStorage.setItem('charts', JSON.stringify(charts));
+    saveProductToLocalStorage(username, newChart);
     reload();
   // } else {
   //   console.log('Vị trí không hợp lệ');
   // }
 }
 
-// xóa chart
-function DeleteChart(img, tensp) {
-  // Chuyển đổi chuỗi JSON thành mảng các đối tượng
-  const charts = getCharts();
+function removeProductFromAllAccounts(img, tensp) {
+  // Lấy dữ liệu từ Local Storage
+  let charts = localStorage.getItem('charts');
 
-  // Tìm kiếm sản phẩm cần xóa
-  const index = charts.findIndex((chart) => chart.img === img && chart.tensp === tensp);
-
-  // Nếu tìm thấy sản phẩm cần xóa
-  if (index !== -1) {
-    // Xóa sản phẩm khỏi mảng charts
-    charts.splice(index, 1);
-
-    // Lưu trữ thông tin của sản phẩm mới vào local storage. ở dạng String
-    localStorage.setItem('charts', JSON.stringify(charts));
-    reload();
-  } else {
-    console.log('Không tìm thấy sản phẩm cần xóa');
+  // Kiểm tra nếu không có dữ liệu, không làm gì cả
+  if (!charts) {
+    return;
   }
+
+  // Giải mã dữ liệu từ chuỗi JSON
+  charts = JSON.parse(charts);
+
+  // Lặp qua từng tài khoản
+  Object.keys(charts).forEach(username => {
+    let userChart = charts[username];
+
+    // Kiểm tra xem userChart có phải là một mảng hay không
+    if (Array.isArray(userChart)) {
+      // Tìm index của sản phẩm trong chart của tài khoản
+      let indexes = [];
+      userChart.forEach((p, index) => {
+        if (p.img === img && p.tensp === tensp) {
+          indexes.push(index);
+        }
+      });
+
+      // Xóa các sản phẩm khớp trong chart của tài khoản
+      for (let i = indexes.length - 1; i >= 0; i--) {
+        userChart.splice(indexes[i], 1);
+      }
+    }
+  });
+
+  // Lưu dữ liệu đã được cập nhật vào Local Storage
+  localStorage.setItem('charts', JSON.stringify(charts));
 }
 
 
@@ -1170,9 +1215,13 @@ function DeleteChart(img, tensp) {
 
 // Khi trang được tải, lấy thông tin của sản phẩm từ local storage và hiển thị chúng trên trang.
 window.addEventListener('load', function() {
+
+
+  var loggedInUser = localStorage.getItem('loggedInUser');
+
     const products = getProducts();
     const modals=getModals();
-    const charts=getCharts();
+    const charts=getProductsFromLocalStorage(loggedInUser);
 
   // tất cả các products được load lên từ local storage dưới dạng text lên window
     for (const pro of products) {
@@ -1186,9 +1235,24 @@ window.addEventListener('load', function() {
     }
   // tạo 1 list pro và modal dưới dạng js
 
+  // Kiểm tra xem người dùng đã đăng nhập hay chưa
+if (loggedInUser) {
+  // Đã đăng nhập, hiển thị trang giỏ hàng
+  currentUser = loggedInUser;
+  if(currentUser!=='admin'){
+    // trang user
+
+
+hideFuntion();
+  }
+}
+
   const productElements = Array.from(document.querySelectorAll('.pro'));
   const modalElements=Array.from(document.querySelectorAll('.modal'));
   const chartElements=Array.from(document.querySelectorAll('.chart'));
+
+
+  
 //  tạo list dạng nodediv
 
   // các biến và hàm cho sản phẩm
@@ -1217,7 +1281,7 @@ window.addEventListener('load', function() {
     showModal();
    co.addEventListener("click", function() {
     deleteProduct(index);
-    DeleteChart(products[index].img,products[index].name);
+    removeProductFromAllAccounts(products[index].img,products[index].name);
     reload();
    });
     
@@ -1296,7 +1360,12 @@ productElements.forEach((productElement, index) => {
 var carts=document.querySelectorAll('.cart');
 carts.forEach((cart,index) => {
   cart.addEventListener('click',function(){
-      AddChart(index-1);
+    if (loggedInUser) {
+      AddChart(index-1,loggedInUser);
+    }
+    else{
+      console.log('Đăng nhập để mua');
+    }
   })
 
     cart.addEventListener('click',function(event){
@@ -1378,13 +1447,14 @@ var selectedToppingValue;
       thanhtien=thanhtien+(gia*0.1*soluongmua);
     }
     thanhtien = thanhtien.toFixed(2);
-
-    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien); // truyền thành tiền vào
-    charts.push(newChart); // Thêm chart mới vào mảng charts
-
-    // Lưu trữ thông tin của sản phẩm mới vào local storage. ở dạng String
-    localStorage.setItem('charts', JSON.stringify(charts));
-    reload();
+    if (loggedInUser) {
+      const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien); // truyền thành tiền vào
+      saveProductToLocalStorage(loggedInUser, newChart);
+      reload();
+    }
+    else{
+      console.log('Đăng nhập để mua');
+    }
     
  })
 
@@ -1433,28 +1503,17 @@ quyenadmin.addEventListener('click',function(){
 })
 
 // TÀI KHOẢN 
-// Kiểm tra xem người dùng đã đăng nhập hay chưa
-var loggedInUser = localStorage.getItem('loggedInUser');
-if (loggedInUser) {
-  // Đã đăng nhập, hiển thị trang giỏ hàng
-  currentUser = loggedInUser;
-  if(currentUser==='user1'){
-    // trang user
+
 function hideFuntion(){
-    var addProduct=document.querySelector('.pro-admin');
-    var adjusts=document.querySelectorAll('.adjust');
-    var ManageAccount=document.querySelector('.Quanlytaikhoan');
-    addProduct.classList.add('invisible');
-    adjusts.forEach(adjust => {
-        adjust.classList.add('invisible');
-    });
-    ManageAccount.classList.add('invisible');
-    }
-
-hideFuntion();
+  var addProduct=document.querySelector('.pro-admin');
+  var adjusts=document.querySelectorAll('.adjust');
+  var ManageAccount=document.querySelector('.Quanlytaikhoan');
+  addProduct.classList.add('invisible');
+  adjusts.forEach(adjust => {
+      adjust.classList.add('invisible');
+  });
+  ManageAccount.classList.add('invisible');
   }
-}
-
 function logout() {
 currentUser = null;
 localStorage.removeItem('loggedInUser');

@@ -126,22 +126,73 @@ class Pro_Chart{
     }
   }
 
-function getCharts(){
-    const charts=JSON.parse(localStorage.getItem('charts')||'[]');
-    return charts;
-}
-function deleteChart(position) {
-    const charts = getCharts();
+// Hàm trả về danh sách tất cả sản phẩm từ mọi tài khoản
+function getAllProducts() {
+  // Lấy dữ liệu từ Local Storage
+  const allData = localStorage.getItem('charts');
+  const allProducts = [];
 
-  // Kiểm tra vị trí xóa có hợp lệ hay không
-  if (position < 0 || position >= charts.length) {
+  if (allData) {
+    const charts = JSON.parse(allData);
+    // Lặp qua mỗi tài khoản
+    for (const username in charts) {
+      // Lặp qua mỗi sản phẩm trong tài khoản hiện tại
+      for (const product of charts[username]) {
+        allProducts.push(product);
+      }
+    }
+  }
+
+  return allProducts;
+}
+// Hàm cập nhật danh sách sản phẩm trong ứng dụng
+function updateProductList() {
+  // Lấy dữ liệu từ Local Storage
+  const allData = localStorage.getItem('charts');
+
+  if (allData) {
+    const charts = JSON.parse(allData);
+
+    // Lấy danh sách sản phẩm từ tài khoản hiện tại (ví dụ: user1)
+    const currentUserProducts = charts['user1'];
+
+    // Hiển thị danh sách sản phẩm trong ứng dụng
+    for (let i = 0; i < currentUserProducts.length; i++) {
+      const product = currentUserProducts[i];
+      console.log(`Sản phẩm ${i + 1}:`, product);
+    }
+  } else {
+    console.log('Không có sản phẩm nào trong Local Storage.');
+  }
+}
+
+function removeProductFromAllAccounts(index) {
+  // Lấy dữ liệu từ Local Storage
+  let charts = localStorage.getItem('charts');
+
+  // Kiểm tra nếu không có dữ liệu, không làm gì cả
+  if (!charts) {
     return;
   }
 
-  // Xóa sản phẩm khỏi danh sách tại vị trí được truyền vào
-  charts.splice(position, 1);
+  // Giải mã dữ liệu từ chuỗi JSON
+  charts = JSON.parse(charts);
 
-  // Lưu lại danh sách các sản phẩm đã cập nhật vào local storage
+  // Lặp qua từng tài khoản
+  Object.keys(charts).forEach(username => {
+    let userChart = charts[username];
+
+    // Kiểm tra xem userChart có phải là một mảng hay không
+    if (Array.isArray(userChart)) {
+      // Kiểm tra xem chỉ số (index) có hợp lệ hay không
+      if (index >= 0 && index < userChart.length) {
+        // Xóa sản phẩm khỏi chart của tài khoản dựa trên index
+        userChart.splice(index, 1);
+      }
+    }
+  });
+
+  // Lưu dữ liệu đã được cập nhật vào Local Storage
   localStorage.setItem('charts', JSON.stringify(charts));
 }
 function reload() {
@@ -152,7 +203,7 @@ const CHART_BOX=document.getElementById("CHART_SHOW");
 
 // load lên window
 window.addEventListener('load', function() {
-const charts=getCharts();
+const charts=getAllProducts();
 for(const chart of charts){
   const newChart = new Pro_Chart(CHART_BOX, chart.img, chart.tensp, "SL:"+chart.soluong,"Đường:"+chart.duong,"Đá:"+chart.da,"Size:"+chart.size,"Topping:"+chart.topping, "TONG:"+chart.thanhtien);
 }
@@ -161,7 +212,7 @@ const chartElements=Array.from(document.querySelectorAll('.chart'));
 const delButtons=document.querySelectorAll('.HUY');
 delButtons.forEach((delButton,index) => {
     delButton.addEventListener('click',function(){
-        deleteChart(index);
+      removeProductFromAllAccounts(index);
         reload();
     })
 });
