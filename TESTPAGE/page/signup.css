@@ -335,7 +335,7 @@ body {
   cursor: pointer;
 }
 
-#PASSWORD,
+#PASSWORD-Sign,
 #PASSWORD-CFT {
   padding-right: 30px;
 }

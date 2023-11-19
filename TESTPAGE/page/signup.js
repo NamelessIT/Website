@@ -80,7 +80,7 @@ closeBtn.onclick = function() {
     });
   });
 
-// // Khi click vào mắt ở phần password của đăng nhập sẽ thấy nội dung của Signup
+// // Khi click vào mắt ở phần password của đăng ký sẽ thấy nội dung của Signup
 document.addEventListener("DOMContentLoaded", function() {
   const eyeIcons = document.querySelectorAll("#eyes i.fa-eye");
 
@@ -106,29 +106,84 @@ document.addEventListener("DOMContentLoaded", function() {
 //Cảnh báo khi bỏ trống ô thông tin
 function Validator(options){
 
+  var selectorRules = {};
+
   // Hàm thực hiện validate
   function Validate(inputElement, rule){
-    var errorMessage = rule.test(inputElement.value);
+    
     var errorElement = inputElement.parentElement.querySelector(options.errorSelector);
+    var errorMessage;
 
-          if(errorMessage){
-            errorElement.innerText = errorMessage; 
-            inputElement.parentElement.classList.add('invalid');
-          }else{
-            errorElement.innerText = '';
-            inputElement.parentElement.classList.remove('invalid');
-          }
+    // Lấy ra các rules của selector
+    var rules = selectorRules[rule.selector];
+
+    // lặp qua từng rule và kiểm tra
+    // Nếu có lỗi dừng việc kiểm tra
+    for( var i = 0; i < rules.length; ++i){
+      errorMessage = rules [i] (inputElement.value);
+      if(errorMessage) break;
+    }
+
+    if(errorMessage){
+      errorElement.innerText = errorMessage; 
+      inputElement.parentElement.classList.add('invalid');
+    }else{
+      errorElement.innerText = '';
+      inputElement.parentElement.classList.remove('invalid');
+    }
+
+    return !errorMessage;
   }
 
   // lấy element của form cần validate
   var formElement = document.querySelector(options.form);
-  
-  if(formElement){
-    
-    options.rules.forEach(function(rule){
 
+  if(formElement){
+
+    // khi form submit
+    formElement.onsubmit = function(e) {
+      e.preventDefault();
+
+      var isFormValid = true;
+
+      // Lặp qua từng rule và validate
+      options.rules.forEach(function(rule){
+        var inputElement = formElement.querySelector(rule.selector);
+        var isValid = Validate(inputElement, rule);
+        if(!isValid){
+          isFormValid = false;
+        }
+      });
+
+      if(isFormValid){
+        // submit theo hàm onSubmit
+        if(typeof options.onSubmit === 'function'){
+
+          var enableInputs = formElement.querySelectorAll('[name]:not([disabled])');
+          var formValues = Array.from(enableInputs).reduce(function(values, input) {
+            return (values[input.name] = input.value) && values;
+          }, {});
+          options.onSubmit(formValues);
+        }
+        // submit theo mặc định của form
+        else{
+          formElement.onsubmit();
+        }
+      }
+    }
+
+
+    // Lặp qua mỗi sự kiện và xử lý
+    options.rules.forEach(function(rule) {
+
+      // Lưu lại các rule cho mỗi input 
+      if(Array.isArray(selectorRules[rule.selector])) {
+        selectorRules[rule.selector].push(rule.test);
+      } else {
+        selectorRules[rule.selector] = [rule.test];
+      }
+  
       var inputElement = formElement.querySelector(rule.selector);
-      
       
       if(inputElement){
         // Xử lí trường hợp blur khỏi input
@@ -146,6 +201,7 @@ function Validator(options){
       }
 
     });
+    
 
   }
 

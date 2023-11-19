@@ -16,11 +16,11 @@
             <h1>Đăng nhập</h1>
             <div class="form-group">
                 <i class="fa fa-key"></i>
-                <input placeholder="Email" id="USERNAME" class="form-input username" type="text" autocomplete="off">
+                <input placeholder="Email" id="USERNAME" class="form-input username" type="text" >
             </div>
             <div class="form-group">
                 <i class="fa fa-lock"></i>
-                    <input type="password" id="PASSWORD" class="form-input password" placeholder="Mật khẩu" required>
+                    <input type="password" id="PASSWORD" class="form-input password" placeholder="Mật khẩu" >
                 <div id="eyes">
                     <i class="fa fa-eye"></i>
                 </div>
@@ -120,12 +120,12 @@ function toast({ title = "", message = "", type = "info", duration = 3000 }) {
         <div class="signup_form-form">
           <div class="signup_form-group">
             <label for="Email-Sign" class="form-label">Email</label>
-            <input placeholder="Nhập Email" id="Email-Sign" class="sign_form-input username" type="text" required>
+            <input placeholder="Nhập Email" id="Email-Sign" name="Email-Sign" class="sign_form-input username" type="text" >
             <span class="form-message"></span>
           </div>
           <div class="signup_form-group">
             <label for="PASSWORD-Sign" class="form-label">Mật khẩu</label>
-            <input placeholder="Nhập mật khẩu" id="PASSWORD-Sign" class="sign_form-input password" type="password" required>
+            <input placeholder="Nhập mật khẩu" id="PASSWORD-Sign" name="PASSWORD-Sign" class="sign_form-input password" type="password" >
             <span class="form-message"></span>
             <div id="eyes" data-target="PASSWORD-Sign">
               <i class="fa fa-eye eye-icon"></i>
@@ -133,7 +133,7 @@ function toast({ title = "", message = "", type = "info", duration = 3000 }) {
           </div>
           <div class="signup_form-group"> 
             <label for="PASSWORD-CFT" class="form-label">Nhập lại mật khẩu</label>
-            <input placeholder="Nhập lại mật khẩu" id="PASSWORD-CFT" class="sign_form-input password" type="password" required>
+            <input placeholder="Nhập lại mật khẩu" id="PASSWORD-CFT" name="PASSWORD-CFT" class="sign_form-input password" type="password" >
             <span class="form-message"></span>
             <div id="eyes" data-target="PASSWORD-CFT">
               <i class="fa fa-eye eye-icon"></i>
@@ -150,7 +150,7 @@ function toast({ title = "", message = "", type = "info", duration = 3000 }) {
         </div>
 
         <div class="signup_control">
-          <input type="submit" value="Sign up" class="btn form_signup">
+          <input type="submit" value="Đăng Ký" class="btn form_signup">
         </div>
 
       </form>
@@ -167,12 +167,19 @@ function toast({ title = "", message = "", type = "info", duration = 3000 }) {
     form: '#form-signup1',
     errorSelector: '.form-message',
     rules: [
-      Validator.isEmail('#Email-Sign'),
+      Validator.isRequired('#Email-Sign', 'Vui lòng nhập Email'),
+      Validator.isEmail('#Email-Sign', 'Không phải định dạng của Email'),
+      Validator.isRequired('#PASSWORD-Sign', ' Vui lòng nhập mật khẩu'),
       Validator.minLength('#PASSWORD-Sign', 6),
+      Validator.isRequired('#PASSWORD-CFT', 'Vui lòng nhập lại mật khẩu'),
       Validator.isConfirmed('#PASSWORD-CFT', function(){
         return document.querySelector('#form-signup1 #PASSWORD-Sign').value;
       }, 'Mật khẩu không trung khớp'),
-    ]
+    ],
+    onSubmit: function(data){
+      // call API
+      console.log(data);
+    }
   })
 
 </script>
