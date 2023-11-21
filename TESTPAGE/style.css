@@ -270,6 +270,8 @@ ul.CHART:hover >div#CHART_SHOW{
 }
 #header li > h3.user{
     position: relative;
+    /* border: #0d14e7 solid 1px; */
+    margin-left: 60px;
 }
 #header  li.user-block:hover > ul.account{
     display: block !important;
@@ -724,4 +726,15 @@ body {
     z-index: 6;
 }
  
+.userEmail{
+    border: red solid 1px;
+    display: flex;
+    color: white;
+    font-size: 0.8rem;
+    position: absolute;
+    margin-top: 100px;
+    bottom: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+}
 

@@ -75,17 +75,29 @@
                     <!-- hiện ra khi thêm 1 sản phẩm và tính tổng -->
                 <li class="user-block">
                     <h3 class="a user"><i class="fa fa-user"></i></h3>
+                    <span id="userEmail" class="userEmail"></span>
                     <!-- tài khoản admin sẽ có quản lý tài khoản, còn user thì invisible -->
                     <ul class="account">
                         <li class="Quanlytaikhoan">Quản lý tài khoản</li>
                         <li class="Dangxuat">Đăng xuất</li>
                     </ul>
                 </li>
+                
                     <!-- hiện tài khoản và có thể đăng xuất và sẽ có thêm quản lý tài khoản nếu đó là admin -->
             </ul>
         <!-- có các thanh trượt dọc xuống các bar nhỏ -->
         </div>
+
+    <!-- hiện email tài khoản đang sử dụng dưới icon user -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Lấy email từ Local Storage
+            const userEmail = localStorage.getItem('loggedInUser');
         
+            // Hiển thị email dưới icon user
+            document.getElementById('userEmail').innerText = userEmail;
+        });
+    </script>
         
     </section>
     <section id="banner1" class="img img0">

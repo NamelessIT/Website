@@ -1,5 +1,5 @@
+// Đăng nhập
 const button = document.querySelector(".login");
-
 button.addEventListener("click", function(event) {
   login();
 });
@@ -10,7 +10,7 @@ function login() {
 
   // Lấy dữ liệu từ Local Storage
   const userDataStored = JSON.parse(localStorage.getItem("usersDataArray"));
-  
+  //console.log(userDataStored);
   // Lấy thông tin tài khoản và mật khẩu
   const username = document.getElementById("USERNAME");
   const password = document.getElementById("PASSWORD");
@@ -20,30 +20,27 @@ function login() {
   for (var i = 0; i < userDataStored.length; i++) {
     //console.log(userDataStored.length)
     const userData = userDataStored[i];
-    //console.log(userData)
-
-  // Kiểm tra xem thông tin tài khoản và mật khẩu có hợp lệ hay không
-  if (username.value === "admin" && password.value === "123456") {
-    // Đăng nhập thành công
-    currentUser = 'admin';
-    localStorage.setItem('loggedInUser', 'admin');
-    location.href = "../index.html";
+    //console.log(userData);
+    // Kiểm tra xem thông tin tài khoản và mật khẩu có hợp lệ hay không
+    if (username.value === "admin" && password.value === "123456") {
+      // Đăng nhập thành công
+      currentUser = 'admin';
+      localStorage.setItem('loggedInUser', 'admin');
+      location.href = "../index.html";
+    }
+      else if(username.value === userData.email && password.value === userData.password){
+      currentUser = userData.email;
+      localStorage.setItem('loggedInUser', userData.email);
+      location.href = "../index.html";
+    }
   }
-  else if(username.value === userData.email && password.value === userData.password){
-    currentUser = userData.email;
-    localStorage.setItem('loggedInUser', userData.email);
-    location.href = "../index.html";
-  }}
-  
     // Đăng nhập thất bại
     showErrorToast();
-  
 }
 
 
-
+// Mở trang đăng ký 
 const MDsignup = document.querySelector(".signup");
-
 MDsignup.addEventListener("click", function(event) {
   signup();
 });
@@ -55,40 +52,39 @@ function signup() {
   var modal = document.getElementById("signupModal");
   var closeBtn = modal.querySelector(".close");
 
-// Khi người dùng click vào "Sign up"
+  // Khi người dùng click vào "Sign up"
   modal.style.display = "block";
 
-
-// Khi người dùng click vào nút đóng modal
-closeBtn.onclick = function() {
+  // Khi người dùng click vào nút đóng modal
+  closeBtn.onclick = function() {
   modal.style.display = "none";
-}
-
-// Khi người dùng click bất kỳ đâu bên ngoài modal, modal cũng sẽ đóng
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
+  }
+  // Khi người dùng click bất kỳ đâu bên ngoài modal, modal cũng sẽ đóng
+  // window.onclick = function(event) {
+  //   if (event.target == modal) {
+  //     modal.style.display = "none";
+  //   }
+  // }
 }
 
 // Khi click vào mắt ở phần password của đăng nhập sẽ thấy nội dung của Login
-  document.addEventListener("DOMContentLoaded", function() {
-    const passwordInput = document.getElementById("PASSWORD");
-    const eyeIcon = document.querySelector("#eyes i.fa-eye");
+document.addEventListener("DOMContentLoaded", function() {
 
-    eyeIcon.addEventListener("click", function() {
-      if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        eyeIcon.classList.remove("fa-eye");
-        eyeIcon.classList.add("fa-eye-slash");
-      } else {
-        passwordInput.type = "password";
-        eyeIcon.classList.remove("fa-eye-slash");
-        eyeIcon.classList.add("fa-eye");
-      }
-    });
+  const passwordInput = document.getElementById("PASSWORD");
+  const eyeIcon = document.querySelector("#eyes i.fa-eye");
+  eyeIcon.addEventListener("click", function() {
+
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      eyeIcon.classList.remove("fa-eye");
+      eyeIcon.classList.add("fa-eye-slash");
+    } else {
+      passwordInput.type = "password";
+      eyeIcon.classList.remove("fa-eye-slash");
+      eyeIcon.classList.add("fa-eye");
+    }
   });
+});
 
 // // Khi click vào mắt ở phần password của đăng ký sẽ thấy nội dung của Signup
 document.addEventListener("DOMContentLoaded", function() {
@@ -210,13 +206,10 @@ function Validator(options){
           inputElement.parentElement.classList.remove('invalid');
         }
       }
-
     });
-    
-
   }
-
 }
+
 // Định nghĩa rules
 // Nguyên tắc rules:
 // 1. Khi có lỗi => message lỗi
@@ -258,35 +251,67 @@ Validator.isConfirmed = function(selector, getConfirmValue, message){
   };
 }
 
-let usersDataArray = []; 
-usersDataArray = JSON.parse(localStorage.getItem(usersDataArray)) || [];
- document.addEventListener("DOMContentLoaded", function() {
-   const signupForm = document.getElementById("form-signup1");
+// Lưu tài khoản người dùng vào Local Storage sau khi bấm Đăng Ký
+  
+let usersDataArray = JSON.parse(localStorage.getItem("usersDataArray")) || [];
 
-   signupForm.addEventListener("submit", function(e) {
-     // Ngăn chặn form gửi đi ngay sau khi nhấn nút Đăng Ký
-     e.preventDefault()
-     // Lấy giá trị từ các trường nhập
-     const email = document.getElementById("Email-Sign").value;
-     const password = document.getElementById("PASSWORD-Sign").value
-     
+document.addEventListener("DOMContentLoaded", function() {
+  const signupForm = document.getElementById("form-signup1");
+
+  signupForm.addEventListener("submit", function(e) {
+    // Ngăn chặn form gửi đi ngay sau khi nhấn nút Đăng Ký
+    e.preventDefault()
+    // Lấy giá trị từ các trường nhập
+    const email = document.getElementById("Email-Sign").value;
+    const password = document.getElementById("PASSWORD-Sign").value
     
-     // Kiểm tra và xử lý lưu trữ thông tin vào Local Storage
-      if (email && password) {
-        
-        // Tạo đối tượng chứa thông tin người dùng
-        const userData = {
-          email: email,
-          password: password,
-        };   
-        
-        usersDataArray.push(userData);
-        // Chuyển đối tượng thành chuỗi JSON và lưu vào Local Storage
-        localStorage.setItem("usersDataArray", JSON.stringify(usersDataArray));
-        console.log(usersDataArray);
-        // Hiển thị thông báo đăng ký thành công (có thể thay thế bằng hành động khác)
-        alert("Đăng ký thành công!")
-        // Có thể chuyển hướng hoặc thực hiện các hành động khác sau khi đăng ký thành công
-     }
-   });
- })
+  
+    // Kiểm tra và xử lý lưu trữ thông tin vào Local Storage
+    if (email && password) {
+       
+      // Tạo đối tượng chứa thông tin người dùng
+      const userData = {
+        email: email,
+        password: password,
+      };   
+      
+      usersDataArray.push(userData);
+
+      // Chuyển đối tượng thành chuỗi JSON và lưu vào Local Storage
+      localStorage.setItem("usersDataArray", JSON.stringify(usersDataArray));
+      //console.log(usersDataArray);
+      // Hiển thị thông báo đăng ký thành công
+      
+      showSuccessToast();
+      setTimeout(function() {
+        location.reload();
+      }, 1000);
+      
+      // Có thể chuyển hướng hoặc thực hiện các hành động khác sau khi đăng ký thành công
+
+    } else {
+      // Hiển thị thông báo đăng ký lỗi
+      showErrorToast();
+    }
+    
+  });
+})
+
+function showSuccessToast() {
+  toast({
+    title: "Thành công!",
+    message: "Bạn đã đăng ký thành công tài khoản tại SGU Coffee.",
+    type: "success",
+    duration: 5000
+  });
+}
+
+function showErrorToast() {
+  toast({
+    title: "Thất bại!",
+    message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
+    type: "error",
+    duration: 5000
+  });
+}
+
