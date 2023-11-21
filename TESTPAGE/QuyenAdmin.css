@@ -7,7 +7,7 @@
 }
 
 .sidebar {
-    width: 25%;
+    width: 23%;
     background: linear-gradient(to bottom right, #FFA500, #FF4500);
 }
 
@@ -75,14 +75,17 @@
     left: 28px;
     top: 10px;
 }
+.content{
+  width: 77%;
+  --color-bg-gradient: rgba(11, 196, 226, 0.2);
+  background-color: rgba(255, 244, 244, 0.5);
+  height: 96%;
+  position: absolute;
+  top: 8px;
+  right: 0px;
+}
 
 #QUANLYDONHANG {
-    width: 75%;
-    background-color: red;
-    height: 96%;
-    position: absolute;
-    top: 8px;
-    right: 0;
 }
 #CHART_SHOW .chart{
     width: 100%;
@@ -91,7 +94,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    margin: 5px 0px;
+    margin: 5px 5px;
 }
 #CHART_SHOW .chart:hover{
     opacity: 0.6;
@@ -106,13 +109,104 @@
 }
 #CHART_SHOW .chart .ChartTsp,#CHART_SHOW .chart .ChartSL
 ,.chart .ChartDuong,.chart .ChartDa,.chart .ChartSize,.chart .ChartTopping,
-#CHART_SHOW .chart .ChartTien,#CHART_SHOW .chart .HUY{
+#CHART_SHOW .chart .ChartTien,#CHART_SHOW .chart .HUY,.chart .HoanThanh{
     text-align: center;
-    width: 11%;
+    width: 20%;
     display: inline;
+    margin: 0 2px;
 }
-#CHART_SHOW .chart .HUY{
+#CHART_SHOW .chart .HUY,.chart .HoanThanh{
     cursor: pointer;
     padding: 2px;
-    background-color: #fff;
+  }
+#CHART_SHOW .chart .HUY{
+  background-color: rgb(223, 104, 104);
 }
+.chart .HoanThanh{
+  background-color: rgb(84, 84, 190);
+}
+
+
+/* THỐNG KÊ ĐÔN HÀNG */
+.THONGKEDONHANG {
+    display: flex;
+  }
+  
+  .THONGKEDONHANG .SOLUONGMUA,
+  .THONGKEDONHANG .DOANHTHU,
+  .THONGKEDONHANG .SANPHAMBANCHAY {
+    flex: 1;
+    background: var(--color-bg-gradient);
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .THONGKEDONHANG .SOLUONGMUA p,
+  .THONGKEDONHANG .DOANHTHU p,
+  .THONGKEDONHANG .SANPHAMBANCHAY p {
+    margin: 0;
+  }
+  #QUANLYDONHANG h4,
+  #QUANLYNGUOIDUNG h4,
+  #THONGKEDONHANG h4{
+    margin: 10px;
+  }
+  
+  .THONGKEDONHANG .underline {
+    width: 50%;
+    height: 2px;
+    background-color: black;
+    margin: 10px auto;
+  }
+  
+  /* Hiệu ứng chạy số */
+  @keyframes count-up {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .THONGKEDONHANG .SOLUONGMUA #SoLuongMua,
+  .THONGKEDONHANG .DOANHTHU #SoDoanhThu {
+    font-size: 24px;
+    font-weight: bold;
+    animation: count-up 1s ease-in-out;
+  }
+  
+  /* Hiệu ứng hiển thị từng chữ cái */
+  @keyframes show-letter {
+    0% {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .THONGKEDONHANG .SANPHAMBANCHAY #TenSanPhamBanChay {
+    font-size: 24px;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .THONGKEDONHANG .SANPHAMBANCHAY #TenSanPhamBanChay span {
+    animation: show-letter 0.1s linear forwards;
+    opacity: 0;
+    display: inline-block;
+  }
+  
+  .THONGKEDONHANG .SANPHAMBANCHAY #TenSanPhamBanChay span:nth-child(1) {
+    animation-delay: 0s;
+  }
+  
+  .THONGKEDONHANG .SANPHAMBANCHAY #TenSanPhamBanChay span:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  
+  /* Tương tự cho các chữ cái tiếp theo */

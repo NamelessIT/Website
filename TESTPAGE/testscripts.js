@@ -881,19 +881,57 @@ function LayAnh() {
   input.addEventListener('change', function() {
     const file = input.files[0];
 
-    // Lấy URL của ảnh.
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      modalImage_admin.src = e.target.result;
-      modalImage_adjust.src=e.target.result;
-      productImage.src = e.target.result;   // biến chứa url ảnh
-    };
+    // Hàm thu nhỏ ảnh
+    function resizeImage(file, maxWidth, maxHeight, callback) {
+      const img = new Image();
 
-    reader.readAsDataURL(file);
+      img.onload = function() {
+        let width = img.width;
+        let height = img.height;
+
+        // Tính toán tỷ lệ thu nhỏ dựa trên maxWidth và maxHeight
+        const ratio = Math.min(maxWidth / width, maxHeight / height);
+        width *= ratio;
+        height *= ratio;
+
+        // Tạo canvas mới
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+
+        // Vẽ ảnh trên canvas với kích thước đã thu nhỏ
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // Chuyển đổi canvas thành base64
+        const resizedDataUrl = canvas.toDataURL('image/jpeg');
+
+        // Gọi callback với dữ liệu ảnh thu nhỏ
+        callback(resizedDataUrl);
+      };
+
+      img.src = URL.createObjectURL(file);
+    }
+
+    // Kích thước tối đa sau khi thu nhỏ
+    const maxWidth = 800; // Kích thước tối đa chiều rộng
+    const maxHeight = 600; // Kích thước tối đa chiều cao
+
+    // Hàm xử lý sau khi ảnh đã được thu nhỏ
+    function handleResizedImage(resizedDataUrl) {
+      // Sử dụng dữ liệu ảnh thu nhỏ tại đây
+      // Ví dụ:
+      modalImage_admin.src = resizedDataUrl;
+      modalImage_adjust.src = resizedDataUrl;
+      productImage.src = resizedDataUrl;
+    }
+
+    // Gọi hàm thu nhỏ ảnh
+    resizeImage(file, maxWidth, maxHeight, handleResizedImage);
   });
 
   input.click();
-}; 
+}
 //
 
 
