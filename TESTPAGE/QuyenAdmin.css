@@ -101,11 +101,13 @@
     background-color: #ccc;
 }
 #CHART_SHOW .chart img{
-    width: 10%;
+    width: 8%;
     display: inline;
     border: 1px solid #ccc;
     border-radius: 8px;
     margin-left: 3px;
+    max-height: 50px;
+    max-width: 30px;
 }
 #CHART_SHOW .chart .ChartTsp,#CHART_SHOW .chart .ChartSL
 ,.chart .ChartDuong,.chart .ChartDa,.chart .ChartSize,.chart .ChartTopping,
@@ -208,5 +210,17 @@
   .THONGKEDONHANG .SANPHAMBANCHAY #TenSanPhamBanChay span:nth-child(2) {
     animation-delay: 0.1s;
   }
-  
+  #QUANLYNGUOIDUNG .delete-button{
+    cursor: pointer;
+    padding: 6px;
+    background-color: black;
+    color: white;
+  }
+  #QUANLYNGUOIDUNG .title_count,#QUANLYNGUOIDUNG .user_count{
+    display: inline-block;
+    margin: 2px 5px;
+  }
+  #QUANLYNGUOIDUNG .title_count{
+    margin-left: 10px;
+  }
   /* Tương tự cho các chữ cái tiếp theo */

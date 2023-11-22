@@ -22,10 +22,10 @@ function login() {
     const userData = userDataStored[i];
     //console.log(userData);
     // Kiểm tra xem thông tin tài khoản và mật khẩu có hợp lệ hay không
-    if (username.value === "admin" && password.value === "123456") {
+    if (username.value === "Admin" && password.value === "123") {
       // Đăng nhập thành công
-      currentUser = 'admin';
-      localStorage.setItem('loggedInUser', 'admin');
+      currentUser = 'Admin';
+      localStorage.setItem('loggedInUser', 'Admin');
       location.href = "../index.html";
     }
       else if(username.value === userData.email && password.value === userData.password){

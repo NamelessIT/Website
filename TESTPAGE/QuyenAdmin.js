@@ -109,6 +109,18 @@ class Pro_Chart{
     ChartTien.classList.add('ChartTien');
     ChartTien.textContent=thanhtien;
 
+    // Thêm thời gian vào ChartTien
+    const currentTime = new Date();
+    const currentDay = currentTime.getDate();
+    const currentHours = currentTime.getHours();
+    const currentMinutes = currentTime.getMinutes();
+    const currentSeconds = currentTime.getSeconds();
+    const timeString = `Ngày:${currentDay} ${currentHours}:${currentMinutes}:${currentSeconds}`;
+    
+    const ChartTime = document.createElement('span');
+    ChartTime.classList.add('ChartTime');
+    ChartTime.textContent = timeString;
+
     const HoanThanh=document.createElement('h5');
     HoanThanh.classList.add('HoanThanh');
     HoanThanh.textContent='Hoàn Thành';
@@ -126,6 +138,7 @@ class Pro_Chart{
     this.element.appendChild(ChartSize);
     this.element.appendChild(ChartTopping);
     this.element.appendChild(ChartTien);
+    this.element.appendChild(ChartTime);
     this.element.appendChild(HoanThanh);
     this.element.appendChild(Huy);
     }
@@ -151,6 +164,22 @@ function getAllProducts() {
 
   return allProducts;
 }
+
+function getUsers() {
+  const usersDataJSON = localStorage.getItem('usersDataArray');
+  
+  if (usersDataJSON) {
+    try {
+      const usersDataArray = JSON.parse(usersDataJSON);
+      return Array.isArray(usersDataArray) ? usersDataArray : [];
+    } catch (error) {
+      console.error('Error parsing usersDataArray from Local Storage:', error);
+    }
+  }
+  
+  return [];
+}
+
 function calculateTotalThanhtien() {
   const allProducts = getAllProducts();
   let total = 0;
@@ -163,8 +192,44 @@ function calculateTotalThanhtien() {
 
   return total;
 }
+// hàm xóa từng sản phẩm
+function removeSingleProductFromAllAccounts(username, productName,productSL,productDuong,productDa,productSize,productTopping,productBill) {
+  // Lấy dữ liệu từ Local Storage
+  const allData = localStorage.getItem('charts');
 
-function removeProductFromAllAccounts(username, total, index) {
+  if (allData) {
+    const charts = JSON.parse(allData);
+
+    // Kiểm tra xem tài khoản có tồn tại trong dữ liệu hay không
+    if (charts.hasOwnProperty(username)) {
+      const currentUserProducts = charts[username];
+
+      // Tìm chỉ số đầu tiên của sản phẩm trong danh sách sản phẩm của tài khoản
+      const index = currentUserProducts.findIndex((product) => {
+        return product.tensp === productName && product.thanhtien===productBill && product.soluong===productSL 
+        && product.duong===productDuong && product.da===productDa && product.size===productSize && product.topping===productTopping ;
+      });
+      // console.log('Kết quả tìm kiếm: ' + product.tensp+' '+pro.thanhtien);
+
+
+      // Xóa sản phẩm khỏi danh sách sản phẩm của tài khoản
+      if (index > -1) {
+        currentUserProducts.splice(index, 1);
+      }
+
+      // Lưu dữ liệu đã cập nhật vào Local Storage
+      localStorage.setItem('charts', JSON.stringify(charts));
+      reload();
+    }
+  }
+}
+
+function reload() {
+  // Tải lại trang
+  location.reload();
+}
+
+function removeProductFromAllAccounts(username) {
   // Lấy dữ liệu từ Local Storage
   let charts = localStorage.getItem('charts');
 
@@ -178,28 +243,46 @@ function removeProductFromAllAccounts(username, total, index) {
 
   // Kiểm tra xem tài khoản có tồn tại trong danh sách hay không
   if (charts.hasOwnProperty(username)) {
-    const userChart = charts[username];
-
-    // Kiểm tra xem index có hợp lệ không
-    if (index >= 0 && index < userChart.length) {
-      // Xóa sản phẩm khỏi danh sách theo index
-      userChart.splice(index, 1);
-    }
-
-    // Cập nhật giá trị của thuộc tính charts[username]
-    charts[username] = userChart;
+    // Xóa toàn bộ sản phẩm của người dùng khỏi danh sách
+    delete charts[username];
   }
 
   // Lưu dữ liệu đã được cập nhật vào Local Storage
   localStorage.setItem('charts', JSON.stringify(charts));
 }
 
-function reload() {
-  // Tải lại trang
-  location.reload();
+// Xóa tài khoản 
+
+function deleteAccount(email) {
+  const usersDataArray = getUsers();
+
+  // Tìm vị trí của tài khoản trong mảng usersDataArray
+  const index = usersDataArray.findIndex(user => user.email === email);
+
+  if (index !== -1) {
+    // Xóa tài khoản khỏi mảng
+    usersDataArray.splice(index, 1);
+
+    // Cập nhật Local Storage với danh sách đã được xóa
+    localStorage.setItem('usersDataArray', JSON.stringify(usersDataArray));
+
+    // Xóa tất cả các tài khoản đã hiển thị trên giao diện
+    const userElements = document.getElementsByClassName('user');
+    for (let i = userElements.length - 1; i >= 0; i--) {
+      const emailElement = userElements[i].querySelector('p:first-child');
+      if (emailElement.textContent === `Email: ${email}`) {
+        userElements[i].remove();
+      }
+    }
+
+    // Xóa toàn bộ sản phẩm trong chart của người dùng
+    removeProductFromAllAccounts(email);
+  }
 }
 
+
 const CHART_BOX = document.getElementById("CHART_SHOW");
+const users=document.getElementById('USER_SHOW');
 
 // load lên window
 window.addEventListener('load', function() {
@@ -214,7 +297,7 @@ window.addEventListener('load', function() {
       "Đá:" + product.da,
       "Size:" + product.size,
       "Topping:" + product.topping,
-      "TONG:" + product.thanhtien
+      "Tổng:" + product.thanhtien
     );
 
     const chartUsername = document.createElement('h5');
@@ -223,36 +306,59 @@ window.addEventListener('load', function() {
     newChart.element.prepend(chartUsername);
   }
 
-  const chartElements = Array.from(document.querySelectorAll('.chart'));
+const chartElements = Array.from(document.querySelectorAll('.chart'));
 
   const delButtons = document.querySelectorAll('.HUY');
   delButtons.forEach((delButton) => {
     delButton.addEventListener('click', function () {
-      // Lấy tên người dùng và giá từ các phần tử cha
-      const username = delButton.parentNode.querySelector('.ChartUsername').textContent.replace('Tài khoản: ', '');
-      const total = parseFloat(delButton.parentNode.querySelector('.ChartTien').textContent.replace('TONG:', '').trim());
-  
-      // Lấy dữ liệu từ Local Storage
-      const allData = localStorage.getItem('charts');
-  
-      if (allData) {
-        const charts = JSON.parse(allData);
-  
-        if (charts.hasOwnProperty(username)) {
-          const userChart = charts[username];
-  
-          // Tìm vị trí sản phẩm trong danh sách của tài khoản
-          const productIndex = userChart.findIndex((product) => parseFloat(product.thanhtien) === total);
-  
-          if (productIndex !== -1) {
-            // Gọi hàm xóa sản phẩm với tham số index
-            removeProductFromAllAccounts(username, total, productIndex);
-            reload();
-          }
-        }
-      }
+ // Lấy tên người dùng và sản phẩm từ các phần tử cha
+  const username = delButton.parentNode.querySelector('.ChartUsername').textContent.replace('Tài khoản: ', '');
+  const tensp=delButton.parentNode.querySelector('.ChartTsp').textContent;
+  const sl=delButton.parentNode.querySelector('.ChartSL').textContent.replace('SL:','');
+  const duong=delButton.parentNode.querySelector('.ChartDuong').textContent.replace('Đường:','');
+  const da=delButton.parentNode.querySelector('.ChartDa').textContent.replace('Đá:','');
+  const size=delButton.parentNode.querySelector('.ChartSize').textContent.replace('Size:','');
+  const topping=delButton.parentNode.querySelector('.ChartTopping').textContent.replace('Topping:','');
+  const tien=delButton.parentNode.querySelector('.ChartTien').textContent.replace('Tổng:','');
+  console.log('chào '+username+' tensp '+tensp+' số lượng: '+sl+' đường: '+duong+' đá: '+da+' size: '+size+' Topping: '+topping+' tiền: '+tien);
+ // Gọi hàm xóa sản phẩm với thông tin sản phẩm cần xóa
+ removeSingleProductFromAllAccounts(username,tensp,sl,duong,da,size,topping,tien);
     });
   });
+
+  // QUẢN LÝ TÀI KHOẢN
+  const usersDataArray = getUsers();
+
+  usersDataArray.forEach(function(userData) {
+    const userElement = document.createElement('div');
+    userElement.classList.add('user');
+    userElement.style.display='flex';
+    userElement.style.alignItems='baseline';
+    userElement.style.justifyContent='space-evenly';
+    userElement.style.flexWrap='wrap';
+
+    const emailElement = document.createElement('p');
+    emailElement.textContent = `Email: ${userData.email}`;
+
+    const passwordElement = document.createElement('p');
+    passwordElement.textContent = `Password: ${userData.password}`;
+
+    const deleteButton = document.createElement('h5');
+    deleteButton.textContent = 'Xóa tài khoản';
+    deleteButton.classList.add('delete-button');
+    deleteButton.addEventListener('click', function() {
+      deleteAccount(userData.email);
+      reload();
+    });
+
+    userElement.appendChild(emailElement);
+    userElement.appendChild(passwordElement);
+    userElement.appendChild(deleteButton);
+
+    users.appendChild(userElement);
+  });
+  const countAccount=document.querySelector('.user_count');
+  countAccount.textContent=usersDataArray.length;
 });
 
 

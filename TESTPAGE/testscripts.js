@@ -371,6 +371,7 @@ class Pro {
     maSP.textContent=ma;
 
     const productName = document.createElement('h5');
+    productName.classList.add('TenSP');
     productName.textContent = name;
 
     const productPrice = document.createElement('h4');
@@ -799,68 +800,82 @@ checkboxPhoMai.addEventListener('change', () => {
 }
 
 // Cart
-class Pro_Chart{
-  constructor(CHART_BOX,img,tensp,soluong,duong,da,size,topping,thanhtien){
-    this.CHART_BOX=CHART_BOX;
-    this.img=img;
-    this.tensp=tensp;
-    this.soluong=soluong;
-    this.duong=duong;
-    this.da=da;
-    this.size=size;
-    this.topping=topping;
-    this.thanhtien=thanhtien;
-  
-  this.element=document.createElement('div');
-  this.element.classList.add('chart');
-  this.element.setAttribute('data-img',img);
+class Pro_Chart {
+  constructor(CHART_BOX, img, tensp, soluong, duong, da, size, topping, thanhtien) {
+    this.CHART_BOX = CHART_BOX;
+    this.img = img;
+    this.tensp = tensp;
+    this.soluong = soluong;
+    this.duong = duong;
+    this.da = da;
+    this.size = size;
+    this.topping = topping;
+    this.thanhtien = thanhtien;
 
-  const chartImage=document.createElement('img');
-  chartImage.classList.add('ChartImage');
-  chartImage.src=img;
-  chartImage.alt=tensp;
+    this.element = document.createElement('div');
+    this.element.classList.add('chart');
+    this.element.setAttribute('data-img', img);
 
-  const ChartTsp=document.createElement('h5');
-  ChartTsp.classList.add('ChartTsp');
-  ChartTsp.textContent=tensp;
+    const chartImage = document.createElement('img');
+    chartImage.classList.add('ChartImage');
+    chartImage.src = img;
+    chartImage.alt = tensp;
 
-  const ChartSoLuong=document.createElement('h5');
-  ChartSoLuong.classList.add('ChartSL');
-  ChartSoLuong.textContent=soluong;
+    const ChartTsp = document.createElement('h5');
+    ChartTsp.classList.add('ChartTsp');
+    ChartTsp.textContent = tensp;
 
-  const ChartDuong=document.createElement('h5');
-  ChartDuong.classList.add('ChartDuong');
-  ChartDuong.classList.add('invisible');
-  ChartDuong.textContent=duong;
+    const ChartSoLuong = document.createElement('h5');
+    ChartSoLuong.classList.add('ChartSL');
+    ChartSoLuong.textContent = soluong;
 
-  const ChartDa=document.createElement('h5');
-  ChartDa.classList.add('ChartDa');
-  ChartDa.classList.add('invisible');
-  ChartDa.textContent=da;
+    const ChartDuong = document.createElement('h5');
+    ChartDuong.classList.add('ChartDuong');
+    ChartDuong.classList.add('invisible');
+    ChartDuong.textContent = duong;
 
-  const ChartSize=document.createElement('h5');
-  ChartSize.classList.add('ChartSize');
-  ChartSize.classList.add('invisible');
-  ChartSize.textContent=size;
+    const ChartDa = document.createElement('h5');
+    ChartDa.classList.add('ChartDa');
+    ChartDa.classList.add('invisible');
+    ChartDa.textContent = da;
 
-  const ChartTopping=document.createElement('h5');
-  ChartTopping.classList.add('ChartTopping');
-  ChartTopping.classList.add('invisible');
-  ChartTopping.textContent=topping;
+    const ChartSize = document.createElement('h5');
+    ChartSize.classList.add('ChartSize');
+    ChartSize.classList.add('invisible');
+    ChartSize.textContent = size;
 
-  const ChartTien=document.createElement('h5');
-  ChartTien.classList.add('ChartTien');
-  ChartTien.textContent=thanhtien;
+    const ChartTopping = document.createElement('h5');
+    ChartTopping.classList.add('ChartTopping');
+    ChartTopping.classList.add('invisible');
+    ChartTopping.textContent = topping;
 
-  this.CHART_BOX.appendChild(this.element);
-  this.element.appendChild(chartImage);
-  this.element.appendChild(ChartTsp);
-  this.element.appendChild(ChartSoLuong);
-  this.element.appendChild(ChartDuong);
-  this.element.appendChild(ChartDa);
-  this.element.appendChild(ChartSize);
-  this.element.appendChild(ChartTopping);
-  this.element.appendChild(ChartTien);
+    const ChartTien = document.createElement('h5');
+    ChartTien.classList.add('ChartTien');
+    ChartTien.textContent = thanhtien;
+
+    // Thêm thời gian vào ChartTien
+    const currentTime = new Date();
+    const currentDay = currentTime.getDate();
+    const currentHours = currentTime.getHours();
+    const currentMinutes = currentTime.getMinutes();
+    const currentSeconds = currentTime.getSeconds();
+    const timeString = `${currentDay} ${currentHours}:${currentMinutes}:${currentSeconds}`;
+
+    const ChartTime = document.createElement('span');
+    ChartTime.classList.add('ChartTime');
+    ChartTime.classList.add('invisible');
+    ChartTime.textContent = timeString;
+    
+    this.CHART_BOX.appendChild(this.element);
+    this.element.appendChild(chartImage);
+    this.element.appendChild(ChartTsp);
+    this.element.appendChild(ChartSoLuong);
+    this.element.appendChild(ChartDuong);
+    this.element.appendChild(ChartDa);
+    this.element.appendChild(ChartSize);
+    this.element.appendChild(ChartTopping);
+    this.element.appendChild(ChartTien);
+    this.element.appendChild(ChartTime);
   }
 }
 
@@ -1190,14 +1205,15 @@ function AddChart(index,username) {
     const image = myObject.img;
     const tensp = myObject.name;
     const soluong = 1;
+    const soluongChu='1';
     const gia = myObject.price;
     const duong="Ít";
     const da="Ít";
     const size="M";
     const topping="không";
-    const thanhtien = soluong * gia; // tính thành tiền
+    const thanhtien = (soluong * gia).toString();
 
-    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluong,duong,da,size,topping,thanhtien); // truyền thành tiền vào
+    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongChu,duong,da,size,topping,thanhtien); // truyền thành tiền vào
     charts.push(newChart); // Thêm chart mới vào mảng charts
 
     // Lưu trữ thông tin của sản phẩm mới vào local storage. ở dạng String
@@ -1277,11 +1293,17 @@ window.addEventListener('load', function() {
 if (loggedInUser) {
   // Đã đăng nhập, hiển thị trang giỏ hàng
   currentUser = loggedInUser;
-  if(currentUser!=='admin'){
+  if(currentUser!=='Admin'){
     // trang user
-
-
 hideFuntion();
+  }
+  else{
+    const element=document.querySelector('.fa-shopping-bag');
+    const Chart_Show=document.querySelector('.CHART');
+    const user_block=document.querySelector('.user-block');
+    element.classList.add('invisible');
+    Chart_Show.classList.add('invisible');
+    user_block.style.padding='10px 5px';
   }
 }
 
@@ -1399,10 +1421,15 @@ var carts=document.querySelectorAll('.cart');
 carts.forEach((cart,index) => {
   cart.addEventListener('click',function(){
     if (loggedInUser) {
-      AddChart(index-1,loggedInUser);
+      if(loggedInUser!=='Admin'){
+        AddChart(index-1,loggedInUser);
+      }
+      else{
+        reload();
+      }
     }
     else{
-      console.log('Đăng nhập để mua');
+      alert('Đăng nhập để mua');
     }
   })
 
@@ -1421,38 +1448,61 @@ var selectedDuongValue; // Biến để lưu giá trị checkbox được chọn
 var selectedDaValue;
 var selectedSizeValue;
 var selectedToppingValue;
-  function getDuong(){
-        var checkboxesDuong = document.querySelectorAll('.Duong');
-        checkboxesDuong.forEach(checkboxDuong => {
-          if(checkboxDuong.checked){
-            selectedDuongValue = checkboxDuong.value;
-          }
-        });
+function getDuong() {
+  var checkboxesDuong = document.querySelectorAll('.Duong');
+  checkboxesDuong.forEach(checkboxDuong => {
+    if (checkboxDuong.checked) {
+      selectedDuongValue = checkboxDuong.value;
+    }
+  });
+
+  // Gán giá trị mặc định nếu không có checkbox được chọn
+  if (!selectedDuongValue) {
+    selectedDuongValue = 'Ít';
   }
-  function getDa(){
-    var checkboxesDa = document.querySelectorAll('.Da');
-    checkboxesDa.forEach(checkboxDa => {
-      if(checkboxDa.checked){
-        selectedDaValue = checkboxDa.value;
-      }
-    });
+}
+
+function getDa() {
+  var checkboxesDa = document.querySelectorAll('.Da');
+  checkboxesDa.forEach(checkboxDa => {
+    if (checkboxDa.checked) {
+      selectedDaValue = checkboxDa.value;
+    }
+  });
+
+  // Gán giá trị mặc định nếu không có checkbox được chọn
+  if (!selectedDaValue) {
+    selectedDaValue = 'Ít';
   }
-  function getSize(){
-    var checkboxesSize = document.querySelectorAll('.Size');
-    checkboxesSize.forEach(checkboxSize => {
-      if(checkboxSize.checked){
-        selectedSizeValue = checkboxSize.value;
-      }
-    });
+}
+
+function getSize() {
+  var checkboxesSize = document.querySelectorAll('.Size');
+  checkboxesSize.forEach(checkboxSize => {
+    if (checkboxSize.checked) {
+      selectedSizeValue = checkboxSize.value;
+    }
+  });
+
+  // Gán giá trị mặc định nếu không có checkbox được chọn
+  if (!selectedSizeValue) {
+    selectedSizeValue = 'M';
   }
-  function getTopping(){
-    var checkboxesTopping = document.querySelectorAll('.Topping');
-    checkboxesTopping.forEach(checkboxTopping => {
-      if(checkboxTopping.checked){
-        selectedToppingValue = checkboxTopping.value;
-      }
-    });
+}
+
+function getTopping() {
+  var checkboxesTopping = document.querySelectorAll('.Topping');
+  checkboxesTopping.forEach(checkboxTopping => {
+    if (checkboxTopping.checked) {
+      selectedToppingValue = checkboxTopping.value;
+    }
+  });
+
+  // Gán giá trị mặc định nếu không có checkbox được chọn
+  if (!selectedToppingValue) {
+    selectedToppingValue = 'Không';
   }
+}
 
             // constructor(container, img, ma, tieude, name, price, icon)
       // constructor(MODAL,img, name,price,check,Duong,Da,Size,Topping)
@@ -1481,17 +1531,22 @@ var selectedToppingValue;
       thanhtien=thanhtien+(gia*0.2*soluongmua);
     }
     const topping=selectedToppingValue;
-    if(topping!==''){
+    if(topping!=='' && topping !=='Không'){
       thanhtien=thanhtien+(gia*0.1*soluongmua);
     }
     thanhtien = thanhtien.toFixed(2);
     if (loggedInUser) {
-      const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien); // truyền thành tiền vào
-      saveProductToLocalStorage(loggedInUser, newChart);
-      reload();
+      if(loggedInUser!=='Admin'){
+        const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien); // truyền thành tiền vào
+        saveProductToLocalStorage(loggedInUser, newChart);
+        reload();
+      }
+      else{
+        reload();
+      }
     }
     else{
-      console.log('Đăng nhập để mua');
+      alert('Đăng nhập để mua');
     }
     
  })
@@ -1505,13 +1560,17 @@ chartElements.forEach((chart, index) => {
     const imgSrc = chart.querySelector('img').src;
     const tenSP = chart.querySelector('.ChartTsp').textContent;
 
-    // Tìm modal có img.src và TenSP giống với chart
-    const modal = modalElements.find((modal) => {
-      return modal.querySelector('img').src === imgSrc && modal.querySelector('.TenSP').textContent === tenSP;
+    // Tìm productElement có img và tenSP giống với chart
+    const productElement = productElements.find((product, index) => {
+      const productImgSrc = product.querySelector('img').src;
+      const productTenSP = product.querySelector('.TenSP').textContent;
+      return productImgSrc === imgSrc && productTenSP === tenSP;
     });
 
-    // Xóa invisible khỏi modal
-    modal.classList.remove('invisible');
+    // Kích hoạt sự kiện click trên productElement
+    if (productElement) {
+      productElement.click();
+    }
   });
 });
 

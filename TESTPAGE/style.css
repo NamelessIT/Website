@@ -85,7 +85,7 @@ body {
 
 .bar li {
     list-style: none;
-    padding: 10px 25px;
+    padding: 10px 20px;
     position: relative;
 }
 .bar .nav::before{
@@ -220,6 +220,8 @@ ul.CHART:hover >div#CHART_SHOW{
     border: 1px solid #ccc;
     border-radius: 8px;
     margin-left: 3px;
+    max-height: 90px;
+    max-width: 85px;
 }
 #CHART_SHOW .chart .ChartTsp,#CHART_SHOW .chart .ChartSL
 ,.chart .ChartDuong,.chart .ChartDa,.chart .ChartSize,.chart .ChartTopping,
@@ -271,34 +273,37 @@ ul.CHART:hover >div#CHART_SHOW{
 #header li > h3.user{
     position: relative;
     /* border: #0d14e7 solid 1px; */
-    margin-left: 60px;
+    margin-left: 30px;
 }
 #header  li.user-block:hover > ul.account{
     display: block !important;
 }
 #header li > ul.account{
     position: absolute;
-    background-color: #668cba;
+    background-color: #fff;
     border-radius: 5px;
-    border: 2px solid #0d14e7;
-    right: 10px;
-    min-width: 175px;
+    /* border: 2px solid #0d14e7; */
+    box-shadow: 0 0 4px #333;
+    right: -15px;
+    min-width: 180px;
     text-align: center;
     top: 174%;
     display: none;
-    color: #ccc;
+    color: #333;
 }
 li >ul.account::before{
     position: absolute;
     content: "";
-    width: 50px;
+    width: 100px;
     height: 40px;
     top: -40px;
-    right: 0;
+    right: 0%;
+    /* /* background-color: red; */
 }
 ul.account li:hover{
-    color: #fff;
-    background-color: #333;
+    color: green;
+    background-color: #ccc;
+    border-radius: 5px;
     cursor: pointer;
 }
 
@@ -483,6 +488,7 @@ body {
     width: 100%;
     border-radius: 20px;
     position: relative;
+    max-height: 215px;
     /* background-color: rgba(128, 128, 128, 0.17); */
  }
  #product1 .pro:hover .modal-adjust{
@@ -579,14 +585,19 @@ body {
  .modal .modal-container .icon,.modal-admin .modal-container .icon,.modal-ADJUST .modal-container_ADJUST .icon{
     position: absolute;
     top: 10px;
-    right: 30px;
+    right: 10px;
     padding: 6px;
     font-size: 20px;
     background-color: red;
-    border-radius: 11px;
+    border-radius: 5px;
     color: #ccc;
     cursor: pointer;
+    transition: all 0.3s;
  }
+.modal .modal-container .icon:hover,.modal-admin .modal-container .icon:hover,.modal-ADJUST .modal-container_ADJUST .icon:hover{
+    transform: rotate(-360deg);
+    padding: 5px;
+}
  .modal .modal-container .modal-body, .modal-admin .modal-container .modal-body,.modal-ADJUST .modal-container_ADJUST .modal-body_ADJUST{
     display: flex;
     justify-content: space-evenly;
@@ -599,10 +610,12 @@ body {
     width: 90%;
     padding: 20% 0;
     border-radius: 30%;
+    max-height: 460px;
  }
  .modal-admin .modal-body .img img,.modal-ADJUST .modal-body_ADJUST .img img{
     cursor: pointer;
     border: 1px solid;
+    max-height: 460px;
     margin: 20px 0;
     border-radius: 20%;
  }
@@ -727,14 +740,17 @@ body {
 }
  
 .userEmail{
-    border: red solid 1px;
-    display: flex;
+    /* border: red solid 1px; */
+    /* display: flex; */
     color: white;
+    text-decoration: underline;
     font-size: 0.8rem;
     position: absolute;
-    margin-top: 100px;
-    bottom: 1%;
-    left: 50%;
-    transform: translateX(-50%);
+    /* margin-top: 100px; */
+    /* bottom: 1%; */
+    top: 27px;
+    /* left: 17%; */
+    right: 35%;
+    translate: 50%;
 }
 
