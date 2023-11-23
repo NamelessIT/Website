@@ -54,10 +54,12 @@ function signup() {
 
   // Khi người dùng click vào "Sign up"
   modal.style.display = "block";
+  modal.classList.add('Bungra');
 
   // Khi người dùng click vào nút đóng modal
   closeBtn.onclick = function() {
   modal.style.display = "none";
+  modal.classList.remove('Bungra');
   }
   // Khi người dùng click bất kỳ đâu bên ngoài modal, modal cũng sẽ đóng
   // window.onclick = function(event) {

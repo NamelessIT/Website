@@ -224,6 +224,17 @@ body {
   padding: 20px;
   border-radius: 5px;
 }
+.Bungra{
+  animation: Bungra 1s  ease-in-out ;
+}
+@keyframes Bungra{
+  from{
+    scale: 0;
+  }
+  to{
+    scale: 1;
+  }
+}
 
 .close-style {
   display: flex;

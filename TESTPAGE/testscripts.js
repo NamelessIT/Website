@@ -434,6 +434,7 @@ class Modal {
     const nameH2 = document.createElement('h2');
     nameH2.classList.add('TenSP');
     nameH2.style.marginBottom = '15px';
+    nameH2.style.marginRight='25px';
     nameH2.style.color = 'red';
     nameH2.style.textAlign='center';
     nameH2.textContent = name;
@@ -1262,6 +1263,21 @@ function removeProductFromAllAccounts(img, tensp) {
 }
 
 
+// LẤY DANH SÁCH TÀI KHOẢN 
+function getUsers() {
+  const usersDataJSON = localStorage.getItem('usersDataArray');
+  
+  if (usersDataJSON) {
+    try {
+      const usersDataArray = JSON.parse(usersDataJSON);
+      return Array.isArray(usersDataArray) ? usersDataArray : [];
+    } catch (error) {
+      console.error('Error parsing usersDataArray from Local Storage:', error);
+    }
+  }
+  
+  return [];
+}
 
 
 
@@ -1618,5 +1634,80 @@ location.href = "page/signup.html";
 }
 var DangXuat=document.querySelector('.Dangxuat');
 DangXuat.addEventListener('click',logout);
+
+// THAY ĐỔI USERNAME,PASSWORD TÀI KHOẢN
+
+var AccountInfo=document.querySelector('.TaiKhoan');
+var modalAccount=document.querySelector('.modal_AccountInfo');
+var Thoat=document.querySelector('.THOAT');
+var TenTaiKhoan=document.querySelector('.TenTaiKhoan');
+TenTaiKhoan.textContent=loggedInUser;
+AccountInfo.addEventListener('click',function(){
+  modalAccount.classList.remove('invisible');
+})
+Thoat.addEventListener('click',function(){
+  modalAccount.classList.add('invisible');
+})
+
+// THAY ĐỔI TÊN TÀI KHOẢN VÀ MẬT KHẨU
+// Lắng nghe sự kiện khi người dùng bấm nút "XÁC NHẬN"
+document.querySelector('.XacNhan').addEventListener('click', function() {
+  const newUsername = document.getElementById('UserName').value;
+  const newPassword = document.getElementById('Password').value;
+  const confirmPassword = document.getElementById('PasswordAgain').value;
+  
+  // Kiểm tra xem người dùng đã nhập vào các trường thông tin hay chưa
+  if (newUsername === '' && newPassword === '' && confirmPassword === '') {
+    // Thực hiện reload nếu không có sự thay đổi
+    location.reload();
+    return;
+  }
+  
+  // Kiểm tra và cảnh báo nếu người dùng nhập tên tài khoản không hợp lệ
+  if (newUsername !== '' && !newUsername.endsWith('@gmail.com')) {
+    alert('Tên tài khoản phải có dạng địa chỉ email (@gmail.com). Vui lòng nhập lại.');
+    return;
+  }
+  
+  // Kiểm tra và cảnh báo nếu người dùng nhập mật khẩu không hợp lệ
+  if (newPassword !== '' && newPassword.length < 6) {
+    alert('Mật khẩu phải chứa ít nhất 6 ký tự. Vui lòng nhập lại.');
+    return;
+  }
+  
+  // Kiểm tra và cảnh báo nếu người dùng nhập lại mật khẩu không khớp
+  if (newPassword !== confirmPassword) {
+    alert('Mật khẩu nhập lại không khớp với mật khẩu mới. Vui lòng nhập lại.');
+    return;
+  }
+  
+  // Lấy tên tài khoản đang đăng nhập từ local storage
+  const loggedInUser = localStorage.getItem('loggedInUser');
+  // console.log(loggedInUser);
+  // Tìm tài khoản đang đăng nhập trong danh sách người dùng
+  const usersDataArray = getUsers();
+  const loggedInUserIndex = usersDataArray.findIndex(user => user.email === loggedInUser);
+  // Kiểm tra xem tài khoản đang đăng nhập có tồn tại trong danh sách hay không
+  if (loggedInUserIndex === -1) {
+    console.error('Không tìm thấy tài khoản đang đăng nhập trong danh sách người dùng.');
+    return;
+  }
+  
+  // Thực hiện thay đổi thông tin tài khoản và mật khẩu
+  if (newUsername !== '') {
+    usersDataArray[loggedInUserIndex].username = newUsername;
+    localStorage.setItem('loggedInUser', newUsername); // Cập nhật thông tin tài khoản đăng nhập trong local storage
+  }
+  if (newPassword !== '') {
+    usersDataArray[loggedInUserIndex].password = newPassword;
+  }
+  
+  // Lưu trạng thái mới của mảng usersDataArray vào local storage
+  // (Lưu ý: Đoạn mã này chỉ là một phần của ví dụ và cần phải được cung cấp thêm mã để lưu vào local storage)
+  localStorage.setItem('usersDataArray', JSON.stringify(usersDataArray));
+  
+  // Thực hiện reload sau khi thay đổi thông tin tài khoản và mật khẩu
+  location.reload();
+});
 });
 
