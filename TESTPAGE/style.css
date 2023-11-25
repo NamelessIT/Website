@@ -832,4 +832,40 @@ body {
     right: 35%;
     translate: 50%;
 }
+#History{
+    height: 90%;
+    background-color: #fff;
+    width: 100%;
+    border-radius: 5px;
+}
 
+#History .chart{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px 5px;
+}
+#History .chart:hover{
+    opacity: 0.6;
+    background-color: #ccc;
+}
+#History .chart img{
+    width: 8%;
+    display: inline;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-left: 3px;
+    max-height: 50px;
+    max-width: 30px;
+}
+#History .chart .ChartTsp,#History .chart .ChartSL
+,.chart .ChartDuong,.chart .ChartDa,.chart .ChartSize,.chart .ChartTopping,
+#History .chart .ChartTien{
+    text-align: center;
+    width: 20%;
+    display: inline;
+    margin: 0 2px;
+}

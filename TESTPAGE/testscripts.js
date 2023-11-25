@@ -802,7 +802,7 @@ checkboxPhoMai.addEventListener('change', () => {
 
 // Cart
 class Pro_Chart {
-  constructor(CHART_BOX, img, tensp, soluong, duong, da, size, topping, thanhtien) {
+  constructor(CHART_BOX, img, tensp, soluong, duong, da, size, topping, thanhtien,time,check) {
     this.CHART_BOX = CHART_BOX;
     this.img = img;
     this.tensp = tensp;
@@ -812,6 +812,8 @@ class Pro_Chart {
     this.size = size;
     this.topping = topping;
     this.thanhtien = thanhtien;
+    this.time=time;
+    this.check=Number(check);
 
     this.element = document.createElement('div');
     this.element.classList.add('chart');
@@ -850,22 +852,17 @@ class Pro_Chart {
     ChartTopping.classList.add('invisible');
     ChartTopping.textContent = topping;
 
+    
     const ChartTien = document.createElement('h5');
     ChartTien.classList.add('ChartTien');
     ChartTien.textContent = thanhtien;
-
-    // Thêm thời gian vào ChartTien
-    const currentTime = new Date();
-    const currentDay = currentTime.getDate();
-    const currentHours = currentTime.getHours();
-    const currentMinutes = currentTime.getMinutes();
-    const currentSeconds = currentTime.getSeconds();
-    const timeString = `${currentDay} ${currentHours}:${currentMinutes}:${currentSeconds}`;
-
-    const ChartTime = document.createElement('span');
+    
+    const ChartTime = document.createElement('h5');
     ChartTime.classList.add('ChartTime');
     ChartTime.classList.add('invisible');
-    ChartTime.textContent = timeString;
+    ChartTime.textContent = time;
+
+
     
     this.CHART_BOX.appendChild(this.element);
     this.element.appendChild(chartImage);
@@ -875,8 +872,8 @@ class Pro_Chart {
     this.element.appendChild(ChartDa);
     this.element.appendChild(ChartSize);
     this.element.appendChild(ChartTopping);
-    this.element.appendChild(ChartTien);
     this.element.appendChild(ChartTime);
+    this.element.appendChild(ChartTien);
   }
 }
 
@@ -957,6 +954,7 @@ function LayAnh() {
 const proContainer = document.querySelector('.pro-container');
 const MODAL=document.getElementById("MODAL")
 const CHART_BOX=document.getElementById("CHART_SHOW");
+const History=document.getElementById('History');
 
 
 // Lưu trữ thông tin của sản phẩm vào local storage.
@@ -1214,7 +1212,14 @@ function AddChart(index,username) {
     const topping="không";
     const thanhtien = (soluong * gia).toString();
 
-    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongChu,duong,da,size,topping,thanhtien); // truyền thành tiền vào
+    const currentTime = new Date();
+    const currentDay=currentTime.getDate();
+    const currentHours = currentTime.getHours();
+    const currentMinutes = currentTime.getMinutes();
+    const currentSeconds = currentTime.getSeconds();
+    const timeString = `${currentDay} ${currentHours}:${currentMinutes}:${currentSeconds}`;
+
+    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongChu,duong,da,size,topping,thanhtien,timeString,0); // truyền thành tiền vào
     charts.push(newChart); // Thêm chart mới vào mảng charts
 
     // Lưu trữ thông tin của sản phẩm mới vào local storage. ở dạng String
@@ -1301,7 +1306,32 @@ window.addEventListener('load', function() {
       const newmodal=new Modal(MODAL,modal.img,modal.name,"Giá: "+modal.price,modal.check);
     }
     for(const chart of charts){
-      const newChart = new Pro_Chart(CHART_BOX, chart.img, chart.tensp, "SL:"+chart.soluong,chart.duong,chart.da,chart.size,chart.topping, "TONG:"+chart.thanhtien);
+      if(chart.check===0){
+        const newChart = new Pro_Chart(CHART_BOX, chart.img, chart.tensp, "SL:"+chart.soluong,chart.duong,chart.da,chart.size,chart.topping, "TONG:"+chart.thanhtien,chart.time);
+      }
+    }
+    for (const chart of charts) {
+      if (chart.check === 1) {
+        const newChart = new Pro_Chart(
+          History,
+          chart.img,
+          chart.tensp,
+          "SL:" + chart.soluong,
+          "Đường:" + chart.duong,
+          "Đá:" + chart.da,
+          "Size:" + chart.size,
+          "Topping:" + chart.topping,
+          "Tổng:" + chart.thanhtien,
+          "Ngày:"+chart.time,
+        );
+    
+        // Bỏ class "invisible" khỏi các thẻ
+        newChart.element.querySelector('.ChartDuong').classList.remove('invisible');
+        newChart.element.querySelector('.ChartDa').classList.remove('invisible');
+        newChart.element.querySelector('.ChartSize').classList.remove('invisible');
+        newChart.element.querySelector('.ChartTopping').classList.remove('invisible');
+        newChart.element.querySelector('.ChartTime').classList.remove('invisible');
+      }
     }
   // tạo 1 list pro và modal dưới dạng js
 
@@ -1553,7 +1583,15 @@ function getTopping() {
     thanhtien = thanhtien.toFixed(2);
     if (loggedInUser) {
       if(loggedInUser!=='Admin'){
-        const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien); // truyền thành tiền vào
+
+        const currentTime = new Date();
+        const currentDay=currentTime.getDate();
+        const currentHours = currentTime.getHours();
+        const currentMinutes = currentTime.getMinutes();
+        const currentSeconds = currentTime.getSeconds();
+        const timeString = `${currentDay} ${currentHours}:${currentMinutes}:${currentSeconds}`;
+        
+        const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien,timeString,0); // truyền thành tiền vào
         saveProductToLocalStorage(loggedInUser, newChart);
         reload();
       }
@@ -1572,20 +1610,23 @@ function getTopping() {
 // Bấm vào sản phẩm trên giỏ hàng
 chartElements.forEach((chart, index) => {
   chart.addEventListener('click', function() {
-    // Lấy giá trị img.src và TenSP của chart
-    const imgSrc = chart.querySelector('img').src;
-    const tenSP = chart.querySelector('.ChartTsp').textContent;
+    // Kiểm tra xem chart có nằm trong div có id='History' không
+    if (!chart.closest('#History')) {
+      // Lấy giá trị img.src và TenSP của chart
+      const imgSrc = chart.querySelector('img').src;
+      const tenSP = chart.querySelector('.ChartTsp').textContent;
 
-    // Tìm productElement có img và tenSP giống với chart
-    const productElement = productElements.find((product, index) => {
-      const productImgSrc = product.querySelector('img').src;
-      const productTenSP = product.querySelector('.TenSP').textContent;
-      return productImgSrc === imgSrc && productTenSP === tenSP;
-    });
+      // Tìm productElement có img và tenSP giống với chart
+      const productElement = productElements.find((product, index) => {
+        const productImgSrc = product.querySelector('img').src;
+        const productTenSP = product.querySelector('.TenSP').textContent;
+        return productImgSrc === imgSrc && productTenSP === tenSP;
+      });
 
-    // Kích hoạt sự kiện click trên productElement
-    if (productElement) {
-      productElement.click();
+      // Kích hoạt sự kiện click trên productElement
+      if (productElement) {
+        productElement.click();
+      }
     }
   });
 });
@@ -1638,6 +1679,7 @@ DangXuat.addEventListener('click',logout);
 // THAY ĐỔI USERNAME,PASSWORD TÀI KHOẢN
 
 var AccountInfo=document.querySelector('.TaiKhoan');
+var DONMUA=document.querySelector('.DonMua')
 var modalAccount=document.querySelector('.modal_AccountInfo');
 var Thoat=document.querySelector('.THOAT');
 var TenTaiKhoan=document.querySelector('.TenTaiKhoan');
@@ -1709,5 +1751,29 @@ document.querySelector('.XacNhan').addEventListener('click', function() {
   // Thực hiện reload sau khi thay đổi thông tin tài khoản và mật khẩu
   location.reload();
 });
+
+// chuyển đổi giữa tài khoản của tui và đơn mua
+var Account=document.querySelector('.ACCOUNT');
+var DonMua=document.querySelector('.DONMUA');
+var main=document.querySelector('.main');
+var LichSu=document.querySelector('.LichSu');
+Account.addEventListener('click',function() {
+  main.classList.remove('invisible');
+  LichSu.classList.add('invisible');
+})
+AccountInfo.addEventListener('click',function() {
+  main.classList.remove('invisible');
+  LichSu.classList.add('invisible');
+})
+DONMUA.addEventListener('click',function () {
+  modalAccount.classList.remove('invisible');
+  main.classList.add('invisible');
+  LichSu.classList.remove('invisible');
+})
+DonMua.addEventListener('click',function () {
+  main.classList.add('invisible');
+  LichSu.classList.remove('invisible');
+})
+
 });
 

@@ -56,70 +56,67 @@ sidebarItems[3].addEventListener('click',function(){
 
 
 // QUANLYDONHANG
-class Pro_Chart{
-    constructor(CHART_BOX,img,tensp,soluong,duong,da,size,topping,thanhtien){
-      this.CHART_BOX=CHART_BOX;
-      this.img=img;
-      this.tensp=tensp;
-      this.soluong=soluong;
-      this.duong=duong;
-      this.da=da;
-      this.size=size;
-      this.topping=topping;
-      this.thanhtien=thanhtien;
-    
-    this.element=document.createElement('div');
+class Pro_Chart {
+  constructor(CHART_BOX, img, tensp, soluong, duong, da, size, topping, thanhtien,time,check) {
+    this.CHART_BOX = CHART_BOX;
+    this.img = img;
+    this.tensp = tensp;
+    this.soluong = soluong;
+    this.duong = duong;
+    this.da = da;
+    this.size = size;
+    this.topping = topping;
+    this.thanhtien = thanhtien;
+    this.time=time;
+    this.check=Number(check);
+
+    this.element = document.createElement('div');
     this.element.classList.add('chart');
-    this.element.setAttribute('data-img',img);
-  
-    const chartImage=document.createElement('img');
+    this.element.setAttribute('data-img', img);
+
+    const chartImage = document.createElement('img');
     chartImage.classList.add('ChartImage');
-    chartImage.src=img;
-    chartImage.alt=tensp;
-  
-    const ChartTsp=document.createElement('h5');
+    chartImage.src = img;
+    chartImage.alt = tensp;
+
+    const ChartTsp = document.createElement('h5');
     ChartTsp.classList.add('ChartTsp');
-    ChartTsp.textContent=tensp;
-  
-    const ChartSoLuong=document.createElement('h5');
+    ChartTsp.textContent = tensp;
+
+    const ChartSoLuong = document.createElement('h5');
     ChartSoLuong.classList.add('ChartSL');
-    ChartSoLuong.textContent=soluong;
-  
-    const ChartDuong=document.createElement('h5');
+    ChartSoLuong.textContent = soluong;
+
+    const ChartDuong = document.createElement('h5');
     ChartDuong.classList.add('ChartDuong');
     // ChartDuong.classList.add('invisible');
-    ChartDuong.textContent=duong;
-  
-    const ChartDa=document.createElement('h5');
+    ChartDuong.textContent = duong;
+
+    const ChartDa = document.createElement('h5');
     ChartDa.classList.add('ChartDa');
     // ChartDa.classList.add('invisible');
-    ChartDa.textContent=da;
-  
-    const ChartSize=document.createElement('h5');
+    ChartDa.textContent = da;
+
+    const ChartSize = document.createElement('h5');
     ChartSize.classList.add('ChartSize');
     // ChartSize.classList.add('invisible');
-    ChartSize.textContent=size;
-  
-    const ChartTopping=document.createElement('h5');
+    ChartSize.textContent = size;
+
+    const ChartTopping = document.createElement('h5');
     ChartTopping.classList.add('ChartTopping');
     // ChartTopping.classList.add('invisible');
-    ChartTopping.textContent=topping;
-  
-    const ChartTien=document.createElement('h5');
-    ChartTien.classList.add('ChartTien');
-    ChartTien.textContent=thanhtien;
+    ChartTopping.textContent = topping;
 
-    // Thêm thời gian vào ChartTien
-    const currentTime = new Date();
-    const currentDay = currentTime.getDate();
-    const currentHours = currentTime.getHours();
-    const currentMinutes = currentTime.getMinutes();
-    const currentSeconds = currentTime.getSeconds();
-    const timeString = `Ngày:${currentDay} ${currentHours}:${currentMinutes}:${currentSeconds}`;
     
-    const ChartTime = document.createElement('span');
+    const ChartTien = document.createElement('h5');
+    ChartTien.classList.add('ChartTien');
+    ChartTien.textContent = thanhtien;
+    
+    const ChartTime = document.createElement('h5');
     ChartTime.classList.add('ChartTime');
-    ChartTime.textContent = timeString;
+    // ChartTime.classList.add('invisible');
+    ChartTime.textContent = time;
+    
 
     const HoanThanh=document.createElement('h5');
     HoanThanh.classList.add('HoanThanh');
@@ -137,8 +134,8 @@ class Pro_Chart{
     this.element.appendChild(ChartDa);
     this.element.appendChild(ChartSize);
     this.element.appendChild(ChartTopping);
-    this.element.appendChild(ChartTien);
     this.element.appendChild(ChartTime);
+    this.element.appendChild(ChartTien);
     this.element.appendChild(HoanThanh);
     this.element.appendChild(Huy);
     }
@@ -186,14 +183,18 @@ function calculateTotalThanhtien() {
 
   for (const productData of allProducts) {
     const product = productData.product;
-    const thanhtien = parseFloat(product.thanhtien);
-    total += thanhtien;
+    const check = product.check;
+
+    if (check === 1) {
+      const thanhtien = parseFloat(product.thanhtien);
+      total += thanhtien;
+    }
   }
 
   return total;
 }
 // hàm xóa từng sản phẩm
-function removeSingleProductFromAllAccounts(username, productName,productSL,productDuong,productDa,productSize,productTopping,productBill) {
+function removeSingleProductFromAllAccounts(username, productName,productSL,productDuong,productDa,productSize,productTopping,productBill,date) {
   // Lấy dữ liệu từ Local Storage
   const allData = localStorage.getItem('charts');
 
@@ -207,11 +208,11 @@ function removeSingleProductFromAllAccounts(username, productName,productSL,prod
       // Tìm chỉ số đầu tiên của sản phẩm trong danh sách sản phẩm của tài khoản
       const index = currentUserProducts.findIndex((product) => {
         return product.tensp === productName && product.thanhtien===productBill && product.soluong===productSL 
-        && product.duong===productDuong && product.da===productDa && product.size===productSize && product.topping===productTopping ;
+        && product.duong===productDuong && product.da===productDa && product.size===productSize && product.topping===productTopping &&product.time===date ;
       });
       // console.log('Kết quả tìm kiếm: ' + product.tensp+' '+pro.thanhtien);
 
-
+      console.log(index);
       // Xóa sản phẩm khỏi danh sách sản phẩm của tài khoản
       if (index > -1) {
         currentUserProducts.splice(index, 1);
@@ -288,25 +289,79 @@ const users=document.getElementById('USER_SHOW');
 window.addEventListener('load', function() {
   const allProducts = getAllProducts();
   for (const { username, product } of allProducts) {
-    const newChart = new Pro_Chart(
-      CHART_BOX,
-      product.img,
-      product.tensp,
-      "SL:" + product.soluong,
-      "Đường:" + product.duong,
-      "Đá:" + product.da,
-      "Size:" + product.size,
-      "Topping:" + product.topping,
-      "Tổng:" + product.thanhtien
-    );
-
-    const chartUsername = document.createElement('h5');
-    chartUsername.classList.add('ChartUsername');
-    chartUsername.textContent = `Tài khoản: ${username}`;
-    newChart.element.prepend(chartUsername);
+    if(product.check===0){
+      const newChart = new Pro_Chart(
+        CHART_BOX,
+        product.img,
+        product.tensp,
+        "SL:" + product.soluong,
+        "Đường:" + product.duong,
+        "Đá:" + product.da,
+        "Size:" + product.size,
+        "Topping:" + product.topping,
+        "Tổng:" + product.thanhtien,
+        "Ngày:"+product.time,
+      );
+      const chartUsername = document.createElement('h5');
+      chartUsername.classList.add('ChartUsername');
+      chartUsername.textContent = `Tài khoản: ${username}`;
+      newChart.element.prepend(chartUsername);
+    }
   }
 
 const chartElements = Array.from(document.querySelectorAll('.chart'));
+
+// đưa sản phẩm hoàn thành vào lịch sử 
+  // Lặp qua từng phần tử trong mảng chartElements
+  chartElements.forEach(function(chartElement) {
+    // Lấy thẻ có class HoanThanh
+    const hoanThanhElement = chartElement.querySelector('.HoanThanh');
+    
+    // Thêm sự kiện click
+    hoanThanhElement.addEventListener('click', function() {
+      // Lấy giá trị của 'tên tài khoản' từ thẻ cha của hoanThanhElement
+      const chartUsernameElement = chartElement.querySelector('.ChartUsername');
+      const username = chartUsernameElement.textContent.replace('Tài khoản: ', '');
+      
+      // Lấy thông tin sản phẩm từ các thẻ con của chartElement
+      const img = chartElement.getAttribute('data-img');
+      const tensp = chartElement.querySelector('.ChartTsp').textContent;
+      const soluong = chartElement.querySelector('.ChartSL').textContent.replace('SL:', '');
+      const duong = chartElement.querySelector('.ChartDuong').textContent.replace('Đường:', '');
+      const da = chartElement.querySelector('.ChartDa').textContent.replace('Đá:', '');
+      const size = chartElement.querySelector('.ChartSize').textContent.replace('Size:', '');
+      const topping = chartElement.querySelector('.ChartTopping').textContent.replace('Topping:', '');
+      const thanhtien = chartElement.querySelector('.ChartTien').textContent.replace('Tổng:', '');
+      
+      // Lấy dữ liệu từ Local Storage
+      const allData = localStorage.getItem('charts');
+      let charts = {};
+      
+      if (allData) {
+        charts = JSON.parse(allData);
+      }
+      
+      // Kiểm tra xem tài khoản có tồn tại trong charts không
+      if (username in charts) {
+        // Lặp qua danh sách sản phẩm của tài khoản đó
+        for (const product of charts[username]) {
+          // So sánh thông tin sản phẩm để tìm sản phẩm cần thay đổi
+          if (product.img === img && product.tensp === tensp && product.soluong === soluong && product.duong === duong && product.da === da && product.size === size && product.topping === topping && product.thanhtien === thanhtien) {
+            // Thay đổi giá trị của check thành 1
+            product.check = 1;
+            break; // Thoát khỏi vòng lặp nếu tìm thấy sản phẩm
+          }
+        }
+        
+        // Cập nhật dữ liệu vào Local Storage
+        localStorage.setItem('charts', JSON.stringify(charts));
+        reload();
+      }
+    });
+  });
+
+// kết thúc
+// từ chối đơn hàng
 
   const delButtons = document.querySelectorAll('.HUY');
   delButtons.forEach((delButton) => {
@@ -319,10 +374,12 @@ const chartElements = Array.from(document.querySelectorAll('.chart'));
   const da=delButton.parentNode.querySelector('.ChartDa').textContent.replace('Đá:','');
   const size=delButton.parentNode.querySelector('.ChartSize').textContent.replace('Size:','');
   const topping=delButton.parentNode.querySelector('.ChartTopping').textContent.replace('Topping:','');
+  // const time=delButton.parentNode.querySelector('.')
   const tien=delButton.parentNode.querySelector('.ChartTien').textContent.replace('Tổng:','');
-  console.log('chào '+username+' tensp '+tensp+' số lượng: '+sl+' đường: '+duong+' đá: '+da+' size: '+size+' Topping: '+topping+' tiền: '+tien);
+  const date=delButton.parentNode.querySelector('.ChartTime').textContent.replace('Ngày:','');
+  console.log('chào '+username+' tensp '+tensp+' số lượng: '+sl+' đường: '+duong+' đá: '+da+' size: '+size+' Topping: '+topping+' tiền: '+tien+' Ngày:'+date);
  // Gọi hàm xóa sản phẩm với thông tin sản phẩm cần xóa
- removeSingleProductFromAllAccounts(username,tensp,sl,duong,da,size,topping,tien);
+ removeSingleProductFromAllAccounts(username,tensp,sl,duong,da,size,topping,tien,date);
     });
   });
 
@@ -378,8 +435,9 @@ function countUp(targetElement, targetNumber) {
   }, 250); // Thời gian chờ giữa các frame (ms)
 }
 const allProducts = getAllProducts();
+const filteredProducts = allProducts.filter(productData => productData.product.check === 1);
+const targetNumber = filteredProducts.length;
 const targetElement = document.querySelector('.SoLuongMuaNumber');
-const targetNumber = allProducts.length;
 const totalThanhtien = calculateTotalThanhtien();
 const targetThanhTien=document.querySelector('.DoanhThuNumber');
 sidebarItems[2].addEventListener('click',function(){
