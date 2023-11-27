@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ID=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ID=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" /></head>
-    <!-- <script src="https://unpkg.com/dom-event/dist/dom-event.min.js"></script> -->
-<body id="background">
-    
-    <section id="header" >        
-        <a href="#"><img src="img/logo.png" class="logo" alt=""></a>    
-        <div>
-            <ul class="bar">
-                <li><a class="active" href="#">HOME</a></li>
-                
-                <li class="navigate nav-menu">
-                    <h3 class="a">MENU 
-                        <i id="iconupdown" class="fa fa-chevron-up" aria-hidden="true"></i>
-                    </h3>
-                    <div class="outside invisible">
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    <link rel="stylesheet" href="user-layout.css" />
+  </head>
+  <!-- <script src="https://unpkg.com/dom-event/dist/dom-event.min.js"></script> -->
+  <body id="background">
+    <section id="header">
+      <a href="#"><img src="img/logo.png" class="logo" alt="" /></a>
+      <div>
+        <ul class="bar">
+          <li><a class="bar-active" href="index.html">HOME</a></li>
+
+          <li class="navigate nav-menu">
+            <a href="menu.html">
+              <h3 class="a" href="menu.html">
+                MENU
+                <!-- <i id="iconupdown" class="fa fa-chevron-up" aria-hidden="true"></i> -->
+              </h3></a
+            >
+            <!-- <div class="outside invisible">
                         <ul class="js-nav ">
                             <li class="li-checkbox">
                                 <input type="checkbox">
@@ -35,187 +42,348 @@
                                 <h3>Bánh</h3> 
                             </li>
                         </ul>
-                    </div>
-                </li>
-                <!-- làm 1 cái checkbox để tick vào phân loại sản phẩm -->
-                <li class="navigate"> 
-                    <h3 class="a">STORE</h3>
-                    <ul class="nav invisible">
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                    </ul>
-                </li>
-                <li class="navigate"> 
-                    <h3 class="a">CONTACT</h3>
-                    <ul class="nav invisible" style="left: 9px !important;">
-                        <li><i class="fa fa-envelope" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-envelope" aria-hidden="true"></i></li>
-                        <li>3</li>
-                    </ul>
-                </li>
-                <!-- làm hover hạ xuống 1 hình chữ nhật  -->
-                <li class="navigate"> 
-                    <h3 class="a">ABOUT</h3>
-                    <ul class="nav invisible">
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                    </ul>
-                </li>
-                <!-- <li><a href="#">Hirer</a></li> -->
-               <div class="bar icon-bar" id="user">
-                <li> <h3 class="a"><i class="fa fa-shopping-bag" ></i></h3></li>
-                <!-- hiện ra khi thêm 1 sản phẩm và tính tổng -->
-                <li><h3 class="a"><i class="fa fa-user"></i></h3></li>
-                <!-- hiện tài khoản và có thể đăng xuất và sẽ có thêm quản lý tài khoản nếu đó là admin -->
-                </div>
+                    </div> -->
+          </li>
+          <!-- làm 1 cái checkbox để tick vào phân loại sản phẩm -->
+          <li class="navigate">
+            <h3 class="a">STORE</h3>
+            <ul class="nav invisible">
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
             </ul>
+          </li>
+          <li class="navigate">
+            <h3 class="a">CONTACT</h3>
+            <ul class="nav invisible" style="left: 9px !important">
+              <li><i class="fa fa-envelope" aria-hidden="true"></i></li>
+              <li><i class="fa fa-envelope" aria-hidden="true"></i></li>
+              <li>3</li>
+            </ul>
+          </li>
+          <!-- làm hover hạ xuống 1 hình chữ nhật  -->
+          <li class="navigate">
+            <h3 class="a">ABOUT</h3>
+            <ul class="nav invisible">
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+            </ul>
+          </li>
+          <!-- <li><a href="#">Hirer</a></li> -->
+          <div class="bar icon-bar" id="user">
+            <li>
+              <a class="a" href="cart.html"
+                ><i class="fa fa-shopping-bag"></i
+              ></a>
+            </li>
+            <!-- hiện ra khi thêm 1 sản phẩm và tính tổng -->
+            <li>
+              <h3 class="a"><i class="fa fa-user"></i></h3>
+            </li>
+            <!-- hiện tài khoản và có thể đăng xuất và sẽ có thêm quản lý tài khoản nếu đó là admin -->
+          </div>
+        </ul>
         <!-- có các thanh trượt dọc xuống các bar nhỏ -->
-        </div>
-        
-        
+      </div>
     </section>
     <section id="banner1" class="img img0">
-        <h4 class="TieuDe display">Well come to</h4>
-        <h1 class="TieuDe">SGU COFFEE</h1>
-        <!-- <p>Chương trình giảm giá 20%</p> Đã Xong -->
-        <!-- <button>Mua ngay</button> Đã Xong -->
-        <div class="icon">
-            <span class="dot-icon active"></span>
-            <span class="dot-icon"></span>
-            <span class="dot-icon"></span>
-            
-        </div>
-
+      <h4 class="TieuDe display">Well come to</h4>
+      <h1 class="TieuDe">SGU COFFEE</h1>
+      <!-- <p>Chương trình giảm giá 20%</p> Đã Xong -->
+      <!-- <button>Mua ngay</button> Đã Xong -->
+      <div class="icon">
+        <span class="dot-icon active"></span>
+        <span class="dot-icon"></span>
+        <span class="dot-icon"></span>
+      </div>
     </section>
 
+    <!-- FOR USER -->
+    <div class="wrapper">
+      <div class="title-container">
+        <h1>Sản phẩm phổ biến</h1>
+      </div>
+      <div class="user-layout">
+        <div class="menu-container">
+          <div id="menu">
+            <!-- <div class="search-input-wrapper">
+              <input
+                type="text"
+                id="search-box"
+                placeholder="Search anything..."
+                class="search__box"
+                onkeyup="search()"
+              />
+              <i
+                class="fas fa-search search__icon"
+                id="icon"
+                onclick="toggleShow()"
+              ></i>
+            </div> -->
+            <form>
+              <i class="fas fa-search"></i>
+              <input
+                type="text"
+                name=""
+                id="search-box"
+                placeholder="Search products"
+                onkeyup="search()"
+              />
+            </form>
+            <div class="product-menu">
+              <div id="buttons">
+                <button class="button-value" onclick="filterProduct('All')">
+                  All
+                </button>
+                <button
+                  class="button-value"
+                  onclick="filterProduct('Milk Tea')"
+                >
+                  Milk Tea
+                </button>
+                <button class="button-value" onclick="filterProduct('Tea')">
+                  Tea
+                </button>
+                <button class="button-value" onclick="filterProduct('Cake')">
+                  Cake
+                </button>
+                <button class="button-value" onclick="filterProduct('Snack')">
+                  Snack
+                </button>
+                <button
+                  class="button-value"
+                  onclick="filterProduct('Favorite')"
+                >
+                  Favorite
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="product-container">
+          <div class="pro-container" id="product-list">
+            <div class="pro-admin">
+              <!-- FOR ADMIN -->
+              <img src="img/add.png" />
 
+              <div class="des">
+                <span>TITLE</span>
+                <h5>NAME</h5>
+                <h4>PRICE</h4>
+              </div>
+              <div>
+                <i
+                  class="fa fa-shopping-cart cart"
+                  style="background-color: red !important"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- sản phẩm -->
     <section id="product1">
-        <h1>Sản phẩm phổ biến</h1>
-        <div class="pro-container">
-            <div class="pro-admin">
-                <!-- FOR ADMIN -->
-                <img src="img/add.png" >
+      <div class="pro-container">
+        <!-- <div class="pro-admin"> -->
+        <!-- FOR ADMIN -->
+        <!-- <img src="img/add.png" >
                 <div class="des">
                 <span>TITLE</span>
                 <h5>NAME</h5>        
                 <h4>PRICE</h4>
                 </div>            
-                <div><i class="fa fa-shopping-cart cart" style="background-color: red !important;"></i></div>                    
+          <div><i class="fa fa-shopping-cart cart" style="background-color: red !important;"></i></div>                    
+            </div> -->
+        <!-- END -->
+        <!-- <div class="pro" data-img="img/pro1.png">
+          <img src="img/pro1.png" alt="Product image" />
+          <div class="modal-adjust invisible">
+            <div class="adjust">
+              <div class="rewrite">
+                <h4>Sửa</h4>
+              </div>
+              <div class="delete">
+                <h4>Xóa</h4>
+              </div>
             </div>
-                <!-- END -->
-                    <!-- <div class="pro" data-img="img/pro1.png">
-                        <img src="img/pro1.png" alt="Product image">
-                        <div class="modal-adjust invisible">
-                            <div class="adjust ">
-                                <div class="rewrite">
-                                    <h4>Sửa</h4>
-                                </div>
-                                <div class="delete">
-                                    <h4>Xóa</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="des">
-                        <span>Trà sữa <h5 class="MaSP">#1224</h5></span>
+          </div> -->
+        <!-- <div class="des">
+                        
                         <h5>Trà sữa trân châu</h5>
                         <h4>50.000đ</h4>
                         </div>
-                        <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
-                    </div> -->
-        </div>
+                        <a href="#"><i class="fa fa-shopping-cart cart"></i></a>-->
+        <!-- </div> -->
+      </div>
     </section>
     <!-- kết thúc -->
 
     <!-- MODAL -->
 
-    <div id="MODAL">
-
-    </div>
+    <div id="MODAL"></div>
 
     <!-- KẾT THÚC MODAL -->
 
     <!-- MODAL FOR ADMIN -->
     <div class="modal-admin invisible">
-        <div class="modal-container animationTransmision">
-            <div class="fa fa-times icon close">
-                <i></i>
-            </div>
-            <div class="modal-body">
-                <div class="img">
-                    <img src="img/add.png" title="Nhấn để thêm ảnh" >
-                </div>
-                <div class="properties">
-                    <div class="flex-box">
-                        <h4 class="Title" style="margin: 8px 5px;">Mã Sản Phẩm </h4>
-                        <input id="MaSanPham" class="SoLuong" type="number" pattern="[1-9]{4}" required placeholder="#0000">
-                    </div>
-                    <div class="flex-box">
-                        <h3 class="Title" style="margin-bottom: 15px;">TITLE:</h3> 
-                        <input id="TIEUDE" class="SoLuong" type="text" required>
-                    </div>
-                    <div class="flex-box">
-                        <h3 class="Title" style="margin-bottom: 15px;color: red;">NAME:</h3> 
-                        <input id="TenSanPham" class="SoLuong" type="text" required>
-                    </div>
-                    <div class="flex-box">
-                        <h4 class="Title" style="margin: 5px 0;">Gía: </h4>
-                        <input id="GiaBan" class="SoLuong" type="number" pattern="[1-9]+" placeholder="000.000đ" >
-                    </div>
-                    <button class="Accept" >XÁC NHẬN</button>
-                </div>
-            </div>
+      <div class="modal-container animationTransmision">
+        <div class="fa fa-times icon close">
+          <i></i>
         </div>
+        <div class="modal-body">
+          <div class="img">
+            <img src="img/add.png" title="Nhấn để thêm ảnh" />
+          </div>
+          <div class="properties">
+            <div class="flex-box">
+              <h4 class="Title" style="margin: 8px 5px">Mã Sản Phẩm</h4>
+              <input
+                id="MaSanPham"
+                class="SoLuong"
+                type="number"
+                pattern="[1-9]{4}"
+                required
+                placeholder="#0000"
+              />
+            </div>
+            <div class="flex-box">
+              <h3 class="Title" style="margin-bottom: 15px">TITLE:</h3>
+              <input id="TIEUDE" class="SoLuong" type="text" required />
+            </div>
+            <div class="flex-box">
+              <h3 class="Title" style="margin-bottom: 15px; color: red">
+                NAME:
+              </h3>
+              <input id="TenSanPham" class="SoLuong" type="text" required />
+            </div>
+            <div class="flex-box">
+              <h4 class="Title" style="margin: 5px 0">Gía:</h4>
+              <input
+                id="GiaBan"
+                class="SoLuong"
+                type="number"
+                pattern="[1-9]+"
+                placeholder="000.000đ"
+              />
+            </div>
+            <button class="Accept">XÁC NHẬN</button>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- END -->
 
     <!-- ADJUST -->
 
     <div class="modal-ADJUST invisible">
-        <div class="modal-container_ADJUST animationTransmision">
-            <div class="fa fa-times icon close">
-                <i></i>
-            </div>
-            <div class="modal-body_ADJUST">
-                <div class="img">
-                    <img src="img/add.png" title="Nhấn để thêm ảnh" >
-                </div>
-                <div class="properties">
-                    <div class="flex-box">
-                        <h4 class="Title" style="margin: 8px 5px;">Mã Sản Phẩm </h4>
-                        <input id="MaSanPham" class="SoLuong" type="number" pattern="[1-9]{4}" required placeholder="#0000">
-                    </div>
-                    <div class="flex-box">
-                        <h3 class="Title" style="margin-bottom: 15px;">TITLE:</h3> 
-                        <input id="TIEUDE" class="SoLuong" type="text" required>
-                    </div>
-                    <div class="flex-box">
-                        <h3 class="Title" style="margin-bottom: 15px;color: red;">NAME:</h3> 
-                        <input id="TenSanPham" class="SoLuong" type="text" required>
-                    </div>
-                    <div class="flex-box">
-                        <h4 class="Title" style="margin: 5px 0;">Gía: </h4>
-                        <input id="GiaBan" class="SoLuong" type="number" pattern="[1-9]+" placeholder="000.000đ" >
-                    </div>
-                    <button class="ADJUST" >XÁC NHẬN</button>
-                </div>
-            </div>
+      <div class="modal-container_ADJUST animationTransmision">
+        <div class="fa fa-times icon close">
+          <i></i>
         </div>
+        <div class="modal-body_ADJUST">
+          <div class="img">
+            <img src="img/add.png" title="Nhấn để thêm ảnh" />
+          </div>
+          <div class="properties">
+            <div class="flex-box">
+              <h4 class="Title" style="margin: 8px 5px">Mã Sản Phẩm</h4>
+              <input
+                id="MaSanPham"
+                class="SoLuong"
+                type="number"
+                pattern="[1-9]{4}"
+                required
+                placeholder="#0000"
+              />
+            </div>
+            <div class="flex-box">
+              <h3 class="Title" style="margin-bottom: 15px">TITLE:</h3>
+              <input id="TIEUDE" class="SoLuong" type="text" required />
+            </div>
+            <div class="flex-box">
+              <h3 class="Title" style="margin-bottom: 15px; color: red">
+                NAME:
+              </h3>
+              <input id="TenSanPham" class="SoLuong" type="text" required />
+            </div>
+            <div class="flex-box">
+              <h4 class="Title" style="margin: 5px 0">Gía:</h4>
+              <input
+                id="GiaBan"
+                class="SoLuong"
+                type="number"
+                pattern="[1-9]+"
+                placeholder="000.000đ"
+              />
+            </div>
+            <button class="ADJUST">XÁC NHẬN</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- KẾT THÚC -->
 
-
     <!-- javascripts mở menu chi tiết sản phẩm -->
 
+    <!-- kết thúc -->
 
+    <!-- Footer -->
 
-<!-- kết thúc -->
+    <footer class="section-p1">
+      <div class="col">
+        <img class="logo" src="img/logo.png" alt="" />
+        <h4>Contact</h4>
+        <p>
+          <strong>Address:</strong> 273 D. An Duong Vuong, Phuong 3, Quan
+          5,TP,HCM
+        </p>
+        <p><strong>Phone:</strong> 012 345 6789</p>
+        <p><strong>Hour:</strong> 10:00 - 18:00, Mon - Sat</p>
+        <div class="follow">
+          <h4>Follow us</h4>
+          <div class="icon">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-pinterest"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
+        </div>
+      </div>
 
+      <div class="col">
+        <h4>About</h4>
+        <a href="#">About us</a>
+        <a href="#">About us</a>
+        <a href="#">Terms $ Conditions</a>
+        <a href="#">Contact us</a>
+      </div>
 
+      <div class="col">
+        <h4>My Account</h4>
+        <a href="#">Sign In</a>
+        <a href="#">View Cart</a>
+        <a href="#">Help</a>
+        <!-- <a href="#">Contact us</a> -->
+      </div>
 
+      <div class="col install">
+        <h4>Install App</h4>
+        <p>From App Store or Google Play</p>
+        <div class="row">
+          <img src="img/googleplay.png" alt="" />
+          <img src="img/appstore.png" alt="" />
+        </div>
+      </div>
+
+      <div class="coppyright">
+        <p>© 2023, Team 12</p>
+      </div>
+    </footer>
+    <!-- Footer END -->
     <script src="testscripts.js"></script>
-</body>
+  </body>
 </html>
