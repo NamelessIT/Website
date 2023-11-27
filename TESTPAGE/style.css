@@ -5,6 +5,11 @@
     box-sizing: border-box;
     font-family: 'Spartan', sans-serif;
 }
+    /* Ẩn con trỏ nhập liệu */
+    input[readonly] {
+        cursor: pointer;
+        background-color: white;
+    }
 
 h1 {
     font-size: 50px;
@@ -637,6 +642,36 @@ body {
     flex: 1;
     text-transform: uppercase;
  }
+ .dropdown {
+    position: relative;
+    display: flex;
+    flex: 1;
+}
+ .dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    text-align: center;
+    border-radius: 5px;
+    border: 1px solid #333;
+    position: absolute;
+    top: 75%;
+    right: 0;
+    left: 0;
+ }
+ .dropdown:hover .dropdown-content {
+    display: block !important;
+}
+.dropdown-content li{
+    list-style-type: none;
+}
+.dropdown-content li:hover{
+    background-color: #ccc;
+    opacity: 0.8;
+}
 
  .modal .modal-body input,.modal-admin .modal-body input,.modal-ADJUST .modal-body_ADJUST input{
     width: 65px;

@@ -395,7 +395,7 @@ class Pro {
 // class modal 
 //SẼ CÓ THÊM CHI TIẾT CHO MODAL LÀM XONG SAU KHI LÀM XONG CART
 class Modal {
-  constructor(MODAL,img, name,price,check,Duong,Da,Size,Topping) {
+  constructor(MODAL,img, name,price,check,Duong,Da,Size,Topping,Type) {
     this.MODAL=MODAL;
     this.img = img;
     this.name = name;
@@ -405,6 +405,7 @@ class Modal {
     this.Da=Da;
     this.Size=Size;
     this.Topping=Topping;
+    this.Type=Type;
 
     this.element=document.createElement('div');
     this.element.classList.add('modal');
@@ -1167,6 +1168,7 @@ function updateModal(index) {
   // localStorage.removeItem('modals');
   const products = getProducts();
   const myObject = products[index];
+  const Type=myObject.tieude;
   const image = myObject.img;
   const tensp = myObject.name;
   const gia = myObject.price;
@@ -1178,12 +1180,13 @@ function updateModal(index) {
     newModal.name=tensp;
     newModal.price=gia;
     newModal.check=1;
+    newModal.Type=Type;
     modals.push(newModal);
     localStorage.setItem('modals',JSON.stringify(modals));
     reload();
   }
   else{
-      newModal= new Modal(MODAL,image,tensp,gia,1);
+      newModal= new Modal(MODAL,image,tensp,gia,1,Type);
 
       modals.push(newModal);
       localStorage.setItem('modals',JSON.stringify(modals));
@@ -1214,10 +1217,11 @@ function AddChart(index,username) {
 
     const currentTime = new Date();
     const currentDay=currentTime.getDate();
+    const currentMonth=currentTime.getMonth();
     const currentHours = currentTime.getHours();
     const currentMinutes = currentTime.getMinutes();
     const currentSeconds = currentTime.getSeconds();
-    const timeString = `${currentDay} ${currentHours}:${currentMinutes}:${currentSeconds}`;
+    const timeString = `${currentDay}/${currentMonth} ${currentHours}:${currentMinutes}:${currentSeconds}`;
 
     const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongChu,duong,da,size,topping,thanhtien,timeString,0); // truyền thành tiền vào
     charts.push(newChart); // Thêm chart mới vào mảng charts
@@ -1419,6 +1423,12 @@ hideFuntion();
 function openModal() {
   const modals = getModals();
   const myObject = modals[0];
+  if(myObject.Type==='TOPPING'){
+    const elements=document.querySelectorAll('.Duong');
+    elements.forEach(element => {
+      element.classList.add('invisible');
+    });
+  }
 
   if (myObject && myObject.check === 1) {
     // Xử lý khi modal đã tồn tại và check === 1
@@ -1586,10 +1596,12 @@ function getTopping() {
 
         const currentTime = new Date();
         const currentDay=currentTime.getDate();
+        const currentMonth=currentTime.getMonth();
+
         const currentHours = currentTime.getHours();
         const currentMinutes = currentTime.getMinutes();
         const currentSeconds = currentTime.getSeconds();
-        const timeString = `${currentDay} ${currentHours}:${currentMinutes}:${currentSeconds}`;
+        const timeString = `${currentDay}/${currentMonth} ${currentHours}:${currentMinutes}:${currentSeconds}`;
         
         const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien,timeString,0); // truyền thành tiền vào
         saveProductToLocalStorage(loggedInUser, newChart);

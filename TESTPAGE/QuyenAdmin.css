@@ -7,7 +7,7 @@
 }
 
 .sidebar {
-    width: 23%;
+    width: 22%;
     background: linear-gradient(to bottom right, #FFA500, #FF4500);
 }
 
@@ -76,7 +76,7 @@
     top: 10px;
 }
 .content{
-  width: 77%;
+  width: 78%;
   --color-bg-gradient: rgba(11, 196, 226, 0.2);
   background-color: rgba(255, 244, 244, 0.5);
   height: 96%;
@@ -85,9 +85,15 @@
   right: 0px;
 }
 
-#QUANLYDONHANG {
+#QUANLYDONHANG #Find,#QUANLYDONHANG h5,#QUANLYDONHANG #FindOLD{
+    margin: 5px;
+    display: inline;
+    width: 15%;
+    border-radius: 5px;
+    padding: 3px;
+    text-transform: uppercase;
 }
-#CHART_SHOW .chart{
+#CHART_SHOW .chart,#CHART_SHOWOLD .chart{
     width: 100%;
     display: flex;
     flex-wrap: nowrap;
@@ -95,12 +101,13 @@
     justify-content: flex-start;
     align-items: center;
     margin: 5px 5px;
+    white-space: nowrap;
 }
-#CHART_SHOW .chart:hover{
+#CHART_SHOW .chart:hover,#CHART_SHOWOLD .chart:hover{
     opacity: 0.6;
     background-color: #ccc;
 }
-#CHART_SHOW .chart img{
+#CHART_SHOW .chart img,#CHART_SHOWOLD .chart img{
     width: 8%;
     display: inline;
     border: 1px solid #ccc;
@@ -116,8 +123,19 @@
     width: 20%;
     display: inline;
     margin: 0 2px;
+    font-size: 11px;
 }
-#CHART_SHOW .chart .HUY,.chart .HoanThanh{
+#CHART_SHOWOLD .chart .ChartTsp,#CHART_SHOWOLD .chart .ChartSL
+,.chart .ChartDuong,.chart .ChartDa,.chart .ChartSize,.chart .ChartTopping,
+#CHART_SHOWOLD .chart .ChartTien,#CHART_SHOWOLD .chart .HUY,.chart .HoanThanh{
+    text-align: center;
+    width: 20%;
+    display: inline;
+    margin: 0 2px;
+    font-size: 11px;
+
+}
+#CHART_SHOW .chart .HUY,.chart .HoanThanh,#CHART_SHOWOLD .chart .HUY,.chart .HoanThanh{
     cursor: pointer;
     padding: 2px;
   }
@@ -222,5 +240,12 @@
   }
   #QUANLYNGUOIDUNG .title_count{
     margin-left: 10px;
+  }
+  #THONGKEDONHANG .Filter{
+    margin: 5px;
+  } 
+  #start-day,#end-day{
+    border-radius: 8px;
+    margin: 2px 8px;
   }
   /* Tương tự cho các chữ cái tiếp theo */
