@@ -1,3 +1,8 @@
+input[readonly] {
+  cursor: pointer;
+  background-color: white;
+}
+
 .invisible{
     display: none !important;
 }
@@ -107,7 +112,7 @@
     opacity: 0.6;
     background-color: #ccc;
 }
-#CHART_SHOW .chart img,#CHART_SHOWOLD .chart img{
+#CHART_SHOW .chart img,#CHART_SHOWOLD .chart img,#DETAIL img{
     width: 8%;
     display: inline;
     border: 1px solid #ccc;
@@ -243,9 +248,65 @@
   }
   #THONGKEDONHANG .Filter{
     margin: 5px;
+    height: 37rem;
+    overflow: scroll;
   } 
   #start-day,#end-day{
     border-radius: 8px;
     margin: 2px 8px;
   }
+  .dropdown{
+    position: relative;
+    display: inline;
+    width: 10%;
+  }
+  #TYPE{
+  }
+  .dropdown-content{
+    position: absolute;
+    top: 120%;
+    left: 2px;
+    text-align: center;
+    display: none;
+    border: 1px solid #ccc;
+    min-width: 140px;
+    box-shadow: 0 0 1px #ccc;
+  }
+  .dropdown-content li{
+    list-style-type: none;
+    margin: 5px;
+  }
+  .dropdown-content li:hover{
+    opacity: 0.5;
+    background-color: #ccc;
+    padding: 0 2px;
+  }
+  #SHOWOUT{
+    margin: 5px;
+  }
+  #SHOWOUT div:hover{
+    cursor: pointer;
+    background-color: #ccc;
+  }
+  #DETAIL{
+    min-height: 200px;
+    /* position: fixed; */
+    width: 100%;
+    border-radius: 50px;
+    z-index: 3;
+    /* overflow: scroll; */
+  }
+  #DETAIL .chart{
+    margin: 5px;
+    border-bottom: 1px solid #333;
+
+  }
+  #DETAIL .chart img{
+    display: none;
+  }
+  #DETAIL .chart .ChartTsp,#DETAIL .chart .ChartSL
+,.chart .ChartDuong,.chart .ChartDa,.chart .ChartSize,.chart .ChartTopping,
+#DETAIL .chart .ChartTien{
+  line-height: 2px;
+}
   /* Tương tự cho các chữ cái tiếp theo */

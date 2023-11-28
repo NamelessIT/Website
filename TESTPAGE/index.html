@@ -120,17 +120,17 @@
     <!-- sản phẩm -->
     <section id="product1">
         <h1>Sản phẩm phổ biến</h1>
+        <div class="pro-admin">
+            <!-- FOR ADMIN -->
+            <img src="img/add.png" >
+            <div class="des">
+            <span>TITLE</span>
+            <h5>NAME</h5>        
+            <h4>PRICE</h4>
+            </div>            
+            <div><i class="fa fa-shopping-cart cart" style="background-color: red !important;"></i></div>                    
+        </div>
         <div class="pro-container">
-            <div class="pro-admin">
-                <!-- FOR ADMIN -->
-                <img src="img/add.png" >
-                <div class="des">
-                <span>TITLE</span>
-                <h5>NAME</h5>        
-                <h4>PRICE</h4>
-                </div>            
-                <div><i class="fa fa-shopping-cart cart" style="background-color: red !important;"></i></div>                    
-            </div>
                 <!-- END -->
                     <!-- <div class="pro" data-img="img/pro1.png">
                         <img src="img/pro1.png" alt="Product image">
@@ -152,6 +152,7 @@
                         <a href="#"><i class="fa fa-shopping-cart cart"></i></a>
                     </div> -->
         </div>
+        <div id="sotrang"></div>
     </section>
     <!-- kết thúc -->
 
@@ -232,10 +233,10 @@
                         <input id="MaSanPham" class="SoLuong" type="number" pattern="[1-9]{4}" required placeholder="#0000">
                     </div>
                     <div class="flex-box">
-                        <div class="dropdown">
+                        <div class="dropdown OPTIONADMIN">
                             <h3 class="Title" style="margin-bottom: 15px;">TITLE:</h3> 
                             <input id="TIEUDE" class="SoLuong" type="text" style="width: 100%;" readonly  required>
-                            <div class="dropdown-content">
+                            <div class="dropdown-content OPTIONADMINCONTENT">
                                 <li onclick="selectOption('BÁNH')">BÁNH</li>
                                 <li onclick="selectOption('TRÀ')">TRÀ</li>
                                 <li onclick="selectOption('TRÀ SỮA')">TRÀ SỮA</li>
@@ -243,12 +244,22 @@
                                 <li onclick="selectOption('TOPPING')">TOPPING</li>
                             </div>
                         </div>
+                        <script>
+                            const LOCADMIN=document.getElementById('TIEUDE');
+                                const SHOWOPTIONADMIN=document.querySelector('.OPTIONADMINCONTENT');
+                                const OUTSIDEADMIN=document.querySelector('.OPTIONADMIN');
+                                LOCADMIN.addEventListener('click',function(event){
+                                    SHOWOPTIONADMIN.style.display='block';
+                                    event.stopPropagation();
+                                })
+                                OUTSIDEADMIN.addEventListener('click',function(){
+                                    SHOWOPTIONADMIN.style.display='none';
+                                })
+                            function selectOption(option) {
+                                document.getElementById("TIEUDE").value = option;
+                            }
+                        </script>
                     </div>
-                    <script>
-                        function selectOption(option) {
-                            document.getElementById("TIEUDE").value = option;
-                        }
-                    </script>
                     <div class="flex-box">
                         <h3 class="Title" style="margin-bottom: 15px;color: red;">NAME:</h3> 
                         <input id="TenSanPham" class="SoLuong" type="text" required>
@@ -281,23 +292,33 @@
                         <input id="MaSanPham-SUA" class="SoLuong" type="number" pattern="[1-9]{4}" required placeholder="#0000">
                     </div>
                     <div class="flex-box">
-                        <div class="dropdown">
+                        <div class="dropdown SUADROPDOWN">
                             <h3 class="Title" style="margin-bottom: 15px;">TITLE:</h3> 
                             <input id="TIEUDE-SUA" class="SoLuong" type="text" style="width: 100%;" readonly  required>
-                            <div class="dropdown-content">
-                                <li onclick="selectOption('BÁNH')">BÁNH</li>
-                                <li onclick="selectOption('TRÀ')">TRÀ</li>
-                                <li onclick="selectOption('TRÀ SỮA')">TRÀ SỮA</li>
-                                <li onclick="selectOption('NƯỚC ÉP')">NƯỚC ÉP</li>
-                                <li onclick="selectOption('TOPPING')">TOPPING</li>
+                            <div class="dropdown-content SUAcontent">
+                                <li onclick="selectOptionTIEUDESUA('BÁNH')">BÁNH</li>
+                                <li onclick="selectOptionTIEUDESUA('TRÀ')">TRÀ</li>
+                                <li onclick="selectOptionTIEUDESUA('TRÀ SỮA')">TRÀ SỮA</li>
+                                <li onclick="selectOptionTIEUDESUA('NƯỚC ÉP')">NƯỚC ÉP</li>
+                                <li onclick="selectOptionTIEUDESUA('TOPPING')">TOPPING</li>
                             </div>
                         </div>
-                    </div>
                     <script>
-                        function selectOption(option) {
-                            document.getElementById("TIEUDE").value = option;
+                        const LOC=document.getElementById('TIEUDE-SUA');
+                                const SHOWOPTIONSUA=document.querySelector('.SUAcontent');
+                                const OUTSIDESUA=document.querySelector('.SUADROPDOWN');
+                                LOC.addEventListener('click',function(event){
+                                    SHOWOPTIONSUA.style.display='block';
+                                    event.stopPropagation();
+                                })
+                                OUTSIDESUA.addEventListener('click',function(){
+                                    SHOWOPTIONSUA.style.display='none';
+                                })
+                        function selectOptionTIEUDESUA(option) {
+                            document.getElementById("TIEUDE-SUA").value = option;
                         }
                     </script>
+                    </div>
                     <div class="flex-box">
                         <h3 class="Title" style="margin-bottom: 15px;color: red;">NAME:</h3> 
                         <input id="TenSanPham-SUA" class="SoLuong" type="text" required>

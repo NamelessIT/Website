@@ -395,7 +395,7 @@ class Pro {
 // class modal 
 //SẼ CÓ THÊM CHI TIẾT CHO MODAL LÀM XONG SAU KHI LÀM XONG CART
 class Modal {
-  constructor(MODAL,img, name,price,check,Duong,Da,Size,Topping,Type) {
+  constructor(MODAL,img, name,price,check,Duong,Da,Size,Topping,Type,pageNumber) {
     this.MODAL=MODAL;
     this.img = img;
     this.name = name;
@@ -406,6 +406,7 @@ class Modal {
     this.Size=Size;
     this.Topping=Topping;
     this.Type=Type;
+    this.pageNumber=pageNumber;
 
     this.element=document.createElement('div');
     this.element.classList.add('modal');
@@ -803,7 +804,7 @@ checkboxPhoMai.addEventListener('change', () => {
 
 // Cart
 class Pro_Chart {
-  constructor(CHART_BOX, img, tensp, soluong, duong, da, size, topping, thanhtien,time,check) {
+  constructor(CHART_BOX, img, tensp, soluong, duong, da, size, topping, thanhtien,time,check,Type) {
     this.CHART_BOX = CHART_BOX;
     this.img = img;
     this.tensp = tensp;
@@ -815,6 +816,7 @@ class Pro_Chart {
     this.thanhtien = thanhtien;
     this.time=time;
     this.check=Number(check);
+    this.Type=Type;
 
     this.element = document.createElement('div');
     this.element.classList.add('chart');
@@ -1164,7 +1166,7 @@ function updateProduct(index) {
 // biến xét load window với modal
 
 
-function updateModal(index) {
+function updateModal(index,pageNumber) {
   // localStorage.removeItem('modals');
   const products = getProducts();
   const myObject = products[index];
@@ -1181,12 +1183,13 @@ function updateModal(index) {
     newModal.price=gia;
     newModal.check=1;
     newModal.Type=Type;
+    newModal.pageNumber=pageNumber;
     modals.push(newModal);
     localStorage.setItem('modals',JSON.stringify(modals));
     reload();
   }
   else{
-      newModal= new Modal(MODAL,image,tensp,gia,1,Type);
+      newModal= new Modal(MODAL,image,tensp,gia,1,Type,pageNumber);
 
       modals.push(newModal);
       localStorage.setItem('modals',JSON.stringify(modals));
@@ -1204,6 +1207,7 @@ function AddChart(index,username) {
   // if (index >= 0 && index < products.length) {
     // Lấy đối tượng cần chỉnh sửa dựa trên vị trí
     const myObject = products[index];
+    const Type=myObject.tieude;
     const image = myObject.img;
     const tensp = myObject.name;
     const soluong = 1;
@@ -1217,13 +1221,13 @@ function AddChart(index,username) {
 
     const currentTime = new Date();
     const currentDay=currentTime.getDate();
-    const currentMonth=currentTime.getMonth();
+    const currentMonth=currentTime.getMonth()+1;
     const currentHours = currentTime.getHours();
     const currentMinutes = currentTime.getMinutes();
     const currentSeconds = currentTime.getSeconds();
     const timeString = `${currentDay}/${currentMonth} ${currentHours}:${currentMinutes}:${currentSeconds}`;
 
-    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongChu,duong,da,size,topping,thanhtien,timeString,0); // truyền thành tiền vào
+    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongChu,duong,da,size,topping,thanhtien,timeString,0,Type); // truyền thành tiền vào
     charts.push(newChart); // Thêm chart mới vào mảng charts
 
     // Lưu trữ thông tin của sản phẩm mới vào local storage. ở dạng String
@@ -1303,9 +1307,146 @@ window.addEventListener('load', function() {
     const charts=getProductsFromLocalStorage(loggedInUser);
 
   // tất cả các products được load lên từ local storage dưới dạng text lên window
-    for (const pro of products) {
-      const newPro = new Pro(proContainer, pro.img," #" +pro.ma, pro.tieude, pro.name, pro.price+"đ");
+
+  const pages = products.length;
+  const numberOfPages = Math.ceil(pages / 6);
+  const sotrangDiv = document.getElementById("sotrang");
+
+  let productElements = []; // Declare productElements outside the event listener
+
+  function updateProductElements(pageNumber) {
+    productElements = Array.from(document.querySelectorAll('.pro'));
+    productElements.forEach((productElement, index) => {
+      productElement.addEventListener('click', (e) => {
+        updateModal(index+(pageNumber-1)*6,pageNumber);
+        modals.check = 1;
+      });
+    });
+    // xóa và sửa sản phẩm 
+    var modalImage = document.querySelector('.modal img');
+ var delPros=document.querySelectorAll('.delete');
+ var adjusts=document.querySelectorAll('.rewrite');
+ var modal_adjust=document.querySelector('.modal-ADJUST');
+ var close_adjust=document.querySelector('.modal-container_ADJUST .icon')
+ close_adjust.addEventListener('click',function(){
+  modal_adjust.classList.add('invisible');
+ })
+
+ delPros.forEach((del,index) => {
+  del.addEventListener('click',function(){
+    const modal = document.querySelector(".modal-del");
+    const co = document.querySelector(".modal-del .co");
+    const khong = document.querySelector(".modal-del .khong");
+    
+   function showModal() {
+      modal.classList.remove('invisible');
+   }
+    showModal();
+   co.addEventListener("click", function() {
+    deleteProduct(index+(pageNumber-1)*6);
+    removeProductFromAllAccounts(products[index+(pageNumber-1)*6].img,products[index+(pageNumber-1)*6].name);
+    reload();
+   });
+    
+   khong.addEventListener("click", function() {
+      // Hủy lệnh
+     modal.classList.add('invisible');
+   });
+  })
+
+    del.addEventListener('click',function(event){
+      event.stopPropagation();
+    })
+
+ });
+
+
+//  chỉnh sửa 
+ adjusts.forEach((adjust,index) => {
+  adjust.addEventListener('click',function(){
+    modal_adjust.classList.remove('invisible');
+    updateProduct(index+(pageNumber-1)*6);
+  })
+  adjust.addEventListener('click',function(event){
+    event.stopPropagation();
+  })
+});
+
+  }
+
+  function showProducts(pageNumber) {
+    // Xóa tất cả các sản phẩm đã hiển thị trước đó
+    proContainer.innerHTML = "";
+
+    // Tính chỉ số bắt đầu và chỉ số kết thúc của sản phẩm trên trang
+    const startIndex = (pageNumber - 1) * 6;
+    const endIndex = startIndex + 5;
+
+    // Hiển thị các sản phẩm từ startIndex đến endIndex
+    for (let i = startIndex; i <= endIndex && i < products.length; i++) {
+      const pro = products[i];
+      const newPro = new Pro(proContainer, pro.img, " #" + pro.ma, pro.tieude, pro.name, pro.price + "đ");
     }
+
+    updateProductElements(pageNumber); // Update the productElements array
+    if (loggedInUser) {
+      // Đã đăng nhập, hiển thị trang giỏ hàng
+      currentUser = loggedInUser;
+      if(currentUser!=='Admin'){
+        // trang user
+    hideFuntion();
+      }
+      else{
+        const element=document.querySelector('.fa-shopping-bag');
+        const Chart_Show=document.querySelector('.CHART');
+        const user_block=document.querySelector('.user-block');
+        element.classList.add('invisible');
+        Chart_Show.classList.add('invisible');
+        user_block.style.padding='10px 5px';
+      }
+    }
+  }
+
+  // Tạo các li và gán sự kiện click
+  for (let i = 1; i <= numberOfPages; i++) {
+    const li = document.createElement("li");
+    li.classList.add('SoTrang');
+    li.textContent = i;
+    li.classList.remove('change');
+    li.addEventListener("click", function () {
+      const dsTrang=document.querySelectorAll('.SoTrang');
+      dsTrang.forEach(element => {
+        element.classList.remove('change');
+      });
+      li.classList.add('change');
+      showProducts(i);
+    });
+    sotrangDiv.appendChild(li);
+    
+
+const allLiElements = document.querySelectorAll('.SoTrang');
+let firstPage = null;
+function check(){
+  allLiElements.forEach(liElement => {
+    if(liElement.classList.contains('SoTrang') && liElement.classList.contains('change')){
+      return false;
+    }
+  });
+  return true;
+}
+if(check()===true){
+  firstPage=allLiElements[0];
+}
+
+if (firstPage) {
+  console.log('hoạt động');
+  firstPage.click();
+} else {
+  console.log('Không tìm thấy thẻ li thỏa mãn điều kiện');
+}
+  }
+
+
     for(const modal of modals){
       const newmodal=new Modal(MODAL,modal.img,modal.name,"Giá: "+modal.price,modal.check);
     }
@@ -1340,24 +1481,8 @@ window.addEventListener('load', function() {
   // tạo 1 list pro và modal dưới dạng js
 
   // Kiểm tra xem người dùng đã đăng nhập hay chưa
-if (loggedInUser) {
-  // Đã đăng nhập, hiển thị trang giỏ hàng
-  currentUser = loggedInUser;
-  if(currentUser!=='Admin'){
-    // trang user
-hideFuntion();
-  }
-  else{
-    const element=document.querySelector('.fa-shopping-bag');
-    const Chart_Show=document.querySelector('.CHART');
-    const user_block=document.querySelector('.user-block');
-    element.classList.add('invisible');
-    Chart_Show.classList.add('invisible');
-    user_block.style.padding='10px 5px';
-  }
-}
 
-  const productElements = Array.from(document.querySelectorAll('.pro'));
+
   const modalElements=Array.from(document.querySelectorAll('.modal'));
   const chartElements=Array.from(document.querySelectorAll('.chart'));
 
@@ -1367,62 +1492,29 @@ hideFuntion();
 
   // các biến và hàm cho sản phẩm
   openModal();
+  // const firstpage = document.querySelector('li.SoTrang:first-child');
+  // firstpage.click();
  
- var modalImage = document.querySelector('.modal img');
- var delPros=document.querySelectorAll('.delete');
- var adjusts=document.querySelectorAll('.rewrite');
- var modal_adjust=document.querySelector('.modal-ADJUST');
- var close_adjust=document.querySelector('.modal-container_ADJUST .icon')
-//  chỉnh sửa và xóa pro
-
- close_adjust.addEventListener('click',function(){
-  modal_adjust.classList.add('invisible');
- })
-
- delPros.forEach((del,index) => {
-  del.addEventListener('click',function(){
-    const modal = document.querySelector(".modal-del");
-    const co = document.querySelector(".modal-del .co");
-    const khong = document.querySelector(".modal-del .khong");
-    
-   function showModal() {
-      modal.classList.remove('invisible');
-   }
-    showModal();
-   co.addEventListener("click", function() {
-    deleteProduct(index);
-    removeProductFromAllAccounts(products[index].img,products[index].name);
-    reload();
-   });
-    
-   khong.addEventListener("click", function() {
-      // Hủy lệnh
-     modal.classList.add('invisible');
-   });
-  })
-
-    del.addEventListener('click',function(event){
-      event.stopPropagation();
-    })
-
- });
-
-
-//  chỉnh sửa 
- adjusts.forEach((adjust,index) => {
-  adjust.addEventListener('click',function(){
-    modal_adjust.classList.remove('invisible');
-    updateProduct(index);
-  })
-  adjust.addEventListener('click',function(event){
-    event.stopPropagation();
-  })
-});
  
  var input = document.querySelector('.SoLuong');
 function openModal() {
   const modals = getModals();
   const myObject = modals[0];
+  if(myObject){
+    const page=myObject.pageNumber;
+  // tới trang đã nhấn trước khi mở modal
+  function goToPage(pageNumber) {
+    const pageButtons = Array.from(sotrangDiv.getElementsByTagName("li"));
+    pageButtons.forEach(element => {
+      element.classList.remove('change');
+    });
+    const targetButton = pageButtons.find(button => button.textContent == pageNumber);
+    if (targetButton) {
+      targetButton.click();
+      targetButton.classList.add('change');
+    }
+  }
+  goToPage(page);
   if(myObject.Type==='TOPPING'){
     const elements=document.querySelectorAll('.Duong');
     elements.forEach(element => {
@@ -1447,13 +1539,7 @@ function openModal() {
   }
 }
 
-productElements.forEach((productElement, index) => {
-  productElement.addEventListener('click', (e) => {
-    // const img = document.querySelector('img');
-    updateModal(index);
-    modals.check=1;
-  });
-});
+}
 
   modalElements.forEach((modalElement, index) => {
     var close = modalElement.querySelector('.close');
@@ -1565,57 +1651,60 @@ function getTopping() {
       // constructor(CHART_BOX,img,tensp,soluong,thanhtien)
 
  var BUY=document.querySelector('.Mua');
- BUY.addEventListener('click',function(){
-    getDuong();
-    getDa();
-    getSize();
-    getTopping();
-    const soluongmua=document.getElementById('SoLuongMua').value;
-    const modals=getModals();
-    const modal=modals[0];
-    const image=modal.img;
-    const tensp=modal.name;
-    const gia=modal.price;
-    let thanhtien=gia*soluongmua;
-    const duong=selectedDuongValue;
-    const da=selectedDaValue;
-    const size=selectedSizeValue;
-    if(size==='Size X'){
-      thanhtien=thanhtien+(gia*0.1*soluongmua);
-    }
-    else if(size==='Size XL'){
-      thanhtien=thanhtien+(gia*0.2*soluongmua);
-    }
-    const topping=selectedToppingValue;
-    if(topping!=='' && topping !=='Không'){
-      thanhtien=thanhtien+(gia*0.1*soluongmua);
-    }
-    thanhtien = thanhtien.toFixed(2);
-    if (loggedInUser) {
-      if(loggedInUser!=='Admin'){
-
-        const currentTime = new Date();
-        const currentDay=currentTime.getDate();
-        const currentMonth=currentTime.getMonth();
-
-        const currentHours = currentTime.getHours();
-        const currentMinutes = currentTime.getMinutes();
-        const currentSeconds = currentTime.getSeconds();
-        const timeString = `${currentDay}/${currentMonth} ${currentHours}:${currentMinutes}:${currentSeconds}`;
-        
-        const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien,timeString,0); // truyền thành tiền vào
-        saveProductToLocalStorage(loggedInUser, newChart);
-        reload();
+ if(BUY){
+   BUY.addEventListener('click',function(){
+      getDuong();
+      getDa();
+      getSize();
+      getTopping();
+      const soluongmua=document.getElementById('SoLuongMua').value;
+      const modals=getModals();
+      const modal=modals[0];
+      const Type=modal.Type;
+      const image=modal.img;
+      const tensp=modal.name;
+      const gia=modal.price;
+      let thanhtien=gia*soluongmua;
+      const duong=selectedDuongValue;
+      const da=selectedDaValue;
+      const size=selectedSizeValue;
+      if(size==='Size X'){
+        thanhtien=thanhtien+(gia*0.1*soluongmua);
+      }
+      else if(size==='Size XL'){
+        thanhtien=thanhtien+(gia*0.2*soluongmua);
+      }
+      const topping=selectedToppingValue;
+      if(topping!=='' && topping !=='Không'){
+        thanhtien=thanhtien+(gia*0.1*soluongmua);
+      }
+      thanhtien = thanhtien.toFixed(2);
+      if (loggedInUser) {
+        if(loggedInUser!=='Admin'){
+  
+          const currentTime = new Date();
+          const currentDay=currentTime.getDate();
+          const currentMonth=currentTime.getMonth()+1;
+  
+          const currentHours = currentTime.getHours();
+          const currentMinutes = currentTime.getMinutes();
+          const currentSeconds = currentTime.getSeconds();
+          const timeString = `${currentDay}/${currentMonth} ${currentHours}:${currentMinutes}:${currentSeconds}`;
+          
+          const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien,timeString,0,Type); // truyền thành tiền vào
+          saveProductToLocalStorage(loggedInUser, newChart);
+          reload();
+        }
+        else{
+          reload();
+        }
       }
       else{
-        reload();
+        alert('Đăng nhập để mua');
       }
-    }
-    else{
-      alert('Đăng nhập để mua');
-    }
-    
- })
+      
+   })
+ }
 
 // KẾT THÚC CỦA GIỎ HÀNG
 

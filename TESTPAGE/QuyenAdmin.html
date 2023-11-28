@@ -62,7 +62,36 @@
     <div class="Filter">
         <input id="start-day" type="date">
         <input id="end-day" type="date">
-        <button class="FilterAccept">Chấp Nhận</button>
+        <div class="dropdown">
+            <input id="TYPE" class="SoLuong" type="text" readonly  required>
+                            <div class="dropdown-content">
+                                <li onclick="selectOption('TẤT CẢ')">TẤT CẢ</li>
+                                <li onclick="selectOption('BÁNH')">BÁNH</li>
+                                <li onclick="selectOption('TRÀ')">TRÀ</li>
+                                <li onclick="selectOption('TRÀ SỮA')">TRÀ SỮA</li>
+                                <li onclick="selectOption('NƯỚC ÉP')">NƯỚC ÉP</li>
+                                <li onclick="selectOption('TOPPING')">TOPPING</li>
+                            </div>
+        </div>
+                            <script>
+                                const LOC=document.getElementById('TYPE');
+                                const menu=document.querySelector('.dropdown-content');
+                                const outside=document.querySelector('.dropdown');
+                                LOC.addEventListener('click',function(event){
+                                    menu.style.display='block';
+                                    event.stopPropagation();
+                                })
+                                outside.addEventListener('click',function(){
+                                    menu.style.display='none';
+                                })
+
+                                function selectOption(option) {
+                                    document.getElementById("TYPE").value = option;
+                                }
+                            </script>
+        <button class="FilterAccept">LỌC</button>
+        <div id="SHOWOUT"></div>
+        <div id="DETAIL"></div>
     </div>
     </div>
         </div>

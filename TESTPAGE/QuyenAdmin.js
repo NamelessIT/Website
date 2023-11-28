@@ -57,7 +57,7 @@ sidebarItems[3].addEventListener('click',function(){
 
 // QUANLYDONHANG
 class Pro_Chart {
-  constructor(CHART_BOX, img, tensp, soluong, duong, da, size, topping, thanhtien,time,check) {
+  constructor(CHART_BOX, img, tensp, soluong, duong, da, size, topping, thanhtien,time,check,Type) {
     this.CHART_BOX = CHART_BOX;
     this.img = img;
     this.tensp = tensp;
@@ -69,6 +69,7 @@ class Pro_Chart {
     this.thanhtien = thanhtien;
     this.time=time;
     this.check=Number(check);
+    this.Type=Type;
 
     this.element = document.createElement('div');
     this.element.classList.add('chart');
@@ -284,6 +285,7 @@ function deleteAccount(email) {
 
 const CHART_BOX = document.getElementById("CHART_SHOW");
 const HISTORY=document.getElementById('CHART_SHOWOLD');
+const DETAIL=document.getElementById('DETAIL');
 const users=document.getElementById('USER_SHOW');
 
 // load lên window
@@ -512,3 +514,125 @@ sidebarItems[2].addEventListener('click',function(){
   countUp(targetElement, targetNumber);
   countUp(targetThanhTien,totalThanhtien);
 })
+
+
+
+
+
+// show tổng giá của tầng sản phẩm
+
+
+// Lấy các phần tử HTML
+const startDayInput = document.getElementById('start-day');
+const endDayInput = document.getElementById('end-day');
+const typeInput = document.getElementById('TYPE');
+const filterButton = document.querySelector('.FilterAccept');
+const showOutDiv = document.getElementById('SHOWOUT');
+
+filterButton.addEventListener('click', function() {
+  const startDayParts = startDayInput.value.split('-');
+  const endDayParts = endDayInput.value.split('-');
+  
+  const startDay = parseInt(startDayParts[2]);
+  const startMonth = parseInt(startDayParts[1]);
+  const endDay = parseInt(endDayParts[2]);
+  const endMonth = parseInt(endDayParts[1]);
+  // Kiểm tra endDay phải là ngày sau startDay
+  // Lấy giá trị ngày bắt đầu và kết thúc từ input
+  if ((startDay >endDay && startMonth===endMonth) || (startMonth>endMonth)) {
+    alert('Ngày kết thúc phải sau ngày bắt đầu');
+    return;
+  }
+
+  // Lấy giá trị loại từ input
+  const selectedType = typeInput.value;
+  
+  // Xóa các phần tử hiện có trong showOutDiv
+  while (showOutDiv.firstChild) {
+    showOutDiv.removeChild(showOutDiv.firstChild);
+  }
+
+  // Tạo biến để lưu tổng thanh toán
+  let totalPayment = 0;
+
+  
+
+  // Lặp qua mảng các sản phẩm và kiểm tra điều kiện
+  for (const { username, product } of allProducts) {
+    if (product.check === 1) {
+      // Chuyển đổi giá trị thời gian của sản phẩm thành đối tượng Date chỉ với ngày và tháng
+      const productTime = product.time;
+      const timeParts = productTime.split(/[\/ :]/);
+
+      // Chuyển đổi các phần tử thành số nguyên
+      const day = parseInt(timeParts[0]);
+      const month = parseInt(timeParts[1]);
+
+      const isWithinRange = (month > startMonth || (month === startMonth && day >= startDay)) &&
+                           (month < endMonth || (month === endMonth && day <= endDay));
+
+      if (isWithinRange && (product.Type === selectedType || selectedType === 'TẤT CẢ')) {
+        // Cộng tổng thanh toán
+        totalPayment += parseInt(product.thanhtien);
+      }
+    }
+  };
+
+  // Hiển thị tổng thanh toán
+  // Tạo một thẻ div để chứa thông tin sản phẩm
+  const productDiv = document.createElement('div');
+  productDiv.classList.add('Total');
+  productDiv.textContent = `${selectedType} - ${totalPayment}`;
+
+  // Thêm sản phẩm vào showOutDiv
+  showOutDiv.appendChild(productDiv);
+  
+  const divs = document.querySelectorAll('.Total');
+  DETAIL.classList.add('invisible');
+  if (divs) {
+    divs.forEach(element => {
+      element.addEventListener('click', function() {
+        // Tách chuỗi nội dung thành mảng các phần tử
+        const contentParts = element.textContent.split(' - ');
+        divs.forEach(element => {
+          element.classList.add('invisible');
+        });
+        // Lấy giá trị của selectedType từ mảng
+        const Type = contentParts[0];
+        DETAIL.classList.remove('invisible');
+
+        while (DETAIL.firstChild) {
+          DETAIL.removeChild(DETAIL.firstChild);
+        }
+        for (const { username, product } of allProducts) {
+          if ((product.check === 1 && product.Type === Type) || (Type==='TẤT CẢ' &&product.check===1)) {
+            const newChart = new Pro_Chart(
+              DETAIL,
+              product.img,
+              product.tensp,
+              "SL:" + product.soluong,
+              "Đường:" + product.duong,
+              "Đá:" + product.da,
+              "Size:" + product.size,
+              "Topping:" + product.topping,
+              "Tổng:" + product.thanhtien,
+              product.time
+            );
+            const chartUsername = document.createElement('h5');
+            chartUsername.classList.add('ChartUsername');
+            chartUsername.style.fontSize = '11px';
+            chartUsername.textContent = `Tài khoản: ${username}`;
+            newChart.element.prepend(chartUsername);
+          }
+          const chartElements = Array.from(document.querySelectorAll('#DETAIL .chart'));
+          chartElements.forEach(chart => {
+            const hoanThanhElement = chart.querySelector('.HoanThanh');
+            const HuyElement = chart.querySelector('.HUY');
+            hoanThanhElement.classList.add('invisible');
+            HuyElement.classList.add('invisible');
+          });
+        }
+      })
+    });
+  }
+});
