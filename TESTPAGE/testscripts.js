@@ -1667,98 +1667,103 @@ checkboxs.forEach(checkbox => {
 const  PAYBUTTON=document.querySelector('.PAY');
 const MODALXACNHAN=document.getElementById('XACNHANMUA');
 PAYBUTTON.addEventListener('click',function(){
-        MODALXACNHAN.classList.remove('invisible');
-        for (const chart of selectedCharts) {
-            const newChart = new Pro_Chart(
-              contentXACNHAN,
-              chart.querySelector('.ChartImage').src,
-              chart.querySelector('.ChartTsp').textContent,
-              chart.querySelector('.ChartSL').textContent,
-              chart.querySelector('.ChartDuong').textContent,
-              chart.querySelector('.ChartDa').textContent,
-              chart.querySelector('.ChartSize').textContent,
-              chart.querySelector('.ChartTopping').textContent,
-              chart.querySelector('.ChartTien').textContent,
-              chart.querySelector('.ChartTime').textContent
-            );
-        
-            // Bỏ class "invisible" khỏi các thẻ
-            newChart.element.querySelector('.ChartDuong').classList.remove('invisible');
-            newChart.element.querySelector('.ChartDa').classList.remove('invisible');
-            newChart.element.querySelector('.ChartSize').classList.remove('invisible');
-            newChart.element.querySelector('.ChartTopping').classList.remove('invisible');
-            newChart.element.querySelector('.ChartTime').classList.remove('invisible');
-            newChart.element.querySelector('.ChartTime').classList.remove('invisible');
-            newChart.element.querySelector('.XACNHANMUA').classList.remove('invisible');
-        }
-        const inputs=document.querySelectorAll('.NHAPDIACHI');
-        inputs.forEach(element => {
-          element.setAttribute("required", "");
-        });
-        const btnLANCUOIs = document.querySelectorAll(".LANCUOI");
-        btnLANCUOIs.forEach((element,index)=>{
-          element.addEventListener("click", function() {
-          if (inputs[index].value.trim() === "") {
-          alert("Vui lòng nhập vào input trước khi bấm MUA");
-          } else {
-            if (inputs[index].getAttribute("readonly") === null) {
-              console.log(inputs[index].getAttribute("readonly"));
-              alert('Làm ơn xác nhận địa chỉ');
-            } else {
-              // đưa vào hàng chờ của admin
-              const tensp = this.closest('.chart').querySelector('.ChartTsp').textContent;
-              const soluong=element.closest('.chart').querySelector('.ChartSL').textContent.replace('SL:','');
-              const duong=element.closest('.chart').querySelector('.ChartDuong').textContent.replace('Đường:','');
-              const da=element.closest('.chart').querySelector('.ChartDa').textContent.replace('Đá:','');
-              const size=element.closest('.chart').querySelector('.ChartSize').textContent.replace('Size:','');
-              const topping=element.closest('.chart').querySelector('.ChartTopping').textContent.replace('Topping:','');
-              const tien=element.closest('.chart').querySelector('.ChartTien').textContent.replace('TỔNG:','');
-              const date=element.closest('.chart').querySelector('.ChartTime').textContent;
-              
-              // Lấy dữ liệu từ Local Storage
-              const allData = localStorage.getItem('charts');
-              let charts = {};
-              
-              if (allData) {
-                charts = JSON.parse(allData);
-              }
-              
-              // Kiểm tra xem tài khoản có tồn tại trong charts không
-              if (loggedInUser in charts) {
-                // Lặp qua danh sách sản phẩm của tài khoản đó
-                for (const product of charts[loggedInUser]) {
-                  // So sánh thông tin sản phẩm để tìm sản phẩm cần thay đổi
-                  if (product.tensp === tensp && product.soluong === soluong && product.duong === duong && product.da === da && product.size === size &&
-                     product.topping === topping && product.thanhtien === tien &&product.time===date) {
-                    // Thay đổi giá trị của check thành 1
-                    product.check = 1;
-                    product.DIACHI=inputs[index].value;
-                    break; // Thoát khỏi vòng lặp nếu tìm thấy sản phẩm
-                  }
-                }
-                        // Cập nhật dữ liệu vào Local Storage
-              localStorage.setItem('charts', JSON.stringify(charts));
-              reload();
-              }
-              // kết thúc hàng chờ
-            }
+  if(totalAmount || totalAmount!==0){
+    MODALXACNHAN.classList.remove('invisible');
+    for (const chart of selectedCharts) {
+        const newChart = new Pro_Chart(
+          contentXACNHAN,
+          chart.querySelector('.ChartImage').src,
+          chart.querySelector('.ChartTsp').textContent,
+          chart.querySelector('.ChartSL').textContent,
+          chart.querySelector('.ChartDuong').textContent,
+          chart.querySelector('.ChartDa').textContent,
+          chart.querySelector('.ChartSize').textContent,
+          chart.querySelector('.ChartTopping').textContent,
+          chart.querySelector('.ChartTien').textContent,
+          chart.querySelector('.ChartTime').textContent
+        );
+    
+        // Bỏ class "invisible" khỏi các thẻ
+        newChart.element.querySelector('.ChartDuong').classList.remove('invisible');
+        newChart.element.querySelector('.ChartDa').classList.remove('invisible');
+        newChart.element.querySelector('.ChartSize').classList.remove('invisible');
+        newChart.element.querySelector('.ChartTopping').classList.remove('invisible');
+        newChart.element.querySelector('.ChartTime').classList.remove('invisible');
+        newChart.element.querySelector('.ChartTime').classList.remove('invisible');
+        newChart.element.querySelector('.XACNHANMUA').classList.remove('invisible');
+    }
+    const inputs=document.querySelectorAll('.NHAPDIACHI');
+    inputs.forEach(element => {
+      element.setAttribute("required", "");
+    });
+    const btnLANCUOIs = document.querySelectorAll(".LANCUOI");
+    btnLANCUOIs.forEach((element,index)=>{
+      element.addEventListener("click", function() {
+      if (inputs[index].value.trim() === "") {
+      alert("Vui lòng nhập vào input trước khi bấm MUA");
+      } else {
+        if (inputs[index].getAttribute("readonly") === null) {
+          console.log(inputs[index].getAttribute("readonly"));
+          alert('Làm ơn xác nhận địa chỉ');
+        } else {
+          // đưa vào hàng chờ của admin
+          const tensp = this.closest('.chart').querySelector('.ChartTsp').textContent;
+          const soluong=element.closest('.chart').querySelector('.ChartSL').textContent.replace('SL:','');
+          const duong=element.closest('.chart').querySelector('.ChartDuong').textContent.replace('Đường:','');
+          const da=element.closest('.chart').querySelector('.ChartDa').textContent.replace('Đá:','');
+          const size=element.closest('.chart').querySelector('.ChartSize').textContent.replace('Size:','');
+          const topping=element.closest('.chart').querySelector('.ChartTopping').textContent.replace('Topping:','');
+          const tien=element.closest('.chart').querySelector('.ChartTien').textContent.replace('TỔNG:','');
+          const date=element.closest('.chart').querySelector('.ChartTime').textContent;
+          
+          // Lấy dữ liệu từ Local Storage
+          const allData = localStorage.getItem('charts');
+          let charts = {};
+          
+          if (allData) {
+            charts = JSON.parse(allData);
           }
-          });
-        })
+          
+          // Kiểm tra xem tài khoản có tồn tại trong charts không
+          if (loggedInUser in charts) {
+            // Lặp qua danh sách sản phẩm của tài khoản đó
+            for (const product of charts[loggedInUser]) {
+              // So sánh thông tin sản phẩm để tìm sản phẩm cần thay đổi
+              if (product.tensp === tensp && product.soluong === soluong && product.duong === duong && product.da === da && product.size === size &&
+                 product.topping === topping && product.thanhtien === tien &&product.time===date) {
+                // Thay đổi giá trị của check thành 1
+                product.check = 1;
+                product.DIACHI=inputs[index].value;
+                break; // Thoát khỏi vòng lặp nếu tìm thấy sản phẩm
+              }
+            }
+                    // Cập nhật dữ liệu vào Local Storage
+          localStorage.setItem('charts', JSON.stringify(charts));
+          reload();
+          }
+          // kết thúc hàng chờ
+        }
+      }
+      });
+    })
 
-        // kết thúc
-        const btsXACNHAN=document.querySelectorAll('.XACNHANDIACHI');
-        btsXACNHAN.forEach((element,index)=>{
-          element.addEventListener('click',function(){
-            inputs[index].setAttribute("readonly","");
-          })
-        })
-        const btsTHAYDOI=document.querySelectorAll('.THAYDOIDIACHI');
-        btsTHAYDOI.forEach((element,index)=>{
-          element.addEventListener('click',function(){
-            inputs[index].removeAttribute("readonly","");
-          })
-        })
+    // kết thúc
+    const btsXACNHAN=document.querySelectorAll('.XACNHANDIACHI');
+    btsXACNHAN.forEach((element,index)=>{
+      element.addEventListener('click',function(){
+        inputs[index].setAttribute("readonly","");
+      })
+    })
+    const btsTHAYDOI=document.querySelectorAll('.THAYDOIDIACHI');
+    btsTHAYDOI.forEach((element,index)=>{
+      element.addEventListener('click',function(){
+        inputs[index].removeAttribute("readonly","");
+      })
+    })
+  }
+  else{
+    alert("Hãy mua ít nhất 1 món đồ");
+  }
 })
 
 
