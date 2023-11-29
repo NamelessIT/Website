@@ -190,7 +190,7 @@ function calculateTotalThanhtien() {
     const product = productData.product;
     const check = product.check;
 
-    if (check === 1) {
+    if (check === 2) {
       const thanhtien = parseFloat(product.thanhtien);
       total += thanhtien;
     }

@@ -1281,7 +1281,7 @@ function AddChart(index,username) {
 
     const DIACHI='';
 
-    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongChu,duong,da,size,topping,thanhtien,timeString,0,Type,DIACHI); // truyền thành tiền vào
+    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongChu,duong,da,size,topping,thanhtien,timeString,DIACHI,0,Type); // truyền thành tiền vào
     charts.push(newChart); // Thêm chart mới vào mảng charts
 
     // Lưu trữ thông tin của sản phẩm mới vào local storage. ở dạng String
@@ -1701,42 +1701,47 @@ PAYBUTTON.addEventListener('click',function(){
           if (inputs[index].value.trim() === "") {
           alert("Vui lòng nhập vào input trước khi bấm MUA");
           } else {
-            // đưa vào hàng chờ của admin
-            const tensp = this.closest('.chart').querySelector('.ChartTsp').textContent;
-            const soluong=element.closest('.chart').querySelector('.ChartSL').textContent.replace('SL:','');
-            const duong=element.closest('.chart').querySelector('.ChartDuong').textContent.replace('Đường:','');
-            const da=element.closest('.chart').querySelector('.ChartDa').textContent.replace('Đá:','');
-            const size=element.closest('.chart').querySelector('.ChartSize').textContent.replace('Size:','');
-            const topping=element.closest('.chart').querySelector('.ChartTopping').textContent.replace('Topping:','');
-            const tien=element.closest('.chart').querySelector('.ChartTien').textContent.replace('TỔNG:','');
-            const date=element.closest('.chart').querySelector('.ChartTime').textContent;
-            
-            // Lấy dữ liệu từ Local Storage
-            const allData = localStorage.getItem('charts');
-            let charts = {};
-            
-            if (allData) {
-              charts = JSON.parse(allData);
-            }
-            
-            // Kiểm tra xem tài khoản có tồn tại trong charts không
-            if (loggedInUser in charts) {
-              // Lặp qua danh sách sản phẩm của tài khoản đó
-              for (const product of charts[loggedInUser]) {
-                // So sánh thông tin sản phẩm để tìm sản phẩm cần thay đổi
-                if (product.tensp === tensp && product.soluong === soluong && product.duong === duong && product.da === da && product.size === size &&
-                   product.topping === topping && product.thanhtien === tien &&product.time===date) {
-                  // Thay đổi giá trị của check thành 1
-                  product.check = 1;
-                  product.DIACHI=inputs[index].value;
-                  break; // Thoát khỏi vòng lặp nếu tìm thấy sản phẩm
-                }
+            if (inputs[index].getAttribute("readonly") === null) {
+              console.log(inputs[index].getAttribute("readonly"));
+              alert('Làm ơn xác nhận địa chỉ');
+            } else {
+              // đưa vào hàng chờ của admin
+              const tensp = this.closest('.chart').querySelector('.ChartTsp').textContent;
+              const soluong=element.closest('.chart').querySelector('.ChartSL').textContent.replace('SL:','');
+              const duong=element.closest('.chart').querySelector('.ChartDuong').textContent.replace('Đường:','');
+              const da=element.closest('.chart').querySelector('.ChartDa').textContent.replace('Đá:','');
+              const size=element.closest('.chart').querySelector('.ChartSize').textContent.replace('Size:','');
+              const topping=element.closest('.chart').querySelector('.ChartTopping').textContent.replace('Topping:','');
+              const tien=element.closest('.chart').querySelector('.ChartTien').textContent.replace('TỔNG:','');
+              const date=element.closest('.chart').querySelector('.ChartTime').textContent;
+              
+              // Lấy dữ liệu từ Local Storage
+              const allData = localStorage.getItem('charts');
+              let charts = {};
+              
+              if (allData) {
+                charts = JSON.parse(allData);
               }
-                      // Cập nhật dữ liệu vào Local Storage
-            localStorage.setItem('charts', JSON.stringify(charts));
-            reload();
+              
+              // Kiểm tra xem tài khoản có tồn tại trong charts không
+              if (loggedInUser in charts) {
+                // Lặp qua danh sách sản phẩm của tài khoản đó
+                for (const product of charts[loggedInUser]) {
+                  // So sánh thông tin sản phẩm để tìm sản phẩm cần thay đổi
+                  if (product.tensp === tensp && product.soluong === soluong && product.duong === duong && product.da === da && product.size === size &&
+                     product.topping === topping && product.thanhtien === tien &&product.time===date) {
+                    // Thay đổi giá trị của check thành 1
+                    product.check = 1;
+                    product.DIACHI=inputs[index].value;
+                    break; // Thoát khỏi vòng lặp nếu tìm thấy sản phẩm
+                  }
+                }
+                        // Cập nhật dữ liệu vào Local Storage
+              localStorage.setItem('charts', JSON.stringify(charts));
+              reload();
+              }
+              // kết thúc hàng chờ
             }
-            // kết thúc hàng chờ
           }
           });
         })
@@ -1794,7 +1799,7 @@ function openModal() {
   }
 
   if (myObject && myObject.check === 1) {
-    // Xử lý khi modal đã tồn tại và check === 1
+    // Xử lý khi modal đã tồn tại và check === 1 nếu modal.check===1 thì mở
     for (const modalElement of modalElements) {
       modalElement.classList.remove('invisible');
     }
@@ -1964,7 +1969,7 @@ function getTopping() {
 
           const DIACHI='';
           
-          const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien,timeString,0,Type,DIACHI); // truyền thành tiền vào
+          const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien,timeString,DIACHI,0,Type); // truyền thành tiền vào
           saveProductToLocalStorage(loggedInUser, newChart);
           reload();
         }
