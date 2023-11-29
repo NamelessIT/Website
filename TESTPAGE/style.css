@@ -798,9 +798,110 @@ body {
     right:0;
     left: 0;
     opacity: 0.9;
-    height: 100%;
+    height: 90%;
     z-index: 6;
 }
+#CHITIETHOADON .COVER{
+    position: fixed;
+    bottom: 0;
+    right:0;
+    left: 0;
+    z-index: 6;
+}
+#CHITIETHOADON .TOTAL{
+    position: fixed;
+    background-color: rgb(173 133 27 / 75%);
+    bottom: 0;
+    right:0;
+    left: 0;
+    opacity: 0.9;
+    height: 10%;
+    z-index: 6;
+}
+.TOTAL h4{
+    position: absolute;
+    right: 0;
+}
+#CHITIETHOADON .PAY{
+    position: absolute;
+    bottom: 0;
+    z-index: 7;
+    right: 0;
+    padding: 11px;
+    background-color: red;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#CHITIETHOADON .chart{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+#CHITIETHOADON .chart img,.AGREE .chart img{
+    width: 10%;
+    max-width: 50px;
+    max-height: 65px;
+}
+#CHITIETHOADON .chart .ChartTsp,#CHITIETHOADON .ChartSL,#CHITIETHOADON .ChartDuong,#CHITIETHOADON .ChartDa,#CHITIETHOADON .ChartSize,
+#CHITIETHOADON .ChartTopping,#CHITIETHOADON .ChartTime,#CHITIETHOADON .ChartTien,#CHITIETHOADON .ChartBox,#CHITIETHOADON .HUY{
+    display: inline;
+    width: 6%;
+}
+#CHITIETHOADON .ChartBox{
+    height: 16px;
+}
+#CHITIETHOADON .ChartBox:hover,#CHITIETHOADON .HUY:hover{
+    cursor: pointer;
+    background-color: #fff;
+    opacity: 0.8;
+    padding: 2px;
+}
+#XACNHANMUA{
+    position: fixed;
+    z-index: 8;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+#XACNHANMUA .AGREE{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid orange;
+    border-radius: 5px;
+}
+.AGREE .chart{
+    display: flex;
+    border-bottom: 1px solid orange;
+    margin-bottom: 3px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+#XACNHANMUA .AGREE .chart .ChartTsp,#XACNHANMUA .AGREE .ChartSL,#XACNHANMUA .AGREE .ChartDuong,#XACNHANMUA .AGREE .ChartDa,#XACNHANMUA .AGREE .ChartSize,
+#XACNHANMUA .AGREE .ChartTopping,#XACNHANMUA .AGREE .ChartTime,#XACNHANMUA .AGREE .ChartTien{
+    display: inline;
+    width: 10%;
+}
+.AGREE .chart .ChartTsp,
+.AGREE .ChartTime{
+    overflow: hidden;
+}
+.AGREE .chart .XACNHANMUA{
+    flex-basis: 100%;
+    /* right: -14px; */
+    position: relative;
+    text-align: center;
+    margin: 6px 0;
+    border-top: 1px solid #ccc;
+}
+
 .modal_AccountInfo{
     position: fixed;
     z-index: 4;

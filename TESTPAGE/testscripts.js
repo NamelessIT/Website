@@ -741,7 +741,7 @@ checkboxPhoMai.addEventListener('change', () => {
 // hết input checkbox;
     const buyButton = document.createElement('button');
     buyButton.classList.add('Mua');
-    buyButton.innerHTML = '<i class="fa fa-shopping-cart cart"></i>MUA';
+    buyButton.innerHTML = '<i class="fa fa-shopping-cart cart"></i>THÊM VÀO GIỎ HÀNG';
 
     
     propertiesDiv.appendChild(nameH2);
@@ -804,7 +804,7 @@ checkboxPhoMai.addEventListener('change', () => {
 
 // Cart
 class Pro_Chart {
-  constructor(CHART_BOX, img, tensp, soluong, duong, da, size, topping, thanhtien,time,check,Type) {
+  constructor(CHART_BOX, img, tensp, soluong, duong, da, size, topping,thanhtien,time,DIACHI,check,Type) {
     this.CHART_BOX = CHART_BOX;
     this.img = img;
     this.tensp = tensp;
@@ -817,6 +817,7 @@ class Pro_Chart {
     this.time=time;
     this.check=Number(check);
     this.Type=Type;
+    this.DIACHI=DIACHI;
 
     this.element = document.createElement('div');
     this.element.classList.add('chart');
@@ -855,17 +856,59 @@ class Pro_Chart {
     ChartTopping.classList.add('invisible');
     ChartTopping.textContent = topping;
 
+    const ChartTime = document.createElement('h5');
+    ChartTime.classList.add('ChartTime');
+    ChartTime.classList.add('invisible');
+    ChartTime.textContent = time;
     
     const ChartTien = document.createElement('h5');
     ChartTien.classList.add('ChartTien');
     ChartTien.textContent = thanhtien;
     
-    const ChartTime = document.createElement('h5');
-    ChartTime.classList.add('ChartTime');
-    ChartTime.classList.add('invisible');
-    ChartTime.textContent = time;
+    const checkbox=document.createElement('input');
+    checkbox.type='checkbox';
+    checkbox.addEventListener('change', () => {
+      // Kiểm tra xem checkbox nào đang được chọn
+      if (checkbox.checked) {
+        // Nếu checkbox ít được chọn, thì bỏ chọn checkbox vừa
+        checkbox.value=true;
+      }
+      else{
+        checkbox.value=false;
+      }
+    });
+    checkbox.classList.add('ChartBox');
+    checkbox.classList.add('invisible');
 
+    const Huy=document.createElement('h5');
+    Huy.classList.add('HUY');
+    Huy.classList.add('invisible');
+    Huy.textContent='Hủy';
 
+    const XACNHANMUA=document.createElement('div');
+    XACNHANMUA.classList.add('invisible');
+    XACNHANMUA.classList.add('XACNHANMUA');
+
+    const NHAPDIACHI=document.createElement('input');
+    NHAPDIACHI.type='text';
+    NHAPDIACHI.classList.add('NHAPDIACHI');
+
+    const XACNHANDIACHI=document.createElement('button');
+    XACNHANDIACHI.classList.add('XACNHANDIACHI');
+    XACNHANDIACHI.textContent='XÁC NHẬN';
+
+    const THAYDOIDIACHI=document.createElement('button');
+    THAYDOIDIACHI.classList.add('THAYDOIDIACHI');
+    THAYDOIDIACHI.textContent='SỬA';
+
+    const LANCUOI=document.createElement('button');
+    LANCUOI.classList.add('LANCUOI');
+    LANCUOI.textContent='MUA';
+
+    const ChartDIACHI=document.createElement('h5');
+    ChartDIACHI.classList.add('ChartDIACHI');
+    ChartDIACHI.textContent=DIACHI;
+    ChartDIACHI.classList.add('invisible');
     
     this.CHART_BOX.appendChild(this.element);
     this.element.appendChild(chartImage);
@@ -877,6 +920,14 @@ class Pro_Chart {
     this.element.appendChild(ChartTopping);
     this.element.appendChild(ChartTime);
     this.element.appendChild(ChartTien);
+    this.element.appendChild(ChartDIACHI);
+    this.element.appendChild(checkbox);
+    this.element.appendChild(Huy);
+    this.element.appendChild(XACNHANMUA);
+    XACNHANMUA.appendChild(NHAPDIACHI);
+    XACNHANMUA.appendChild(XACNHANDIACHI);
+    XACNHANMUA.appendChild(THAYDOIDIACHI);
+    XACNHANMUA.appendChild(LANCUOI);
   }
 }
 
@@ -958,7 +1009,8 @@ const proContainer = document.querySelector('.pro-container');
 const MODAL=document.getElementById("MODAL")
 const CHART_BOX=document.getElementById("CHART_SHOW");
 const History=document.getElementById('History');
-
+const DETAILUSERCART=document.querySelector('.CHITIETHOADON');
+const contentXACNHAN=document.querySelector('.AGREE');
 
 // Lưu trữ thông tin của sản phẩm vào local storage.
 function saveProduct(pro) {
@@ -1227,7 +1279,9 @@ function AddChart(index,username) {
     const currentSeconds = currentTime.getSeconds();
     const timeString = `${currentDay}/${currentMonth} ${currentHours}:${currentMinutes}:${currentSeconds}`;
 
-    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongChu,duong,da,size,topping,thanhtien,timeString,0,Type); // truyền thành tiền vào
+    const DIACHI='';
+
+    const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongChu,duong,da,size,topping,thanhtien,timeString,0,Type,DIACHI); // truyền thành tiền vào
     charts.push(newChart); // Thêm chart mới vào mảng charts
 
     // Lưu trữ thông tin của sản phẩm mới vào local storage. ở dạng String
@@ -1291,9 +1345,6 @@ function getUsers() {
   
   return [];
 }
-
-
-
 
 
 // Khi trang được tải, lấy thông tin của sản phẩm từ local storage và hiển thị chúng trên trang.
@@ -1439,7 +1490,6 @@ if(check()===true){
 }
 
 if (firstPage) {
-  console.log('hoạt động');
   firstPage.click();
 } else {
   console.log('Không tìm thấy thẻ li thỏa mãn điều kiện');
@@ -1453,6 +1503,14 @@ if (firstPage) {
     for(const chart of charts){
       if(chart.check===0){
         const newChart = new Pro_Chart(CHART_BOX, chart.img, chart.tensp, "SL:"+chart.soluong,chart.duong,chart.da,chart.size,chart.topping, "TONG:"+chart.thanhtien,chart.time);
+        const newCart = new Pro_Chart(DETAILUSERCART, chart.img, chart.tensp, "SL:"+chart.soluong,'Đường:'+chart.duong,'Đá:'+chart.da,'Size:'+chart.size,'Topping:'+chart.topping, "TỔNG:"+chart.thanhtien,chart.time);
+        newCart.element.querySelector('.ChartDuong').classList.remove('invisible');
+        newCart.element.querySelector('.ChartDa').classList.remove('invisible');
+        newCart.element.querySelector('.ChartSize').classList.remove('invisible');
+        newCart.element.querySelector('.ChartTopping').classList.remove('invisible');
+        newCart.element.querySelector('.ChartTime').classList.remove('invisible');
+        newCart.element.querySelector('.ChartBox').classList.remove('invisible');
+        newCart.element.querySelector('.HUY').classList.remove('invisible');
       }
     }
     for (const chart of charts) {
@@ -1468,6 +1526,7 @@ if (firstPage) {
           "Topping:" + chart.topping,
           "Tổng:" + chart.thanhtien,
           "Ngày:"+chart.time,
+          "Địa chỉ:"+chart.DIACHI
         );
     
         // Bỏ class "invisible" khỏi các thẻ
@@ -1476,6 +1535,42 @@ if (firstPage) {
         newChart.element.querySelector('.ChartSize').classList.remove('invisible');
         newChart.element.querySelector('.ChartTopping').classList.remove('invisible');
         newChart.element.querySelector('.ChartTime').classList.remove('invisible');
+        newChart.element.querySelector('.ChartDIACHI').classList.remove('invisible');
+        const ChartTrangThai = document.createElement('h5');
+        ChartTrangThai.classList.add('ChartTrangThai');
+        ChartTrangThai.style.fontSize = '11px';
+        ChartTrangThai.style.color='red';
+        ChartTrangThai.textContent = `Đang chờ xử lý`;
+        newChart.element.appendChild(ChartTrangThai);
+      }
+      if(chart.check===2){
+        const newChart = new Pro_Chart(
+          History,
+          chart.img,
+          chart.tensp,
+          "SL:" + chart.soluong,
+          "Đường:" + chart.duong,
+          "Đá:" + chart.da,
+          "Size:" + chart.size,
+          "Topping:" + chart.topping,
+          "Tổng:" + chart.thanhtien,
+          "Ngày:"+chart.time,
+          "Địa chỉ:"+chart.DIACHI
+        );
+    
+        // Bỏ class "invisible" khỏi các thẻ
+        newChart.element.querySelector('.ChartDuong').classList.remove('invisible');
+        newChart.element.querySelector('.ChartDa').classList.remove('invisible');
+        newChart.element.querySelector('.ChartSize').classList.remove('invisible');
+        newChart.element.querySelector('.ChartTopping').classList.remove('invisible');
+        newChart.element.querySelector('.ChartTime').classList.remove('invisible');
+        newChart.element.querySelector('.ChartDIACHI').classList.remove('invisible');
+        const ChartTrangThai = document.createElement('h5');
+        ChartTrangThai.classList.add('ChartTrangThai');
+        ChartTrangThai.style.fontSize = '11px';
+        ChartTrangThai.style.color='green';
+        ChartTrangThai.textContent = `Đã hoàn thành`;
+        newChart.element.appendChild(ChartTrangThai);
       }
     }
   // tạo 1 list pro và modal dưới dạng js
@@ -1485,6 +1580,182 @@ if (firstPage) {
 
   const modalElements=Array.from(document.querySelectorAll('.modal'));
   const chartElements=Array.from(document.querySelectorAll('.chart'));
+
+
+  // xóa sản phẩm từ giỏ hàng chi tiết
+
+  const delButtons = document.querySelectorAll('.HUY');
+  delButtons.forEach((delButton) => {
+    delButton.addEventListener('click', function () {
+ // Lấy tên người dùng và sản phẩm từ các phần tử cha
+  const username = loggedInUser;
+  const tensp=delButton.parentNode.querySelector('.ChartTsp').textContent;
+  const sl=delButton.parentNode.querySelector('.ChartSL').textContent.replace('SL:','');
+  const duong=delButton.parentNode.querySelector('.ChartDuong').textContent.replace('Đường:','');
+  const da=delButton.parentNode.querySelector('.ChartDa').textContent.replace('Đá:','');
+  const size=delButton.parentNode.querySelector('.ChartSize').textContent.replace('Size:','');
+  const topping=delButton.parentNode.querySelector('.ChartTopping').textContent.replace('Topping:','');
+  // const time=delButton.parentNode.querySelector('.')
+  const tien=delButton.parentNode.querySelector('.ChartTien').textContent.replace('TỔNG:','');
+  const date=delButton.parentNode.querySelector('.ChartTime').textContent;
+ // Gọi hàm xóa sản phẩm với thông tin sản phẩm cần xóa
+ removeSingleProductFromAllAccounts(username,tensp,sl,duong,da,size,topping,tien,date);
+    });
+  });
+
+function removeSingleProductFromAllAccounts(username, productName,productSL,productDuong,productDa,productSize,productTopping,productBill,date) {
+  // Lấy dữ liệu từ Local Storage
+  const allData = localStorage.getItem('charts');
+
+  if (allData) {
+    const charts = JSON.parse(allData);
+    // Kiểm tra xem tài khoản có tồn tại trong dữ liệu hay không
+    if (charts.hasOwnProperty(username)) {
+      const currentUserProducts = charts[username];
+
+      // Tìm chỉ số đầu tiên của sản phẩm trong danh sách sản phẩm của tài khoản
+      const index = currentUserProducts.findIndex((product) => {
+        return product.tensp === productName && product.thanhtien===productBill && product.soluong===productSL 
+        && product.duong===productDuong && product.da===productDa && product.size===productSize && product.topping===productTopping &&product.time===date ;
+      });
+      // console.log('Kết quả tìm kiếm: ' + product.tensp+' '+pro.thanhtien);
+
+      console.log(index);
+      // Xóa sản phẩm khỏi danh sách sản phẩm của tài khoản
+      if (index > -1) {
+        currentUserProducts.splice(index, 1);
+      }
+
+      // Lưu dữ liệu đã cập nhật vào Local Storage
+      localStorage.setItem('charts', JSON.stringify(charts));
+      reload();
+    }
+  }
+}
+
+// click vào checkbox để xác nhận mua
+let totalAmount =0;
+const selectedCharts = [];
+const TONGT=document.querySelector('.TOTAL');
+//tính tổng tiền khi mua 
+  // Tính tổng thành tiền
+const checkboxs=document.querySelectorAll('.ChartBox');
+checkboxs.forEach(checkbox => {
+  checkbox.addEventListener('click',function(){
+    while (TONGT.firstChild) {
+      TONGT.removeChild(TONGT.firstChild);
+    }
+    const tien=checkbox.parentNode.querySelector('.ChartTien').textContent.replace('TỔNG:','');
+    let themtien=parseInt(tien);
+    if(checkbox.checked){
+      selectedCharts.push(checkbox.parentNode);
+      totalAmount += themtien;
+    }
+    else{
+      const index = selectedCharts.indexOf(checkbox.parentNode);
+      if (index > -1) {
+        selectedCharts.splice(index, 1);
+      }
+      totalAmount -= themtien;
+    }
+    const TONGTIEN=document.createElement('h4');
+    TONGTIEN.textContent=totalAmount;
+    TONGT.appendChild(TONGTIEN);
+  })
+});
+// bấm nút thanh toán mở modal XACNHANMUA của các sản phẩm
+const  PAYBUTTON=document.querySelector('.PAY');
+const MODALXACNHAN=document.getElementById('XACNHANMUA');
+PAYBUTTON.addEventListener('click',function(){
+        MODALXACNHAN.classList.remove('invisible');
+        for (const chart of selectedCharts) {
+            const newChart = new Pro_Chart(
+              contentXACNHAN,
+              chart.querySelector('.ChartImage').src,
+              chart.querySelector('.ChartTsp').textContent,
+              chart.querySelector('.ChartSL').textContent,
+              chart.querySelector('.ChartDuong').textContent,
+              chart.querySelector('.ChartDa').textContent,
+              chart.querySelector('.ChartSize').textContent,
+              chart.querySelector('.ChartTopping').textContent,
+              chart.querySelector('.ChartTien').textContent,
+              chart.querySelector('.ChartTime').textContent
+            );
+        
+            // Bỏ class "invisible" khỏi các thẻ
+            newChart.element.querySelector('.ChartDuong').classList.remove('invisible');
+            newChart.element.querySelector('.ChartDa').classList.remove('invisible');
+            newChart.element.querySelector('.ChartSize').classList.remove('invisible');
+            newChart.element.querySelector('.ChartTopping').classList.remove('invisible');
+            newChart.element.querySelector('.ChartTime').classList.remove('invisible');
+            newChart.element.querySelector('.ChartTime').classList.remove('invisible');
+            newChart.element.querySelector('.XACNHANMUA').classList.remove('invisible');
+        }
+        const inputs=document.querySelectorAll('.NHAPDIACHI');
+        inputs.forEach(element => {
+          element.setAttribute("required", "");
+        });
+        const btnLANCUOIs = document.querySelectorAll(".LANCUOI");
+        btnLANCUOIs.forEach((element,index)=>{
+          element.addEventListener("click", function() {
+          if (inputs[index].value.trim() === "") {
+          alert("Vui lòng nhập vào input trước khi bấm MUA");
+          } else {
+            // đưa vào hàng chờ của admin
+            const tensp = this.closest('.chart').querySelector('.ChartTsp').textContent;
+            const soluong=element.closest('.chart').querySelector('.ChartSL').textContent.replace('SL:','');
+            const duong=element.closest('.chart').querySelector('.ChartDuong').textContent.replace('Đường:','');
+            const da=element.closest('.chart').querySelector('.ChartDa').textContent.replace('Đá:','');
+            const size=element.closest('.chart').querySelector('.ChartSize').textContent.replace('Size:','');
+            const topping=element.closest('.chart').querySelector('.ChartTopping').textContent.replace('Topping:','');
+            const tien=element.closest('.chart').querySelector('.ChartTien').textContent.replace('TỔNG:','');
+            const date=element.closest('.chart').querySelector('.ChartTime').textContent;
+            
+            // Lấy dữ liệu từ Local Storage
+            const allData = localStorage.getItem('charts');
+            let charts = {};
+            
+            if (allData) {
+              charts = JSON.parse(allData);
+            }
+            
+            // Kiểm tra xem tài khoản có tồn tại trong charts không
+            if (loggedInUser in charts) {
+              // Lặp qua danh sách sản phẩm của tài khoản đó
+              for (const product of charts[loggedInUser]) {
+                // So sánh thông tin sản phẩm để tìm sản phẩm cần thay đổi
+                if (product.tensp === tensp && product.soluong === soluong && product.duong === duong && product.da === da && product.size === size &&
+                   product.topping === topping && product.thanhtien === tien &&product.time===date) {
+                  // Thay đổi giá trị của check thành 1
+                  product.check = 1;
+                  product.DIACHI=inputs[index].value;
+                  break; // Thoát khỏi vòng lặp nếu tìm thấy sản phẩm
+                }
+              }
+                      // Cập nhật dữ liệu vào Local Storage
+            localStorage.setItem('charts', JSON.stringify(charts));
+            reload();
+            }
+            // kết thúc hàng chờ
+          }
+          });
+        })
+
+        // kết thúc
+        const btsXACNHAN=document.querySelectorAll('.XACNHANDIACHI');
+        btsXACNHAN.forEach((element,index)=>{
+          element.addEventListener('click',function(){
+            inputs[index].setAttribute("readonly","");
+          })
+        })
+        const btsTHAYDOI=document.querySelectorAll('.THAYDOIDIACHI');
+        btsTHAYDOI.forEach((element,index)=>{
+          element.addEventListener('click',function(){
+            inputs[index].removeAttribute("readonly","");
+          })
+        })
+})
+
 
 
   
@@ -1690,8 +1961,10 @@ function getTopping() {
           const currentMinutes = currentTime.getMinutes();
           const currentSeconds = currentTime.getSeconds();
           const timeString = `${currentDay}/${currentMonth} ${currentHours}:${currentMinutes}:${currentSeconds}`;
+
+          const DIACHI='';
           
-          const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien,timeString,0,Type); // truyền thành tiền vào
+          const newChart = new Pro_Chart(CHART_BOX, image, tensp, soluongmua,duong,da,size,topping,thanhtien,timeString,0,Type,DIACHI); // truyền thành tiền vào
           saveProductToLocalStorage(loggedInUser, newChart);
           reload();
         }
@@ -1712,7 +1985,7 @@ function getTopping() {
 chartElements.forEach((chart, index) => {
   chart.addEventListener('click', function() {
     // Kiểm tra xem chart có nằm trong div có id='History' không
-    if (!chart.closest('#History')) {
+    if (chart.closest('#CHART_SHOW')) {
       // Lấy giá trị img.src và TenSP của chart
       const imgSrc = chart.querySelector('img').src;
       const tenSP = chart.querySelector('.ChartTsp').textContent;
@@ -1740,8 +2013,13 @@ chartElements.forEach((chart, index) => {
 // CHI TIẾT HÓA ĐƠN
 const MoChitiethoadon=document.querySelector('.CHART');
 const ChitietHoadon=document.querySelector('.CHITIETHOADON');
+const TOTAL=this.document.querySelector('.TOTAL');
+const PAY=document.querySelector('.PAY');
+
 MoChitiethoadon.addEventListener('click',function(){
   ChitietHoadon.classList.remove('invisible');
+  TOTAL.classList.remove('invisible');
+  PAY.classList.remove('invisible');
 })
 chartElements.forEach(cart => {
   cart.addEventListener('click',function(event){

@@ -57,7 +57,7 @@ sidebarItems[3].addEventListener('click',function(){
 
 // QUANLYDONHANG
 class Pro_Chart {
-  constructor(CHART_BOX, img, tensp, soluong, duong, da, size, topping, thanhtien,time,check,Type) {
+  constructor(CHART_BOX, img, tensp, soluong, duong, da, size, topping, thanhtien,time,DIACHI,check,Type) {
     this.CHART_BOX = CHART_BOX;
     this.img = img;
     this.tensp = tensp;
@@ -70,6 +70,7 @@ class Pro_Chart {
     this.time=time;
     this.check=Number(check);
     this.Type=Type;
+    this.DIACHI=DIACHI;
 
     this.element = document.createElement('div');
     this.element.classList.add('chart');
@@ -108,16 +109,18 @@ class Pro_Chart {
     // ChartTopping.classList.add('invisible');
     ChartTopping.textContent = topping;
 
-    
-    const ChartTien = document.createElement('h5');
-    ChartTien.classList.add('ChartTien');
-    ChartTien.textContent = thanhtien;
-    
     const ChartTime = document.createElement('h5');
     ChartTime.classList.add('ChartTime');
     // ChartTime.classList.add('invisible');
     ChartTime.textContent = time;
     
+    const ChartTien = document.createElement('h5');
+    ChartTien.classList.add('ChartTien');
+    ChartTien.textContent = thanhtien;
+    
+    const ChartDIACHI=document.createElement('h5');
+    ChartDIACHI.classList.add('ChartDIACHI');
+    ChartDIACHI.textContent=DIACHI;
 
     const HoanThanh=document.createElement('h5');
     HoanThanh.classList.add('HoanThanh');
@@ -136,6 +139,7 @@ class Pro_Chart {
     this.element.appendChild(ChartSize);
     this.element.appendChild(ChartTopping);
     this.element.appendChild(ChartTime);
+    this.element.appendChild(ChartDIACHI);
     this.element.appendChild(ChartTien);
     this.element.appendChild(HoanThanh);
     this.element.appendChild(Huy);
@@ -292,7 +296,7 @@ const users=document.getElementById('USER_SHOW');
 window.addEventListener('load', function() {
   const allProducts = getAllProducts();
   for (const { username, product } of allProducts) {
-    if(product.check===0){
+    if(product.check===1){
       const newChart = new Pro_Chart(
         CHART_BOX,
         product.img,
@@ -304,6 +308,7 @@ window.addEventListener('load', function() {
         "Topping:" + product.topping,
         "Tổng:" + product.thanhtien,
         product.time,
+        "Địa chỉ:"+product.DIACHI,
       );
       const chartUsername = document.createElement('h5');
       chartUsername.classList.add('ChartUsername');
@@ -313,7 +318,7 @@ window.addEventListener('load', function() {
     }
   }
   for (const { username, product } of allProducts) {
-    if(product.check===1){
+    if(product.check===2){
       const newChart = new Pro_Chart(
         HISTORY,
         product.img,
@@ -325,14 +330,14 @@ window.addEventListener('load', function() {
         "Topping:" + product.topping,
         "Tổng:" + product.thanhtien,
         product.time,
+        "Địa chỉ:"+product.DIACHI,
       );
       const chartUsername = document.createElement('h5');
       chartUsername.classList.add('ChartUsername');
       chartUsername.style.fontSize='11px';
       chartUsername.textContent = `Tài khoản: ${username}`;
       newChart.element.prepend(chartUsername);
-
-
+      newChart.element.querySelector('.ChartDIACHI').classList.remove('invisible');
     }
   }
 
@@ -383,7 +388,7 @@ chartolds.forEach(chart => {
           // So sánh thông tin sản phẩm để tìm sản phẩm cần thay đổi
           if (product.img === img && product.tensp === tensp && product.soluong === soluong && product.duong === duong && product.da === da && product.size === size && product.topping === topping && product.thanhtien === thanhtien) {
             // Thay đổi giá trị của check thành 1
-            product.check = 1;
+            product.check = 2;
             break; // Thoát khỏi vòng lặp nếu tìm thấy sản phẩm
           }
         }
@@ -492,10 +497,20 @@ chartolds.forEach(chart => {
 // hiệu ứng đếm số 
 function countUp(targetElement, targetNumber) {
   let currentNumber = 0;
+  const numberString = targetNumber.toString().padStart(targetNumber.toString().length, '0');
   const increment = Math.ceil(targetNumber / 30); // Số lượng tăng lên sau mỗi frame
 
   const interval = setInterval(() => {
-    currentNumber += increment;
+    const currentString = currentNumber.toString().padStart(targetNumber.toString().length, '0');
+    let newString = '';
+    for (let i = 0; i < numberString.length; i++) {
+      const currentDigit = parseInt(currentString[i]);
+      const targetDigit = parseInt(numberString[i]);
+      const newDigit = Math.min(currentDigit + 1, targetDigit);
+      newString += newDigit.toString();
+    }
+    currentNumber = parseInt(newString);
+    
     if (currentNumber >= targetNumber) {
       clearInterval(interval);
       currentNumber = targetNumber;
@@ -505,7 +520,7 @@ function countUp(targetElement, targetNumber) {
   }, 250); // Thời gian chờ giữa các frame (ms)
 }
 const allProducts = getAllProducts();
-const filteredProducts = allProducts.filter(productData => productData.product.check === 1);
+const filteredProducts = allProducts.filter(productData => productData.product.check === 2);
 const targetNumber = filteredProducts.length;
 const targetElement = document.querySelector('.SoLuongMuaNumber');
 const totalThanhtien = calculateTotalThanhtien();
@@ -559,7 +574,7 @@ filterButton.addEventListener('click', function() {
 
   // Lặp qua mảng các sản phẩm và kiểm tra điều kiện
   for (const { username, product } of allProducts) {
-    if (product.check === 1) {
+    if (product.check === 2) {
       // Chuyển đổi giá trị thời gian của sản phẩm thành đối tượng Date chỉ với ngày và tháng
       const productTime = product.time;
       const timeParts = productTime.split(/[\/ :]/);
@@ -588,7 +603,7 @@ filterButton.addEventListener('click', function() {
   showOutDiv.appendChild(productDiv);
   
   const divs = document.querySelectorAll('.Total');
-  DETAIL.classList.add('invisible');
+  DETAIL.classList.add('invisible')
   if (divs) {
     divs.forEach(element => {
       element.addEventListener('click', function() {
@@ -600,12 +615,11 @@ filterButton.addEventListener('click', function() {
         // Lấy giá trị của selectedType từ mảng
         const Type = contentParts[0];
         DETAIL.classList.remove('invisible');
-
-        while (DETAIL.firstChild) {
-          DETAIL.removeChild(DETAIL.firstChild);
+        while(DETAIL.firstChild){
+          DETAIL.removeChild(DETAIL.firstChild)
         }
         for (const { username, product } of allProducts) {
-          if ((product.check === 1 && product.Type === Type) || (Type==='TẤT CẢ' &&product.check===1)) {
+          if ((product.check === 2 && product.Type === Type) || (Type==='TẤT CẢ' && product.check===2)) {
             const newChart = new Pro_Chart(
               DETAIL,
               product.img,

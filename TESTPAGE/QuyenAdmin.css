@@ -101,12 +101,11 @@ input[readonly] {
 #CHART_SHOW .chart,#CHART_SHOWOLD .chart{
     width: 100%;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     margin: 5px 5px;
-    white-space: nowrap;
 }
 #CHART_SHOW .chart:hover,#CHART_SHOWOLD .chart:hover{
     opacity: 0.6;
@@ -123,16 +122,16 @@ input[readonly] {
 }
 #CHART_SHOW .chart .ChartTsp,#CHART_SHOW .chart .ChartSL
 ,.chart .ChartDuong,.chart .ChartDa,.chart .ChartSize,.chart .ChartTopping,
-#CHART_SHOW .chart .ChartTien,#CHART_SHOW .chart .HUY,.chart .HoanThanh{
+#CHART_SHOW .chart .ChartTien,#CHART_SHOW .chart .HUY,#CHART_SHOW .chart .HoanThanh,#CHART_SHOW .chart .ChartDIACHI{
     text-align: center;
-    width: 20%;
+    width: 11%;
     display: inline;
     margin: 0 2px;
     font-size: 11px;
 }
 #CHART_SHOWOLD .chart .ChartTsp,#CHART_SHOWOLD .chart .ChartSL
 ,.chart .ChartDuong,.chart .ChartDa,.chart .ChartSize,.chart .ChartTopping,
-#CHART_SHOWOLD .chart .ChartTien,#CHART_SHOWOLD .chart .HUY,.chart .HoanThanh{
+#CHART_SHOWOLD .chart .ChartTien,#CHART_SHOWOLD .chart .HUY,#CHART_SHOWOLD .chart .HoanThanh,#CHART_SHOWOLD .chart .ChartDIACHI{
     text-align: center;
     width: 20%;
     display: inline;

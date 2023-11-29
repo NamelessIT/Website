@@ -38,6 +38,12 @@ function login() {
       // Đăng nhập thất bại
       showErrorToast();
   }
+  else{
+    let usersDataArray = JSON.parse(localStorage.getItem("usersDataArray")) || [];
+    currentUser = 'Admin';
+    localStorage.setItem('loggedInUser', 'Admin');
+    location.href = "../index.html";
+  }
   }
 
 
