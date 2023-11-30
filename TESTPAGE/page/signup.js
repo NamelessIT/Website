@@ -174,13 +174,10 @@ function Validator(options){
       if(isFormValid){
         // submit theo hàm onSubmit
         if(typeof options.onSubmit === 'function'){
-
-          var enableInputs = formElement.querySelectorAll('[name]:not([disabled])');
-          var formValues = Array.from(enableInputs).reduce(function(values, input) {
-            values[input.name] = input.value;
-            return values;
-            }, {});
-          options.onSubmit(formValues);
+          const email = document.getElementById("Email-Sign").value;
+          const password = document.getElementById("PASSWORD-Sign").value;
+          const userData = {email, password};
+          options.onSubmit(userData);
         }
         // submit theo mặc định của form
         else{
@@ -262,52 +259,61 @@ Validator.isConfirmed = function(selector, getConfirmValue, message){
 }
 
 // Lưu tài khoản người dùng vào Local Storage sau khi bấm Đăng Ký
-  
-let usersDataArray = JSON.parse(localStorage.getItem("usersDataArray")) || [];
 
 document.addEventListener("DOMContentLoaded", function() {
+  let usersDataArray = JSON.parse(localStorage.getItem("usersDataArray")) || [];
+
+  // Kiểm tra xem mảng có tài khoản nào không
+  if (usersDataArray.length === 0) {
+    // Nếu không, thêm một tài khoản Admin mặc định vào mảng
+    const adminUser = {
+      email: "Admin",
+      password: "123",
+    };
+    usersDataArray.push(adminUser);
+    localStorage.setItem("usersDataArray", JSON.stringify(usersDataArray));
+  }
+
   const signupForm = document.getElementById("form-signup1");
 
-  signupForm.addEventListener("submit", function(e) {
-    // Ngăn chặn form gửi đi ngay sau khi nhấn nút Đăng Ký
-    e.preventDefault()
-    // Lấy giá trị từ các trường nhập
-    const email = document.getElementById("Email-Sign").value;
-    const password = document.getElementById("PASSWORD-Sign").value
-    
-  
-    // Kiểm tra và xử lý lưu trữ thông tin vào Local Storage
-    if (email && password) {
-       
-      // Tạo đối tượng chứa thông tin người dùng
-      const userData = {
-        email: email,
-        password: password,
-      };   
-      
-      usersDataArray.push(userData);
-
-      // Chuyển đối tượng thành chuỗi JSON và lưu vào Local Storage
-      localStorage.setItem("usersDataArray", JSON.stringify(usersDataArray));
-      //console.log(usersDataArray);
-      // Hiển thị thông báo đăng ký thành công
-      
-      showSuccessToast();
-      setTimeout(function() {
-        location.reload();
-      }, 1000);
-      
-      // Có thể chuyển hướng hoặc thực hiện các hành động khác sau khi đăng ký thành công
-
-    } else {
-      // Hiển thị thông báo đăng ký lỗi
-      showErrorToast();
+  // Validator cho form đăng ký
+  Validator({
+    form: '#form-signup1',
+    errorSelector: '.form-message',
+    rules: [
+        Validator.isRequired('#Email-Sign', 'Vui lòng nhập Email'),
+        Validator.isEmail('#Email-Sign', 'Không phải định dạng của Email'),
+        Validator.isRequired('#PASSWORD-Sign', 'Vui lòng nhập mật khẩu'),
+        Validator.minLength('#PASSWORD-Sign', 6),
+        Validator.isRequired('#PASSWORD-CFT', 'Vui lòng nhập lại mật khẩu'),
+        Validator.isConfirmed('#PASSWORD-CFT', function() {
+            return document.querySelector('#form-signup1 #PASSWORD-Sign').value;
+        }, 'Mật khẩu không trùng khớp'),
+    ],
+    onSubmit: function(data) {
+      // Xử lý đăng ký khi hợp lệ
+      const { email, password } = data;
+      //console.log(data);
+      if(email && password){
+        const userData = { 'email': email, 'password': password };
+        //console.log(userData);
+        usersDataArray.push(userData);
+        localStorage.setItem("usersDataArray", JSON.stringify(usersDataArray));
+        
+        // Thông báo thành công
+        showSuccessToastSignUp();
+        // Reload trang sau 1 giây
+        setTimeout(function () {
+          location.reload();
+        }, 1000);
+      } else {
+          showErrorToastSignUp();
+        }
     }
-    
   });
-})
+});
 
-function showSuccessToast() {
+function showSuccessToastSignUp() {
   toast({
     title: "Thành công!",
     message: "Bạn đã đăng ký thành công tài khoản tại SGU Coffee.",
@@ -316,7 +322,7 @@ function showSuccessToast() {
   });
 }
 
-function showErrorToast() {
+function showErrorToastSignUp() {
   toast({
     title: "Thất bại!",
     message: "Có lỗi xảy ra, vui lòng liên hệ quản trị viên.",
