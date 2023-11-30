@@ -1440,21 +1440,24 @@ window.addEventListener('load', function() {
     }
 
     updateProductElements(pageNumber); // Update the productElements array
-    if (loggedInUser) {
-      // Đã đăng nhập, hiển thị trang giỏ hàng
-      currentUser = loggedInUser;
-      if(currentUser!=='Admin'){
-        // trang user
+  }
+
+  // nếu là user thì giấu chức năng quản lý
+  if (loggedInUser) {
+    // Đã đăng nhập, hiển thị trang giỏ hàng
+    currentUser = loggedInUser;
+    if(currentUser!=='Admin'){
+      console.log("hoạt đông");
+      // trang user
     hideFuntion();
-      }
-      else{
-        const element=document.querySelector('.fa-shopping-bag');
-        const Chart_Show=document.querySelector('.CHART');
-        const user_block=document.querySelector('.user-block');
-        element.classList.add('invisible');
-        Chart_Show.classList.add('invisible');
-        user_block.style.padding='10px 5px';
-      }
+    }
+    else{
+      const element=document.querySelector('.fa-shopping-bag');
+      const Chart_Show=document.querySelector('.CHART');
+      const user_block=document.querySelector('.user-block');
+      element.classList.add('invisible');
+      Chart_Show.classList.add('invisible');
+      user_block.style.padding='10px 5px';
     }
   }
 
@@ -2126,7 +2129,7 @@ document.querySelector('.XacNhan').addEventListener('click', function() {
   
   // Thực hiện thay đổi thông tin tài khoản và mật khẩu
   if (newUsername !== '') {
-    usersDataArray[loggedInUserIndex].username = newUsername;
+    usersDataArray[loggedInUserIndex].email = newUsername;
     localStorage.setItem('loggedInUser', newUsername); // Cập nhật thông tin tài khoản đăng nhập trong local storage
   }
   if (newPassword !== '') {
