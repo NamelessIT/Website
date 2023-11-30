@@ -281,6 +281,13 @@ function deleteAccount(email) {
       }
     }
 
+    const remainingUsers = getUsers();
+    if (remainingUsers.length === 0) {
+      // Nếu không còn tài khoản người dùng nào khác
+      // Xóa khóa usersDataArray khỏi Local Storage
+      localStorage.removeItem('usersDataArray');
+    }
+
     // Xóa toàn bộ sản phẩm trong chart của người dùng
     removeProductFromAllAccounts(email);
   }
