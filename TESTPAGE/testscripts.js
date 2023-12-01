@@ -1375,55 +1375,54 @@ window.addEventListener('load', function() {
     });
     // xóa và sửa sản phẩm 
     var modalImage = document.querySelector('.modal img');
- var delPros=document.querySelectorAll('.delete');
- var adjusts=document.querySelectorAll('.rewrite');
- var modal_adjust=document.querySelector('.modal-ADJUST');
- var close_adjust=document.querySelector('.modal-container_ADJUST .icon')
- close_adjust.addEventListener('click',function(){
-  modal_adjust.classList.add('invisible');
- })
-
- delPros.forEach((del,index) => {
-  del.addEventListener('click',function(){
-    const modal = document.querySelector(".modal-del");
-    const co = document.querySelector(".modal-del .co");
-    const khong = document.querySelector(".modal-del .khong");
-    
-   function showModal() {
-      modal.classList.remove('invisible');
-   }
-    showModal();
-   co.addEventListener("click", function() {
-    deleteProduct(index+(pageNumber-1)*6);
-    removeProductFromAllAccounts(products[index+(pageNumber-1)*6].img,products[index+(pageNumber-1)*6].name);
-    reload();
-   });
-    
-   khong.addEventListener("click", function() {
-      // Hủy lệnh
-     modal.classList.add('invisible');
-   });
-  })
-
-    del.addEventListener('click',function(event){
-      event.stopPropagation();
+    var delPros=document.querySelectorAll('.delete');
+    var adjusts=document.querySelectorAll('.rewrite');
+    var modal_adjust=document.querySelector('.modal-ADJUST');
+    var close_adjust=document.querySelector('.modal-container_ADJUST .icon')
+    close_adjust.addEventListener('click',function(){
+      modal_adjust.classList.add('invisible');
     })
 
+  delPros.forEach((del,index) => {
+    del.addEventListener('click',function(){
+      const modal = document.querySelector(".modal-del");
+      const co = document.querySelector(".modal-del .co");
+      const khong = document.querySelector(".modal-del .khong");
+      
+    function showModal() {
+        modal.classList.remove('invisible');
+    }
+      showModal();
+    co.addEventListener("click", function() {
+      deleteProduct(index+(pageNumber-1)*6);
+      removeProductFromAllAccounts(products[index+(pageNumber-1)*6].img,products[index+(pageNumber-1)*6].name);
+      reload();
+    });
+      
+    khong.addEventListener("click", function() {
+        // Hủy lệnh
+      modal.classList.add('invisible');
+    });
+    })
+
+      del.addEventListener('click',function(event){
+        event.stopPropagation();
+      })
  });
 
 
-//  chỉnh sửa 
- adjusts.forEach((adjust,index) => {
-  adjust.addEventListener('click',function(){
-    modal_adjust.classList.remove('invisible');
-    updateProduct(index+(pageNumber-1)*6);
-  })
-  adjust.addEventListener('click',function(event){
-    event.stopPropagation();
-  })
-});
+  //  chỉnh sửa 
+  adjusts.forEach((adjust,index) => {
+    adjust.addEventListener('click',function(){
+      modal_adjust.classList.remove('invisible');
+      updateProduct(index+(pageNumber-1)*6);
+    })
+    adjust.addEventListener('click',function(event){
+      event.stopPropagation();
+    })
+  });
 
-  }
+}
 
   function showProducts(pageNumber) {
     // Xóa tất cả các sản phẩm đã hiển thị trước đó
@@ -1440,14 +1439,31 @@ window.addEventListener('load', function() {
     }
 
     updateProductElements(pageNumber); // Update the productElements array
+
+    // ngăn không cho user có thẩm quyền xóa, sửa sản phẩm
+    if (loggedInUser) {
+      // Đã đăng nhập, hiển thị trang giỏ hàng
+      currentUser = loggedInUser;
+      if(currentUser!=='Admin'){
+        // trang user
+      hideFuntion();
+      }
+      else{
+        const element=document.querySelector('.fa-shopping-bag');
+        const Chart_Show=document.querySelector('.CHART');
+        const user_block=document.querySelector('.user-block');
+        element.classList.add('invisible');
+        Chart_Show.classList.add('invisible');
+        user_block.style.padding='10px 5px';
+      }
+    }
   }
 
   // nếu là user thì giấu chức năng quản lý
-  if (loggedInUser) {
+if (loggedInUser) {
     // Đã đăng nhập, hiển thị trang giỏ hàng
     currentUser = loggedInUser;
     if(currentUser!=='Admin'){
-      console.log("hoạt đông");
       // trang user
     hideFuntion();
     }
@@ -1459,7 +1475,7 @@ window.addEventListener('load', function() {
       Chart_Show.classList.add('invisible');
       user_block.style.padding='10px 5px';
     }
-  }
+}
 
   // Tạo các li và gán sự kiện click
   for (let i = 1; i <= numberOfPages; i++) {
@@ -1478,26 +1494,26 @@ window.addEventListener('load', function() {
     sotrangDiv.appendChild(li);
     
 
-const allLiElements = document.querySelectorAll('.SoTrang');
-let firstPage = null;
-function check(){
-  allLiElements.forEach(liElement => {
-    if(liElement.classList.contains('SoTrang') && liElement.classList.contains('change')){
-      return false;
-    }
-  });
-  return true;
-}
-if(check()===true){
-  firstPage=allLiElements[0];
-}
-
-if (firstPage) {
-  firstPage.click();
-} else {
-  console.log('Không tìm thấy thẻ li thỏa mãn điều kiện');
-}
+  const allLiElements = document.querySelectorAll('.SoTrang');
+  let firstPage = null;
+  function check(){
+    allLiElements.forEach(liElement => {
+      if(liElement.classList.contains('SoTrang') && liElement.classList.contains('change')){
+        return false;
+      }
+    });
+    return true;
   }
+  if(check()===true){
+    firstPage=allLiElements[0];
+  }
+
+  if (firstPage) {
+    firstPage.click();
+  } else {
+    console.log('Không tìm thấy thẻ li thỏa mãn điều kiện');
+  }
+}
 
 
     for(const modal of modals){
@@ -1623,7 +1639,6 @@ function removeSingleProductFromAllAccounts(username, productName,productSL,prod
       });
       // console.log('Kết quả tìm kiếm: ' + product.tensp+' '+pro.thanhtien);
 
-      console.log(index);
       // Xóa sản phẩm khỏi danh sách sản phẩm của tài khoản
       if (index > -1) {
         currentUserProducts.splice(index, 1);
@@ -2169,5 +2184,40 @@ DonMua.addEventListener('click',function () {
   LichSu.classList.remove('invisible');
 })
 
+
+// Search Pro cho chi tiết giỏ hàng
+const searchBar_input=document.getElementById('searchBar_input');
+const btn_searchBar=document.querySelector('.btn_searchBar');
+// DANH SÁCH SẢN PHẨM TRONG CHITIETHOADON
+const HistoryProduct=Array.from(this.document.querySelectorAll('#CHITIETHOADON .chart'));
+btn_searchBar.addEventListener('click',function(){
+      const searchValue = searchBar_input.value.trim().toLowerCase();
+
+      for (const chartElement of HistoryProduct) {
+        const productName = chartElement.querySelector('.ChartTsp').textContent.toLowerCase();
+
+        if (productName.includes(searchValue)) {
+          chartElement.style.display = 'flex';
+        } else {
+          chartElement.style.display = 'none';
+        }
+      }
+})
+searchBar_input.addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault(); //ngăn hành vi reload trang
+    const searchValue = searchBar_input.value.trim().toLowerCase();
+
+    for (const chartElement of HistoryProduct) {
+      const productName = chartElement.querySelector('.ChartTsp').textContent.toLowerCase();
+
+      if (productName.includes(searchValue)) {
+        chartElement.style.display = 'flex';
+      } else {
+        chartElement.style.display = 'none';
+      }
+    }
+  }
+});
 });
 

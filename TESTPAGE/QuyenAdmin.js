@@ -416,7 +416,7 @@ chartolds.forEach(chart => {
         const productName = chartElement.querySelector('.ChartTsp').textContent.toLowerCase();
 
         if (productName.includes(searchValue)) {
-          chartElement.style.display = 'block';
+          chartElement.style.display = 'flex';
         } else {
           chartElement.style.display = 'none';
         }
@@ -432,7 +432,7 @@ chartolds.forEach(chart => {
         const productName = chartElement.querySelector('.ChartTsp').textContent.toLowerCase();
 
         if (productName.includes(searchValue)) {
-          chartElement.style.display = 'block';
+          chartElement.style.display = 'flex';
         } else {
           chartElement.style.display = 'none';
         }
