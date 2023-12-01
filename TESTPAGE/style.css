@@ -790,15 +790,99 @@ body {
   }
 
   /* CHI TIẾT HÓA ĐƠN */
+#CHITIETHOADON .HEADERHOADON{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    background-color: #999999;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    /* opacity: 0.9; */
+    height: 20%;
+    z-index: 6;
+}
+.container_logo_search{
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.logobackHome{
+    padding-left: 50px;
+    display: flex;
+    flex: 1;
+}
+.logoBar{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+.textLogo{
+    margin-left: 20px;
+    border-left: red solid 3px;
+    padding-left: 20px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    text-decoration: none;
+    color: rgb(50, 50, 247);
+
+}
+.textLogo:visited{
+    color: rgb(50, 50, 247);
+}
+.searchBar{
+    width: 38.8125rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 40px;
+}
+.searchBar_main{
+    padding: 0;
+    border: rgb(50, 50, 247) solid 2px;
+    flex: 1;
+    height: 100%;
+}
+.search_form{
+    display: flex;
+    box-sizing: border-box;
+    margin: 0;
+    height: 100%;  
+}
+.searchBar_input{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    outline: none;
+    border: 0;
+    padding: 15px;
+    margin: 0;
+    width: 100%;
+    font-size: 0.9rem;
+}
+.btn_searchBar{
+    height: 100%;
+    border-radius: 0;
+    width: 5rem;
+    border: solid blue 2px;
+    background-color: blue;
+}
+#iconSearch {
+    font-size: 15px;
+}
 #CHITIETHOADON .CHITIETHOADON{
     position: fixed;
     background-color: #ccc;
-    top: 0;
-    bottom: 0;
+    top: 20%;
+    bottom: 10%;
     right:0;
     left: 0;
     opacity: 0.9;
-    height: 90%;
+    height: 70%;
     z-index: 6;
 }
 #CHITIETHOADON .COVER{

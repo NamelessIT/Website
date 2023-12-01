@@ -2025,11 +2025,13 @@ chartElements.forEach((chart, index) => {
 
 // CHI TIẾT HÓA ĐƠN
 const MoChitiethoadon=document.querySelector('.CHART');
+const HeaderHoaDon=document.querySelector('.HEADERHOADON');
 const ChitietHoadon=document.querySelector('.CHITIETHOADON');
 const TOTAL=this.document.querySelector('.TOTAL');
 const PAY=document.querySelector('.PAY');
 
 MoChitiethoadon.addEventListener('click',function(){
+  HeaderHoaDon.classList.remove('invisible');
   ChitietHoadon.classList.remove('invisible');
   TOTAL.classList.remove('invisible');
   PAY.classList.remove('invisible');
