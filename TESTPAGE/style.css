@@ -942,6 +942,17 @@ body {
     opacity: 0.8;
     padding: 2px;
 }
+.logobackHomeAgree{
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 1px solid orange;
+    height: 10%;
+    background-color: wheat;
+    padding-left: 50px;
+    display: flex;
+    flex: 1;
+
+}
 #XACNHANMUA{
     position: fixed;
     z-index: 8;
@@ -952,13 +963,14 @@ body {
 }
 #XACNHANMUA .AGREE{
     position: absolute;
-    top: 0;
+    top: 10%;
     bottom: 0;
     right: 0;
     left: 0;
     background-color: #fff;
     border: 1px solid orange;
-    border-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 .AGREE .chart{
     display: flex;
