@@ -10,6 +10,9 @@
         cursor: pointer;
         background-color: white;
     }
+html{
+    scroll-behavior: smooth;
+}
 
 h1 {
     font-size: 50px;
@@ -103,6 +106,16 @@ body {
     content: "";
     left: 0;
     top: -41px;
+}
+
+/* CSS thanh tìm kiếm */
+.fa, .fas {
+    font-weight: 900;
+    color: white;
+}
+#SEARCH input{
+    border-radius: 5px;
+    height: 30px   ;
 }
 
 
@@ -503,6 +516,7 @@ body {
     position: relative;
     max-height: 215px;
     max-width: 200px;
+    min-height: 200px;
     /* background-color: rgba(128, 128, 128, 0.17); */
  }
  #product1 .pro:hover .modal-adjust{
@@ -1126,3 +1140,69 @@ body {
     display: inline;
     margin: 0 2px;
 }
+
+/* FOOTER */
+footer {
+    background-color: #222222;
+    padding: 0 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  footer .col {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  footer .logo {
+    margin-bottom: 30px;
+  }
+  
+  footer h4 {
+    font-size: 20px;
+    padding-bottom: 20px;
+    color: white;
+  }
+  footer p {
+    font-size: 15px;
+    margin: 0 0 8px 0;
+    color: white;
+  }
+  
+  footer a {
+    font-size: 13px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: white;
+  }
+  
+  footer .follow {
+    margin-top: 20px;
+  }
+  
+  footer .follow i {
+    color: white;
+    padding-right: 4px;
+    cursor: pointer;
+  }
+  
+  footer .install .row {
+    margin-top: 20px;
+  }
+  
+  footer .follow i:hover,
+  footer a:hover {
+    color: #659dbd;
+  }
+  
+  footer .coppyright {
+    width: 100%;
+    text-align: center;
+  }
+  
