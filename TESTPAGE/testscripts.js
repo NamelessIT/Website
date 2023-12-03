@@ -1653,6 +1653,22 @@ function showSearchedProducts(filteredProducts, pageNumber) {
     });
     sotrangDiv.appendChild(li);
   }
+  if (loggedInUser) {
+    // Đã đăng nhập, hiển thị trang giỏ hàng
+    currentUser = loggedInUser;
+    if(currentUser!=='Admin'){
+      // trang user
+    hideFuntion();
+    }
+    else{
+      const element=document.querySelector('.fa-shopping-bag');
+      const Chart_Show=document.querySelector('.CHART');
+      const user_block=document.querySelector('.user-block');
+      element.classList.add('invisible');
+      Chart_Show.classList.add('invisible');
+      user_block.style.padding='10px 5px';
+    }
+  }
 }
 
 
