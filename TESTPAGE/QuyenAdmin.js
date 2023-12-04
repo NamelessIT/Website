@@ -473,7 +473,7 @@ chartolds.forEach(chart => {
     userElement.classList.add('user');
     userElement.style.display='flex';
     userElement.style.alignItems='baseline';
-    userElement.style.justifyContent='space-evenly';
+    userElement.style.justifyContent='space-around';
     userElement.style.flexWrap='wrap';
 
     const emailElement = document.createElement('p');

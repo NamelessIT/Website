@@ -130,6 +130,64 @@
     <!-- sản phẩm -->
     <section id="product1">
         <h1>Sản phẩm phổ biến</h1>
+        <div class="row hello-filter" id="hello">
+            <div class="filter-toggle">
+                <span class="filter-text">Filter</span>
+                <!-- <img src="./asset/img/main-filter.svg" alt="" class="icon-filter" /> -->
+            </div>
+            <form action="" class="form-filter invisible">
+                <div class="row-filer">
+                    <div class="group-form">
+                        <div class="form-item">
+                            <label for="type">Type</label>
+                            <select name="type" id="type">
+                                <option value="">---</option>
+                                <option value="BÁNH">BÁNH</option>
+                                <option value="TRÀ">TRÀ</option>
+                                <option value="TRÀ SỮA">TRÀ SỮA</option>
+                                <option value="NƯỚC ÉP">NƯỚC ÉP</option>
+                                <option value="TOPPING">TOPPING</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" placeholder="Search name product">
+                        <!-- <svg xmlns="" height="1em" viewBox="0 0 512 512" class="icon-delete-advance hidden">
+                            <path fill="currentColor"
+                                d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z">
+                            </path>
+                        </svg> -->
+                    </div>
+                    <div class="group-form">
+                        <div class="form-item">
+                            <label for="min">Min Price</label>
+                            <input type="number" name="" id="min">
+        
+                        </div>
+                        <div class="form-item">
+        <label for="max">Max Price</label>
+                            <input type="number" name="" id="max">
+                        </div>
+                    </div>
+                </div>
+                <div class="sort-options">
+                    <h3>Sort by Price:</h3>
+                    <div class="sort-item">
+                      <input type="checkbox" id="sort-asc" name="sort" value="asc">
+                      <label for="sort-asc">TANG DAN</label>
+                    </div>
+                    <div class="sort-item">
+                      <input type="checkbox" id="sort-desc" name="sort" value="desc">
+                      <label for="sort-desc">GIAM DAN</label>
+                    </div>
+                  </div>
+                <div class="group-btn">
+                    <button type="button" class="btn-cancel Cancel">Cancel</button>
+                    <button type="button" class="btn-show-result">Show Result</button>
+                </div>
+            </form>
+        </div>
         <div class="pro-admin">
             <!-- FOR ADMIN -->
             <img src="img/add.png" >
