@@ -21,15 +21,15 @@ function login() {
     for (var i = 0; i < userDataStored.length; i++) {
       //console.log(userDataStored.length)
       const userData = userDataStored[i];
-      //console.log(userData);
+      console.log(userData);
       // Kiểm tra xem thông tin tài khoản và mật khẩu có hợp lệ hay không
-      if (username.value === "Admin" && password.value === "123") {
-        // Đăng nhập thành công
-        currentUser = 'Admin';
-        localStorage.setItem('loggedInUser', 'Admin');
-        location.href = "../index.html";
-      }
-        else if(username.value === userData.email && password.value === userData.password){
+      // if (username.value === "Admin" && password.value === "123") {
+      //   // Đăng nhập thành công
+      //   currentUser = 'Admin';
+      //   localStorage.setItem('loggedInUser', 'Admin');
+      //   location.href = "../index.html";
+      // }
+        if(username.value === userData.email && password.value === userData.password){
         currentUser = userData.email;
         localStorage.setItem('loggedInUser', userData.email);
         location.href = "../index.html";
@@ -38,12 +38,12 @@ function login() {
       // Đăng nhập thất bại
       showErrorToast();
   }
-  else{
-    let usersDataArray = JSON.parse(localStorage.getItem("usersDataArray")) || [];
-    currentUser = 'Admin';
-    localStorage.setItem('loggedInUser', 'Admin');
-    location.href = "../index.html";
-  }
+  // else{
+  //   let usersDataArray = JSON.parse(localStorage.getItem("usersDataArray")) || [];
+  //   currentUser = 'Admin';
+  //   localStorage.setItem('loggedInUser', 'Admin');
+  //   location.href = "../index.html";
+  // }
   }
 
 

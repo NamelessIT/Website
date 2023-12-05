@@ -1535,6 +1535,9 @@ if (loggedInUser) {
         user_block.style.padding='10px 5px';
       }
     }
+    else{
+      hideFuntion();
+    }
   }
 
 
@@ -1687,6 +1690,9 @@ function showSearchedProducts(filteredProducts, pageNumber) {
       Chart_Show.classList.add('invisible');
       user_block.style.padding='10px 5px';
     }
+  }
+  else{
+    hideFuntion();
   }
   productElements = Array.from(document.querySelectorAll('.pro'));
   productElements.forEach((productElement, index) => {
@@ -2511,3 +2517,10 @@ searchBar_input.addEventListener('keypress', function(event) {
 });
 });
 
+
+// xóa loggedUser khi tắt trình duyệt
+window.addEventListener('beforeunload', function () {
+  // Xóa biến loggedUser khỏi localStorage
+  localStorage.removeItem('loggedInUser');
+  console.log('loggedUser has been removed from localStorage.');
+});
