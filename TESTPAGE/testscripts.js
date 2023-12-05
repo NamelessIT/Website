@@ -1291,11 +1291,17 @@ function AddChart(index,username) {
     const soluong = 1;
     const soluongChu='1';
     const gia = myObject.price;
-    const duong="Ít";
-    const da="Ít";
-    const size="M";
-    const topping="không";
+    let duong="Ít";
+    let da="Ít";
+    let size="M";
+    let topping="không";
     const thanhtien = (soluong * gia).toString();
+    if(Type==='TOPPING'){
+      duong='Không';
+      da='Không';
+      size='';
+      topping='';
+    }
 
     const currentTime = new Date();
     const currentDay=currentTime.getDate();
@@ -2242,20 +2248,26 @@ function getTopping() {
       const tensp=modal.name;
       const gia=modal.price;
       let thanhtien=gia*soluongmua;
-      const duong=selectedDuongValue;
-      const da=selectedDaValue;
-      const size=selectedSizeValue;
+      let duong=selectedDuongValue;
+      let da=selectedDaValue;
+      let size=selectedSizeValue;
       if(size==='Size X'){
         thanhtien=thanhtien+(gia*0.1*soluongmua);
       }
       else if(size==='Size XL'){
         thanhtien=thanhtien+(gia*0.2*soluongmua);
       }
-      const topping=selectedToppingValue;
+      let topping=selectedToppingValue;
       if(topping!=='' && topping !=='Không'){
         thanhtien=thanhtien+(gia*0.1*soluongmua);
       }
       thanhtien = thanhtien.toFixed(2);
+      if(Type==='TOPPING'){
+        duong='Không';
+        da='Không';
+        size='';
+        topping='';
+      }
       if (loggedInUser) {
         if(loggedInUser!=='Admin'){
   
