@@ -309,3 +309,32 @@ input[readonly] {
   line-height: 2px;
 }
   /* Tương tự cho các chữ cái tiếp theo */
+
+
+
+  @media (max-width: 600px) {
+
+  .sidebar {
+    width: 25%;
+    background: linear-gradient(to bottom right, #FFA500, #FF4500);
+}
+.content {
+    width: 75%;
+    --color-bg-gradient: rgba(11, 196, 226, 0.2);
+    background-color: rgba(255, 244, 244, 0.5);
+    height: 96%;
+    position: absolute;
+    top: 8px;
+    right: 0px;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0px;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+}
+  }

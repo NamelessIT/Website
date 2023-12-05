@@ -1681,7 +1681,37 @@ z-index: 1; /* Đảm bảo rằng nó luôn nằm trên các phần tử khác 
     .form-filter .group-btn {
 
     }
-
+    .modal_AccountInfo {
+        position: fixed;
+        z-index: 4;
+        top: 6.5%;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+    .sidebar {
+        width: 25%;
+        background: linear-gradient(to bottom right, #FFA500, #FF4500);
+    }
+    .content {
+        width: 75%;
+        --color-bg-gradient: rgba(11, 196, 226, 0.2);
+        background-color: rgba(255, 244, 244, 0.5);
+        height: 96%;
+        position: absolute;
+        top: 8px;
+        right: 0px;
+    }
+    .sidebar ul {
+        list-style: none;
+        padding: 0px;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+    }
 }
 
 
