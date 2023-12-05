@@ -1359,7 +1359,7 @@ footer {
   .form-filter .group-btn {
     display: flex;
     margin-top: 20px;
-    justify-content: right;
+    justify-content: center;
     gap: 20px;
   }
   
@@ -1446,21 +1446,28 @@ footer {
     }
     .bar#user .CHART{
         padding:0;
-        
+        /* display: ; */
     }
+    ul.CHART:hover >div#CHART_SHOW {
+        display: none;
+        animation: bung-ra 0.5s ease-in-out;
+    }
+
     /* banner  */
     .img0 {
         background-image: url("./img/backgound.jpg");
+        height: 180px !important;
 
     }
 
     .img1 {
         background-image: url("./img/KhuyenMai2.jpg");
-        height: 200px !important;
+        height: 180px !important;
     }
 
     .img2 {
         background-image: url("./img/MuaNgay2.jpg");
+        height: 180px !important;
 
     }
 
@@ -1485,7 +1492,7 @@ footer {
         position: relative;
         top: 10x;
         left:-80px;
-       
+       display: none;
     }
     
 
@@ -1508,7 +1515,7 @@ footer {
         width: 70%;
         bottom: 15px;
         text-align: right;
-        right:10px;
+        right:37%;
 
         justify-content: right;
     }
@@ -1554,8 +1561,11 @@ z-index: 1; /* Đảm bảo rằng nó luôn nằm trên các phần tử khác 
     .container {
         padding-top: 50px; /* Giả sử "Sản phẩm phổ biến" có chiều cao là 50px */
     }
-    .product1{
+    #product1{
         padding: 0;
+    }
+    #product1 h1{
+        font-size: 25px;
     }
 
     #CHITIETHOADON  {
@@ -1594,30 +1604,31 @@ z-index: 1; /* Đảm bảo rằng nó luôn nằm trên các phần tử khác 
     .logobackHome{
         padding:5px;
     }
+    
     #CHITIETHOADON .CHITIETHOADON{
         position: fixed;
         background-color: #ccc;
-        top: 10%;
+        top: 13%;
         bottom: 10%;
         right:0;
         left: 0;
         opacity: 0.9;
-        height: 50%;
+        height: 70%;
         z-index: 6;
     }
     #CHITIETHOADON .COVER{
         position: fixed;
-        display:flex;
-        bottom: 30%;
-        right:0;
+        display: flex;
+        bottom: 7%;
+        right: 29px;
         left: 0;
         z-index: 6;
     }
     #CHITIETHOADON .TOTAL{
         position: fixed;
         background-color: rgb(173 133 27 / 75%);
-        bottom: 30%;
-        right:0;
+        bottom: 7%;
+        right: 0;
         left: 0;
         opacity: 0.9;
         height: 10%;
@@ -1663,9 +1674,13 @@ z-index: 1; /* Đảm bảo rằng nó luôn nằm trên các phần tử khác 
         opacity: 0.8;
         padding: 2px;
     }
+    .textLogo{
+        display: none;
+    }
 
+    .form-filter .group-btn {
 
-
+    }
 
 }
 
@@ -1716,16 +1731,18 @@ display: flex;
     /* banner  */
     .img0 {
         background-image: url("./img/backgound.jpg");
+        height: 180px !important;
 
     }
 
     .img1 {
         background-image: url("./img/KhuyenMai2.jpg");
-        height: 200px !important;
+        height: 180px !important;
     }
 
     .img2 {
         background-image: url("./img/MuaNgay2.jpg");
+        height: 180px !important;
 
     }
 
