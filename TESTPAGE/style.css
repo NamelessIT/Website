@@ -78,7 +78,12 @@ body {
     left: 0;
     z-index: 5;
     
-    
+}
+#header .bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .justify{
@@ -99,6 +104,9 @@ body {
     padding: 10px 20px;
     position: relative;
 }
+.bar li span {
+    color: #ffffff;
+}
 .bar .nav::before{
     height: 38px;
     position: absolute;
@@ -107,16 +115,78 @@ body {
     left: 0;
     top: -41px;
 }
+.navbar-icon-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.navbar-function-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+    
+}
+.HOME-BUTTON-NAV{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+}
 
 /* CSS thanh tìm kiếm */
 .fa, .fas {
-    font-weight: 900;
+    font-weight: 990;
     color: white;
 }
+/* CSS code */
+#SEARCH{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 #SEARCH input{
     border-radius: 5px;
-    height: 30px   ;
+    height: 45px;
+    border-width:2px;
+    border-top-left-radius: 24px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    border-top-right-radius: 24px;
+    padding-left:18px;
+    background:#fff;
+    flex-grow: 1; 
+    min-width: 400px;
 }
+
+#search-icon {
+    color: rgb(0, 0, 0); 
+    position: absolute;
+    left: auto; /* This will allow the icon to move with the search box */
+    right: 14px; /* Adjust this value to position the icon inside the search box */
+    top: 50%; 
+    transform: translateY(-50%); 
+    z-index: 1;
+    order:1;
+}
+
+#circle-search-box{
+    background-color: orange;
+    position:absolute;
+    left: auto; /* This will allow the circle to move with the search box */
+    right: 6px; /* Adjust this value to position the circle inside the search box */
+    border-radius:9999999px;
+    top:6px;
+    height:34px;
+    width:34px;
+    z-index:0;
+    order:3;
+}
+
 
 
 .bar li .a,.bar li a {
@@ -328,7 +398,12 @@ ul.account li:hover{
     border-radius: 5px;
     cursor: pointer;
 }
-
+.fa-shopping-bag{
+    font-size: 22px;
+}
+.fa-user{
+    font-size: 22px;
+}
 /* .bar li a.active::after,
 .bar li a:hover::after {
     content: "";
@@ -474,6 +549,12 @@ body {
     padding: 20px 200px;
     
 }
+.pro-container {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các mục linh hoạt chuyển xuống hàng tiếp theo khi không còn không gian */
+    justify-content: space-around; /* Phân bố đều không gian xung quanh các mục */
+}
+
 
 #product1 .pro-container {
     display: flex;
@@ -509,7 +590,12 @@ body {
 #product1 .pro:hover img{
     opacity: 0.7;
 }
+.spphobien{
+    font-size: 50px;
+    line-height: 64px;
+    color: #222;
 
+}
 #product1 .pro img,.pro-admin img{
     width: 100%;
     border-radius: 20px;
@@ -809,6 +895,7 @@ body {
     display: flex;
     align-items: center;
     background-color: #999999;
+    
     top: 0;
     bottom: 0;
     right: 0;
@@ -823,6 +910,7 @@ body {
     width: 100%;
     display: flex;
     align-items: center;
+    
 }
 .logobackHome{
     padding-left: 50px;
@@ -836,13 +924,13 @@ body {
 }
 .textLogo{
     margin-left: 20px;
-    border-left: red solid 3px;
+    border-left: orange solid 3px;
     padding-left: 20px;
     font-size: 1.8rem;
     font-weight: bold;
     text-transform: capitalize;
     text-decoration: none;
-    color: rgb(50, 50, 247);
+    color: orange;
 
 }
 .textLogo:visited{
@@ -901,6 +989,7 @@ body {
 }
 #CHITIETHOADON .COVER{
     position: fixed;
+    display:flex;
     bottom: 0;
     right:0;
     left: 0;
@@ -1315,3 +1404,435 @@ footer {
     background-color: #27b6b9;
     transform: scale(1.05);
   }
+
+  /* Đối với màn hình có độ rộng nhỏ hơn 600px */
+@media (max-width: 600px) {
+    #header{
+        display:flex;
+        justify-content: left;
+        padding:10px 10px;
+    }
+    
+
+    #SEARCH input {
+        min-width: 100%;
+        margin-left: 10%;
+        
+        position: relative;
+    }
+    .search-icon{
+        
+    }
+    .circle-search-box{
+        
+        
+    }
+    .logo-container{
+        margin-right: 30px;
+    }
+
+
+    .HOME-BUTTON-NAV{
+        display:none;
+    }
+    .navbar-function-wrapper{
+        display:none;
+    }
+    .navbar-icon-wrapper{
+        
+        position: absolute;
+        justify-content:right;
+        right:0;
+        top:50%;
+        transform: translateY(-50%);
+        gap:0px;
+    }
+    #header .icon-bar{
+       
+        padding: 0px;
+    }
+    #header .icon-bar .a{
+        margin-left: 0px;
+    }
+    #header li > h3.user{
+        position: relative;
+        margin-left: 20px;  /*tăng khoảng cách giữa 2 icon */
+    }
+    .bar#user .CHART{
+        padding:0;
+        
+    }
+    /* banner  */
+    .img0 {
+        background-image: url("./img/backgound.jpg");
+
+    }
+
+    .img1 {
+        background-image: url("./img/KhuyenMai2.jpg");
+        height: 200px !important;
+    }
+
+    .img2 {
+        background-image: url("./img/MuaNgay2.jpg");
+
+    }
+
+    #banner1 {
+        height: 20%;
+        width: 100%;
+        background-position: top 60% right 0;
+        background-size: cover;
+        padding: 40px 100px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap:30px;
+        
+        position: relative;
+    }
+
+    #banner1 .TieuDe {
+        opacity: 1;
+        animation: colorText 2s ease-in-out infinite;
+        font-size:40px;
+        position: relative;
+        top: 10x;
+        left:-80px;
+       
+    }
+    
+
+    #banner1 h4 {
+        padding-bottom: 0px;
+        color: #659dbd;
+        
+    }
+
+
+    .animationTransmision {
+        animation: Transmision 1s ease-in-out;
+    }
+
+
+   
+    #banner1 .icon {
+        position: absolute;
+        display: flex;
+        width: 70%;
+        bottom: 15px;
+        text-align: right;
+        right:10px;
+
+        justify-content: right;
+    }
+
+    #banner1 .dot-icon {
+        color: #fff;
+        font-size: 35px;
+        margin: 0 4px;
+        padding: 8px;
+        cursor: pointer;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #333;
+        margin-right: 8px;
+        cursor: pointer;
+        box-shadow: 0px 0px 0px 1px #ccc;
+    }
+
+    .dot-icon.active {
+        background-color: #fff !important;
+    }
+
+    #banner1 p {
+        color: #659dbd;
+    }
+
+
+    
+    .spphobien {
+        font-size: 30px;
+        line-height: 64px;
+        color: #222;
+      
+        margin-top: auto;
+        
+        left: 0; /* Đặt vị trí từ bên trái */
+        z-index: 1; /* Đảm bảo rằng nó luôn nằm trên các phần tử khác */
+    }
+    
+    /* Tạo vùng đệm bằng cách thêm padding cho phần tử chứa "Sản phẩm phổ biến" */
+    .container {
+        padding-top: 50px; /* Giả sử "Sản phẩm phổ biến" có chiều cao là 50px */
+    }
+    .product1{
+        padding: 0;
+    }
+
+    #CHITIETHOADON  {
+        position: fixed;
+        display:flex;
+        padding:0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+
+        height: 15%;
+        padding:5px;
+    }
+    #CHITIETHOADON .HEADERHOADON{
+        position: fixed;
+        display: flex;
+        align-items: center;
+        background-color: #181515;
+        padding:0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        /* opacity: 0.9; */
+        height: 10%;
+        z-index: 6;
+    }
+    .container_logo_search{
+        margin-right: auto;
+        margin-left: auto;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        height:50%;
+    }
+    .logobackHome{
+        padding:5px;
+    }
+    #CHITIETHOADON .CHITIETHOADON{
+        position: fixed;
+        background-color: #ccc;
+        top: 10%;
+        bottom: 10%;
+        right:0;
+        left: 0;
+        opacity: 0.9;
+        height: 50%;
+        z-index: 6;
+    }
+    #CHITIETHOADON .COVER{
+        position: fixed;
+        display:flex;
+        bottom: 30%;
+        right:0;
+        left: 0;
+        z-index: 6;
+    }
+    #CHITIETHOADON .TOTAL{
+        position: fixed;
+        background-color: rgb(173 133 27 / 75%);
+        bottom: 30%;
+        right:0;
+        left: 0;
+        opacity: 0.9;
+        height: 10%;
+        z-index: 6;
+    }
+    .TOTAL h4{
+        position: absolute;
+        right: 0;
+    }
+    #CHITIETHOADON .PAY{
+        position: absolute;
+        bottom: 0;
+        z-index: 7;
+        right: 0;
+        padding: 11px;
+        background-color: red;
+        color: #fff;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #CHITIETHOADON .chart{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+    #CHITIETHOADON .chart img,.AGREE .chart img{
+        width: 10%;
+        max-width: 50px;
+        max-height: 65px;
+    }
+    #CHITIETHOADON .chart .ChartTsp,#CHITIETHOADON .ChartSL,#CHITIETHOADON .ChartDuong,#CHITIETHOADON .ChartDa,#CHITIETHOADON .ChartSize,
+    #CHITIETHOADON .ChartTopping,#CHITIETHOADON .ChartTime,#CHITIETHOADON .ChartTien,#CHITIETHOADON .ChartBox,#CHITIETHOADON .HUY{
+        display: inline;
+        width: 6%;
+    }
+    #CHITIETHOADON .ChartBox{
+        height: 16px;
+    }
+    #CHITIETHOADON .ChartBox:hover,#CHITIETHOADON .HUY:hover{
+        cursor: pointer;
+        background-color: #fff;
+        opacity: 0.8;
+        padding: 2px;
+    }
+
+
+
+
+}
+
+
+
+
+
+
+/* Đối với màn hình có độ rộng từ 601px đến 939px */
+@media (min-width: 601px) and (max-width: 960px) {
+    #header .bar {
+        flex-wrap: wrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0; 
+        margin: 0; 
+    }
+    .HOME-BUTTON-NAV{
+        position: relative;
+        
+        left:-5px;
+        top:25px;
+        transform: translateY(-50%);
+    }
+    .logo-container{
+        position:absolute;
+        left:10px;
+        top:50%;
+        transform: translateY(-50%);
+    }
+    #SEARCH input {
+        max-width: 100%;
+    }
+    .navbar-icon-wrapper{
+        position: absolute;
+        right:0;
+        top:50%;
+        transform: translateY(-50%);
+    }
+    .spphobien {
+        font-size: 40px;
+        line-height: 64px;
+        color: #222;
+        
+
+    }
+    /* banner  */
+    .img0 {
+        background-image: url("./img/backgound.jpg");
+
+    }
+
+    .img1 {
+        background-image: url("./img/KhuyenMai2.jpg");
+        height: 200px !important;
+    }
+
+    .img2 {
+        background-image: url("./img/MuaNgay2.jpg");
+
+    }
+
+    #banner1 {
+        height: 50%;
+        width: 100%;
+        background-position: top 60% right 0;
+        background-size: cover;
+        padding: 40px 100px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap:30px;
+        
+        position: relative;
+    }
+
+    #banner1 .TieuDe {
+        opacity: 1;
+        animation: colorText 2s ease-in-out infinite;
+        font-size:40px;
+        position: relative;
+        top: 10x;
+        left:-80px;
+       
+    }
+    
+
+    #banner1 h4 {
+        padding-bottom: 0px;
+        color: #659dbd;
+        
+    }
+
+
+    .animationTransmision {
+        animation: Transmision 1s ease-in-out;
+    }
+
+
+   
+    #banner1 .icon {
+        position: absolute;
+        display: flex;
+        width: 70%;
+        bottom: 15px;
+        text-align: right;
+        right:10px;
+
+        justify-content: right;
+    }
+
+    #banner1 .dot-icon {
+        color: #fff;
+        font-size: 35px;
+        margin: 0 4px;
+        padding: 8px;
+        cursor: pointer;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #333;
+        margin-right: 8px;
+        cursor: pointer;
+        box-shadow: 0px 0px 0px 1px #ccc;
+    }
+}
+
+/* Đối với màn hình có độ rộng từ 601px đến 1190px */
+@media (min-width: 961px) and (max-width: 1190px) {
+    #header .bar {
+        flex-wrap: wrap;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .HOME-BUTTON-NAV{
+        display:block;
+        position: absolute;
+        left:120px;
+        top:50%;
+        transform: translateY(-50%);
+    }
+    #SEARCH input {
+        min-width: 130%;
+    }
+    .spphobien {
+        font-size: 50px;
+        line-height: 64px;
+        color: #222;
+    }
+}
+
