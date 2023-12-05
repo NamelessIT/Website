@@ -10,107 +10,103 @@
     <!-- <script src="https://unpkg.com/dom-event/dist/dom-event.min.js"></script> -->
 <body id="background">
     
-    <section id="header" >        
-        <a href="index.html"><img src="img/logo.png" class="logo" alt=""></a>    
+    <section id="header">
+        <!--logo container-->
+        <div class="logo-container"> <img src="img/logo.png" class="logo" alt=""></a> </div>
+
         <div>
             <ul class="bar">
-                <li><a class="active" href="#">HOME</a></li>
+                <div class ="HOME-BUTTON-NAV"> <li><a class="active" href="#">HOME</a></li> </div>
                 
-                <!-- <li class="navigate nav-menu">
-                    <h3 class="a">MENU 
-                        <i id="iconupdown" class="fa fa-chevron-up" aria-hidden="true"></i>
-                    </h3>
-                    <div class="outside invisible">
-                        <ul class="js-nav ">
-                            <li class="li-checkbox">
-                                <input type="checkbox">
-                                <h3>Trà Sữa</h3> 
-                            </li>
-                            <li class="li-checkbox">
-                                <input type="checkbox">
-                                <h3>Trà</h3>  
-                            </li>
-                            <li class="li-checkbox">
-                                <input type="checkbox"> 
-                                <h3>Bánh</h3> 
-                            </li>
-                        </ul>
-                    </div>
-                </li> -->
+
                 <form id="SEARCH">
                     <i class="fas fa-search" id="search-icon"></i>
-                    <input
-                      type="text"
-                      name=""
-                      id="search-box"
-                      placeholder="Search products"
-                    />
-                  </form>
-                  
-                <!-- làm 1 cái checkbox để tick vào phân loại sản phẩm -->
-                <li class="navigate"> 
-                    <a class="a" href="#product1">STORE</a>
-                    <!-- <ul class="nav invisible">
+                    <input type="text" name="" id="search-box" placeholder="Search products" />
+                    <div id="circle-search-box"></div> 
+                </form>
+
+
+
+                <!--phần function của navbar-->
+                <div class="navbar-function-wrapper">
+                    <!-- làm 1 cái checkbox để tick vào phân loại sản phẩm -->
+                    <li class="navigate">
+                        <a class="a" href="#product1">STORE</a>
+                        <!-- <ul class="nav invisible">
                         <li>1</li>
                         <li>2</li>
                         <li>3</li>
                     </ul> -->
-                </li>
-                <li class="navigate"> 
-                    <a class="a" href="#FOOTER">CONTACT</a>
-                    <!-- <ul class="nav invisible" style="left: 9px !important;">
+                    </li>
+                    <li><span> | </span></li>
+                    
+                    <li class="navigate">
+                        <a class="a" href="#FOOTER">CONTACT</a>
+                        <!-- <ul class="nav invisible" style="left: 9px !important;">
                         <li><i class="fa fa-envelope" aria-hidden="true"></i></li>
                         <li><i class="fa fa-envelope" aria-hidden="true"></i></li>
                         <li>3</li>
                     </ul> -->
-                </li>
-                <!-- làm hover hạ xuống 1 hình chữ nhật  -->
-                <li class="navigate"> 
-                    <a class="a" href="#FOOTER">ABOUT</a>
-                    <!-- <ul class="nav invisible">
+                    </li>
+                    <li><span> | </span></li>
+                    <!-- làm hover hạ xuống 1 hình chữ nhật  -->
+                    <li class="navigate">
+                        <a class="a" href="#FOOTER">ABOUT</a>
+                        <!-- <ul class="nav invisible">
                         <li>1</li>
                         <li>2</li>
                         <li>3</li>
                     </ul> -->
-                </li>
-                <!-- <li><a href="#">Hirer</a></li> -->
-               <li class="bar icon-bar" id="user">
-                    <ul class="CHART">
-                        <li> <h3 class="a"><i class="fa fa-shopping-bag" ></i></h3></li>
-                        <div id="CHART_SHOW" >
-                            
-                        </div>
-                    </ul>
-                </li>
+                    </li>
+
+                    <!-- <li><a href="#">Hirer</a></li> -->
+
+                </div>
+
+                <!--phần user-->
+                <div class="navbar-icon-wrapper">
+                    <li class="bar icon-bar" id="user">
+                        <ul class="CHART">
+                            <li>
+                                <h3 class="a"><i class="fa fa-shopping-bag"></i></h3>
+                            </li>
+                            <div id="CHART_SHOW">
+
+                            </div>
+                        </ul>
+                    </li>
                     <!-- hiện ra khi thêm 1 sản phẩm và tính tổng -->
-                <li class="user-block" style="padding: 10px 5px; width: fit-content;">
-                    <h3 class="a user"><i class="fa fa-user"></i></h3>
-                    <span id="userEmail" class="userEmail"></span>
-                    <!-- tài khoản admin sẽ có quản lý tài khoản, còn user thì invisible -->
-                    <ul class="account">
-                        <li class="Quanlytaikhoan">Quản lý tài khoản</li>
-                        <li class="TaiKhoan">Tài Khoản Của Tui</li>
-                        <li class="DonMua">Đơn Mua</li>
-                        <li class="Dangxuat">Đăng xuất</li>
-                    </ul>
-                </li>
-                
-                    <!-- hiện tài khoản và có thể đăng xuất và sẽ có thêm quản lý tài khoản nếu đó là admin -->
+                    <li class="user-block" style="padding: 10px 5px; width: fit-content;">
+                        <h3 class="a user"><i class="fa fa-user"></i></h3>
+<span id="userEmail" class="userEmail"></span>
+                        <!-- tài khoản admin sẽ có quản lý tài khoản, còn user thì invisible -->
+                        <ul class="account">
+                            <li class="Quanlytaikhoan">Quản lý tài khoản</li>
+                            <li class="TaiKhoan">Tài Khoản Của Tui</li>
+                            <li class="DonMua">Đơn Mua</li>
+                            <li class="Dangxuat">Đăng xuất</li>
+                        </ul>
+                    </li>
+
+                </div>
+
+
+                <!-- hiện tài khoản và có thể đăng xuất và sẽ có thêm quản lý tài khoản nếu đó là admin -->
             </ul>
-        <!-- có các thanh trượt dọc xuống các bar nhỏ -->
+            <!-- có các thanh trượt dọc xuống các bar nhỏ -->
         </div>
 
-    <!-- hiện email tài khoản đang sử dụng dưới icon user -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Lấy email từ Local Storage
-            const userEmail = localStorage.getItem('loggedInUser');
-        
-            // Hiển thị email dưới icon user
-            document.getElementById('userEmail').innerText = userEmail;
-        });
-    </script>
-        
+        <!-- hiện email tài khoản đang sử dụng dưới icon user -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Lấy email từ Local Storage
+                const userEmail = localStorage.getItem('loggedInUser');
+
+                // Hiển thị email dưới icon user
+                document.getElementById('userEmail').innerText = userEmail;
+            });
+        </script>
+
     </section>
     <section id="banner1" class="img img0">
         <h4 class="TieuDe display">Well come to</h4>
