@@ -1,16 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Spartan', sans-serif;
 }
-    /* Ẩn con trỏ nhập liệu */
-    input[readonly] {
-        cursor: pointer;
-        background-color: white;
-    }
-html{
+
+/* Ẩn con trỏ nhập liệu */
+input[readonly] {
+    cursor: pointer;
+    background-color: white;
+}
+
+html {
     scroll-behavior: smooth;
 }
 
@@ -19,21 +22,25 @@ h1 {
     line-height: 64px;
     color: #222;
 }
+
 h2 {
     font-size: 46px;
     line-height: 54px;
     color: #222;
 }
+
 h4 {
     font-size: 20px;
     /* line-height: ; */
     color: #222;
 }
+
 h6 {
     font-weight: 700;
     /* line-height: ; */
     font-size: 12px;
 }
+
 p {
     font-size: 16px;
     /* line-height: ; */
@@ -41,11 +48,12 @@ p {
     margin: 15px 0 20px 0;
 }
 
-.invisible{
-    display: none !important; 
+.invisible {
+    display: none !important;
 }
+
 .section-m1 {
-   padding: 40px 0;
+    padding: 40px 0;
 }
 
 body {
@@ -55,12 +63,13 @@ body {
 /* header  */
 
 .logo {
-   
+
     height: 70px;
     width: 70px;
     /* background-color: #e3e6f3; */
 }
-.change{
+
+.change {
     background-color: #ccc !important;
 }
 
@@ -77,8 +86,9 @@ body {
     top: 0;
     left: 0;
     z-index: 5;
-    
+
 }
+
 #header .bar {
     display: flex;
     justify-content: space-between;
@@ -86,13 +96,15 @@ body {
     flex-wrap: wrap;
 }
 
-.justify{
+.justify {
     align-content: flex-end !important;
     flex-wrap: wrap !important;
 }
-.black{
+
+.black {
     animation: colorTextStrong 2s ease-in-out infinite !important;
 }
+
 .bar {
     display: flex;
     align-items: center;
@@ -104,10 +116,12 @@ body {
     padding: 10px 20px;
     position: relative;
 }
+
 .bar li span {
     color: #ffffff;
 }
-.bar .nav::before{
+
+.bar .nav::before {
     height: 38px;
     position: absolute;
     width: 100%;
@@ -115,81 +129,91 @@ body {
     left: 0;
     top: -41px;
 }
-.navbar-icon-wrapper{
+
+.navbar-icon-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
 }
-.navbar-function-wrapper{
+
+.navbar-function-wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
-   
-    
+
+
 }
-.HOME-BUTTON-NAV{
+
+.HOME-BUTTON-NAV {
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
 
 }
 
 /* CSS thanh tìm kiếm */
-.fa, .fas {
+.fa,
+.fas {
     font-weight: 990;
     color: white;
 }
+
 /* CSS code */
-#SEARCH{
+#SEARCH {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 
-#SEARCH input{
+#SEARCH input {
     border-radius: 5px;
     height: 45px;
-    border-width:2px;
+    border-width: 2px;
     border-top-left-radius: 24px;
     border-bottom-left-radius: 24px;
     border-bottom-right-radius: 24px;
     border-top-right-radius: 24px;
-    padding-left:18px;
-    background:#fff;
-    flex-grow: 1; 
+    padding-left: 18px;
+    background: #fff;
+    flex-grow: 1;
     min-width: 400px;
 }
 
 #search-icon {
-    color: rgb(0, 0, 0); 
+    color: rgb(0, 0, 0);
     position: absolute;
-    left: auto; /* This will allow the icon to move with the search box */
-right: 14px; /* Adjust this value to position the icon inside the search box */
-    top: 50%; 
-    transform: translateY(-50%); 
+    left: auto;
+    /* This will allow the icon to move with the search box */
+    right: 14px;
+    /* Adjust this value to position the icon inside the search box */
+    top: 50%;
+    transform: translateY(-50%);
     z-index: 1;
-    order:1;
+    order: 1;
 }
 
-#circle-search-box{
+#circle-search-box {
     background-color: orange;
-    position:absolute;
-    left: auto; /* This will allow the circle to move with the search box */
-    right: 6px; /* Adjust this value to position the circle inside the search box */
-    border-radius:9999999px;
-    top:6px;
-    height:34px;
-    width:34px;
-    z-index:0;
-    order:3;
+    position: absolute;
+    left: auto;
+    /* This will allow the circle to move with the search box */
+    right: 6px;
+    /* Adjust this value to position the circle inside the search box */
+    border-radius: 9999999px;
+    top: 6px;
+    height: 34px;
+    width: 34px;
+    z-index: 0;
+    order: 3;
 }
 
 
 
-.bar li .a,.bar li a {
+.bar li .a,
+.bar li a {
     text-decoration: none;
     font-size: 15px;
     font-weight: 400;
@@ -198,7 +222,8 @@ right: 14px; /* Adjust this value to position the icon inside the search box */
     transition: 0.2s ease-in;
     position: relative;
 }
-.bar .navigate .js-nav{
+
+.bar .navigate .js-nav {
     min-width: 160px;
     background-color: #fff;
     color: #333;
@@ -208,7 +233,8 @@ right: 14px; /* Adjust this value to position the icon inside the search box */
     left: 0;
     border-top: 3px solid orange;
 }
-.bar .js-nav .li-checkbox{
+
+.bar .js-nav .li-checkbox {
     display: inline-flex;
     width: 100%;
     align-content: space-around;
@@ -216,7 +242,8 @@ right: 14px; /* Adjust this value to position the icon inside the search box */
     justify-content: flex-start;
     align-items: baseline;
 }
-.bar .js-nav input{
+
+.bar .js-nav input {
     width: 30%;
     height: 16px;
     border-radius: 50%;
@@ -232,41 +259,47 @@ right: 14px; /* Adjust this value to position the icon inside the search box */
 }
 
 .bar li .a:hover,
-.bar li a.active,.navigate:hover .a {
-    color:#659dbd;
+.bar li a.active,
+.navigate:hover .a {
+    color: #659dbd;
     opacity: 0.8;
     cursor: pointer;
 }
 
 @keyframes bung-ra {
     0% {
-      /* transform: scale(0);
+        /* transform: scale(0);
       opacity: 0; */
-      scale: 0;
-      /* transform-origin: top; Định vị gốc biến đổi ở góc phải trên */
+        scale: 0;
+        /* transform-origin: top; Định vị gốc biến đổi ở góc phải trên */
     }
+
     100% {
         scale: 1;
-      /* transform: scale(1);
+        /* transform: scale(1);
       opacity: 1; */
-      /* transform-origin: bottom; Định vị gốc biến đổi ở góc trái trên */
+        /* transform-origin: bottom; Định vị gốc biến đổi ở góc trái trên */
     }
-  }
+}
 
 /* show giỏ hàng */
-.bar#user .a{
+.bar#user .a {
     position: relative;
 }
-.bar#user .CHART{
+
+.bar#user .CHART {
     padding: 5px 0;
 }
-.bar#user .CHART:hover i{
+
+.bar#user .CHART:hover i {
     font-size: 20px;
 }
-ul.CHART:hover >div#CHART_SHOW{
+
+ul.CHART:hover>div#CHART_SHOW {
     visibility: visible !important;
     animation: bung-ra 0.5s ease-in-out;
 }
+
 #CHART_SHOW::before {
     content: "";
     position: absolute;
@@ -279,8 +312,9 @@ ul.CHART:hover >div#CHART_SHOW{
     /* border-right: 30px solid transparent; */
     /* border-bottom: 36px solid white; */
     border-radius: 2px;
-  }
-#CHART_SHOW{
+}
+
+#CHART_SHOW {
     position: absolute;
     min-height: 20px;
     background-color: white;
@@ -292,7 +326,8 @@ ul.CHART:hover >div#CHART_SHOW{
     top: 170%;
     visibility: hidden;
 }
-#CHART_SHOW .chart{
+
+#CHART_SHOW .chart {
     width: 304px;
     display: flex;
     flex-wrap: wrap;
@@ -301,38 +336,49 @@ ul.CHART:hover >div#CHART_SHOW{
     align-items: center;
     margin: 6px 0px;
 }
-#CHART_SHOW .chart:hover{
+
+#CHART_SHOW .chart:hover {
     opacity: 0.6;
     background-color: #ccc;
 }
-#CHART_SHOW .chart img{
+
+#CHART_SHOW .chart img {
     width: 30%;
     display: inline;
     border: 1px solid #ccc;
-border-radius: 8px;
+    border-radius: 8px;
     margin-left: 3px;
     max-height: 60px;
     max-width: 50px;
 }
-#CHART_SHOW .chart .ChartTsp,#CHART_SHOW .chart .ChartSL
-,.chart .ChartDuong,.chart .ChartDa,.chart .ChartSize,.chart .ChartTopping,
-#CHART_SHOW .chart .ChartTien{
+
+#CHART_SHOW .chart .ChartTsp,
+#CHART_SHOW .chart .ChartSL,
+.chart .ChartDuong,
+.chart .ChartDa,
+.chart .ChartSize,
+.chart .ChartTopping,
+#CHART_SHOW .chart .ChartTien {
     margin: 0 5px;
     text-align: center;
     width: 15%;
 }
-#CHART_SHOW .chart .ChartTsp{
+
+#CHART_SHOW .chart .ChartTsp {
     display: inline;
     margin-left: 0;
     width: 25%;
 }
-#CHART_SHOW .chart .ChartSL{
+
+#CHART_SHOW .chart .ChartSL {
     display: inline;
 }
-#CHART_SHOW .chart .ChartTien{
+
+#CHART_SHOW .chart .ChartTien {
     display: inline;
 }
-.bar .nav{
+
+.bar .nav {
     min-width: 125px;
     background-color: #fff;
     text-align: center;
@@ -342,35 +388,43 @@ border-radius: 8px;
     border-top: 3px solid red;
     box-shadow: 0 10px 20px #cec9c9;
 }
-.bar .navigate:hover .nav{
+
+.bar .navigate:hover .nav {
     display: block !important;
 }
-.bar .nav li{
+
+.bar .nav li {
     list-style-type: none;
     cursor: pointer;
     margin: 3px 0;
     padding: 5px 0;
 }
-.bar .nav li:hover{
+
+.bar .nav li:hover {
     opacity: 0.7;
     background-color: #659dbd;
 }
-#header .icon-bar{
+
+#header .icon-bar {
     size: 15px;
     padding: 5px;
 }
-#header .icon-bar .a{
+
+#header .icon-bar .a {
     margin-left: 5px;
 }
-#header li > h3.user{
+
+#header li>h3.user {
     position: relative;
     /* border: #0d14e7 solid 1px; */
     margin-left: 30px;
 }
-#header  li.user-block:hover > ul.account{
+
+#header li.user-block:hover>ul.account {
     display: block !important;
 }
-#header li > ul.account{
+
+#header li>ul.account {
     position: absolute;
     background-color: #fff;
     border-radius: 5px;
@@ -383,7 +437,8 @@ border-radius: 8px;
     display: none;
     color: #333;
 }
-li >ul.account::before{
+
+li>ul.account::before {
     position: absolute;
     content: "";
     width: 100px;
@@ -392,18 +447,22 @@ li >ul.account::before{
     right: 0%;
     /* /* background-color: red; */
 }
-ul.account li:hover{
+
+ul.account li:hover {
     color: green;
     background-color: #ccc;
     border-radius: 5px;
     cursor: pointer;
 }
-.fa-shopping-bag{
+
+.fa-shopping-bag {
     font-size: 22px;
 }
-.fa-user{
+
+.fa-user {
     font-size: 22px;
 }
+
 /* .bar li a.active::after,
 .bar li a:hover::after {
     content: "";
@@ -418,85 +477,96 @@ ul.account li:hover{
 /* Home page  */
 
 body {
-    
+
     background-size: cover;
-    
+
 }
 
 /* banner  */
-.img0{
+.img0 {
     background-image: url("./img/backgound.jpg");
-    
+
 }
-.img1{
+
+.img1 {
     background-image: url("./img/KhuyenMai2.jpg");
-    height:682.86px !important;
+    height: 682.86px !important;
 }
-.img2{
+
+.img2 {
     background-image: url("./img/MuaNgay2.jpg");
-    
+
 }
 
 #banner1 {
     height: 91vh;
     width: 100%;
-    background-position: top 60% right 0 ;
-    background-size:cover;
+    background-position: top 60% right 0;
+    background-size: cover;
     padding: 60px 100px 0px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;    
+    justify-content: flex-start;
     position: relative;
 }
-#banner1 .TieuDe{
+
+#banner1 .TieuDe {
     opacity: 1;
-    animation: colorText  2s ease-in-out infinite ;
+    animation: colorText 2s ease-in-out infinite;
 }
 
 #banner1 h4 {
     padding-bottom: 15px;
     color: #659dbd;
 }
-@keyframes colorText{
+
+@keyframes colorText {
     from {
-        color: #4644c6 ;
+        color: #4644c6;
         opacity: 0.8;
-      }
+    }
+
     to {
-        color: rgb(56, 172, 106) ;
+        color: rgb(56, 172, 106);
         opacity: 1;
-        }
-}
-@keyframes colorTextStrong{
-from {
-        color: #5c0c0c ;
-        opacity: 0.8;
-      }
-    to {
-        color: rgb(36, 34, 34) ;
-        opacity: 1;
-        }
+    }
 }
 
-.animationTransmision{
+@keyframes colorTextStrong {
+    from {
+        color: #5c0c0c;
+        opacity: 0.8;
+    }
+
+    to {
+        color: rgb(36, 34, 34);
+        opacity: 1;
+    }
+}
+
+.animationTransmision {
     animation: Transmision 1s ease-in-out;
 }
+
 @keyframes Transmision {
-    from{
+    from {
         opacity: 0.5;
-        transform:translateY(-100px);
-    }   
-    to{
+        transform: translateY(-100px);
+    }
+
+    to {
         opacity: 1;
-        transform:translateY(0px);
+        transform: translateY(0px);
     }
 }
-@keyframes Fade{
-    from{
+
+@keyframes Fade {
+    from {
         opacity: 0.5;
     }
-    to{
+
+    to {
         opacity: 1;
     }
 }
@@ -507,19 +577,21 @@ from {
     font-weight: 500;
     font-size: 10vh;
     font-weight: 600;
-    font-family:script ;
-    
+    font-family: script;
+
 }
-#banner1 .icon{
+
+#banner1 .icon {
     position: absolute;
     display: flex;
     width: 85%;
     bottom: 25px;
     text-align: center;
-    
+
     justify-content: center;
 }
-#banner1 .dot-icon{
+
+#banner1 .dot-icon {
     color: #fff;
     font-size: 35px;
     margin: 0 4px;
@@ -534,12 +606,13 @@ from {
     cursor: pointer;
     box-shadow: 0px 0px 0px 1px #ccc;
 }
+
 .dot-icon.active {
     background-color: #fff !important;
 }
 
 #banner1 p {
-    color:#659dbd;
+    color: #659dbd;
 }
 
 /* body  */
@@ -547,7 +620,7 @@ from {
     background-color: white;
     text-align: center;
     padding: 20px 200px;
-    
+
 }
 
 #product1 .pro-container {
@@ -557,14 +630,16 @@ from {
     flex-wrap: wrap;
 
 }
+
 #product1 .admin:hover {
     opacity: 0.5;
 }
 
-#product1 .pro,.pro-admin {
+#product1 .pro,
+.pro-admin {
     width: 23%;
     min-width: 250px;
-    padding:  10px 12px;
+    padding: 10px 12px;
     border: 1px solid #22222222;
     border-radius: 25px;
     cursor: pointer;
@@ -573,19 +648,23 @@ from {
     transition: 0.2s ease;
     position: relative;
 }
-#product1 .pro-admin{
+
+#product1 .pro-admin {
     margin: 0 50%;
     translate: -50%;
 }
 
-#product1 .pro:hover,.pro-admin:hover{
-    box-shadow: 20px 20px 30px rgba(0,0,0,0.123);
+#product1 .pro:hover,
+.pro-admin:hover {
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.123);
 }
-#product1 .pro:hover img{
+
+#product1 .pro:hover img {
     opacity: 0.7;
 }
 
-#product1 .pro img,.pro-admin img{
+#product1 .pro img,
+.pro-admin img {
     width: 100%;
     border-radius: 20px;
     position: relative;
@@ -593,94 +672,115 @@ from {
     max-width: 200px;
     min-height: 200px;
     /* background-color: rgba(128, 128, 128, 0.17); */
- }
- #product1 .pro:hover .modal-adjust{
+}
+
+#product1 .pro:hover .modal-adjust {
     display: block !important;
 }
-#product1 .pro .adjust{
+
+#product1 .pro .adjust {
     z-index: 1;
     position: absolute;
     top: 25%;
     left: 0;
     right: 0;
- }
- #product1 .pro .rewrite,#product1 .pro .delete{
+}
+
+#product1 .pro .rewrite,
+#product1 .pro .delete {
     background-color: #333;
     border-radius: 50px;
     margin: auto;
     width: 35%;
     margin-bottom: 15px;
     padding: 5px;
- }
- #product1 .pro .adjust h4{
+}
+
+#product1 .pro .adjust h4 {
     color: #fff;
- }
- #product1 .pro-admin:hover,.pro-admin-delete:hover{
+}
+
+#product1 .pro-admin:hover,
+.pro-admin-delete:hover {
     opacity: 0.5;
- }
- #product1 .pro .des,.pro-admin .des{
+}
+
+#product1 .pro .des,
+.pro-admin .des {
     text-align: start;
     padding: 10px 0;
- }
+}
 
- #product1 .pro .des span,.pro-admin .des span {
-    color:#22222281;
+#product1 .pro .des span,
+.pro-admin .des span {
+    color: #22222281;
     font-size: 12px;
- }
- #product1 .pro .des .MaSP{
+}
+
+#product1 .pro .des .MaSP {
     display: inline;
     font-size: 10px;
- }
+}
 
- #product1 .pro .des h5,.pro-admin .des h5 {
+#product1 .pro .des h5,
+.pro-admin .des h5 {
     padding-top: 7px;
     color: #1a1a1a;
     font-size: 14px;
- }
+}
 
- #product1 .pro .des i,.pro-admin .des i {
+#product1 .pro .des i,
+.pro-admin .des i {
     font-size: 12px;
-    color:#659dbd;
- }
+    color: #659dbd;
+}
 
- #product1 .pro .des h4,.pro-admin .des h4 {
+#product1 .pro .des h4,
+.pro-admin .des h4 {
     padding-top: 7px;
     font-size: 15px;
     font-weight: 700;
     color: #659dbd;
- }
- #product1 .pro .cart,.pro-admin .cart{
+}
+
+#product1 .pro .cart,
+.pro-admin .cart {
     width: 40px;
     height: 40px;
     line-height: 40px;
     border-radius: 50px;
-    background-color:#659dbd;
+    background-color: #659dbd;
     font-weight: 800;
     color: #e8e8e8;
     border: 1px solid white;
     position: absolute;
     bottom: 20px;
     right: 10px;
- }
- #product1 #sotrang{
+}
+
+#product1 #sotrang {
     text-align: center;
- }
- #product1 #sotrang li{
+}
+
+#product1 #sotrang li {
     list-style-type: none;
     padding: 5px;
     color: #333;
     margin: 0 2px;
     border-radius: 50px;
     display: inline;
- }
- #product1 #sotrang li:hover{
+}
+
+#product1 #sotrang li:hover {
     background-color: #ccc;
     opacity: 0.6;
     color: #fff;
     cursor: pointer;
- }
+}
 
- .modal,.modal-admin,.modal-ADJUST{
+.modal,
+.modal-admin,
+.modal-ADJUST {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -691,8 +791,11 @@ from {
     align-items: center;
     justify-content: center;
     z-index: 5;
- }
- .modal .modal-container,.modal-admin .modal-container,.modal-ADJUST .modal-container_ADJUST{
+}
+
+.modal .modal-container,
+.modal-admin .modal-container,
+.modal-ADJUST .modal-container_ADJUST {
     background-color: #fff;
     width: 75%;
     min-height: 250px;
@@ -700,9 +803,11 @@ from {
     position: relative;
     border: 3px solid orange;
     border-radius: 15px;
- }
+}
 
- .modal .modal-container .icon,.modal-admin .modal-container .icon,.modal-ADJUST .modal-container_ADJUST .icon{
+.modal .modal-container .icon,
+.modal-admin .modal-container .icon,
+.modal-ADJUST .modal-container_ADJUST .icon {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -713,59 +818,84 @@ from {
     color: #ccc;
     cursor: pointer;
     transition: all 0.3s;
- }
-.modal .modal-container .icon:hover,.modal-admin .modal-container .icon:hover,.modal-ADJUST .modal-container_ADJUST .icon:hover{
+}
+
+.modal .modal-container .icon:hover,
+.modal-admin .modal-container .icon:hover,
+.modal-ADJUST .modal-container_ADJUST .icon:hover {
     transform: rotate(-360deg);
     padding: 5px;
 }
- .modal .modal-container .modal-body, .modal-admin .modal-container .modal-body,.modal-ADJUST .modal-container_ADJUST .modal-body_ADJUST{
+
+.modal .modal-container .modal-body,
+.modal-admin .modal-container .modal-body,
+.modal-ADJUST .modal-container_ADJUST .modal-body_ADJUST {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
- }
- .modal .modal-body .img,.modal-admin .modal-body .img,.modal-ADJUST .modal-body_ADJUST .img{
+}
+
+.modal .modal-body .img,
+.modal-admin .modal-body .img,
+.modal-ADJUST .modal-body_ADJUST .img {
     width: 40%;
- }
- .modal .modal-body .img img,.modal-admin .modal-body .img img,.modal-ADJUST .modal-body_ADJUST .img img{
+}
+
+.modal .modal-body .img img,
+.modal-admin .modal-body .img img,
+.modal-ADJUST .modal-body_ADJUST .img img {
     width: 90%;
     margin-left: 20px;
     padding: 20% 0;
     border-radius: 30%;
     max-height: 460px;
-    max-width: 280px;   
- }
- .modal-admin .modal-body .img img,.modal-ADJUST .modal-body_ADJUST .img img{
+    max-width: 280px;
+}
+
+.modal-admin .modal-body .img img,
+.modal-ADJUST .modal-body_ADJUST .img img {
     cursor: pointer;
     border: 1px solid;
     max-height: 460px;
     margin: 20px 0;
     border-radius: 20%;
- }
- .modal .modal-body .properties,.modal-admin .modal-body .properties,.modal-ADJUST .modal-body_ADJUST .properties{
+}
+
+.modal .modal-body .properties,
+.modal-admin .modal-body .properties,
+.modal-ADJUST .modal-body_ADJUST .properties {
     width: 58%;
- }
- .modal-admin .properties .flex-box,.modal-ADJUST .properties .flex-box{
+}
+
+.modal-admin .properties .flex-box,
+.modal-ADJUST .properties .flex-box {
     display: flex;
     align-items: baseline;
- }
- .modal-admin .flex-box .Title,.modal-ADJUST .flex-box .Title{
+}
+
+.modal-admin .flex-box .Title,
+.modal-ADJUST .flex-box .Title {
     min-width: 65px;
- }
- .modal-admin .flex-box .SoLuong,.modal-ADJUST .flex-box .SoLuong{
+}
+
+.modal-admin .flex-box .SoLuong,
+.modal-ADJUST .flex-box .SoLuong {
     flex: 1;
     text-transform: uppercase;
- }
- .dropdown {
+}
+
+.dropdown {
     position: relative;
     display: flex;
     flex: 1;
 }
- .dropdown-content{
+
+.dropdown-content {
     display: none;
     position: absolute;
     background-color: #fff;
     min-width: 200px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 12px 16px;
     text-align: center;
     border-radius: 5px;
@@ -774,38 +904,46 @@ from {
     top: 75%;
     right: 0;
     left: 0;
- }
- /* .dropdown:hover .dropdown-content {
+}
+
+/* .dropdown:hover .dropdown-content {
     display: block !important;
 } */
-.dropdown-content li{
+.dropdown-content li {
     list-style-type: none;
 }
-.dropdown-content li:hover{
+
+.dropdown-content li:hover {
     background-color: #ccc;
     opacity: 0.8;
 }
 
- .modal .modal-body input,.modal-admin .modal-body input,.modal-ADJUST .modal-body_ADJUST input{
+.modal .modal-body input,
+.modal-admin .modal-body input,
+.modal-ADJUST .modal-body_ADJUST input {
     width: 65px;
     border-radius: 5px;
     height: 25px;
     text-align: center;
- }
- .modal .modal-body .Duong{
+}
+
+.modal .modal-body .Duong {
     margin: 8px 0;
- }
-.modal .modal-body .ChuDuong{
+}
+
+.modal .modal-body .ChuDuong {
     display: flex;
     align-items: baseline;
     justify-content: flex-start;
     margin-left: 5px;
 }
-.modal .modal-body .Chu{
+
+.modal .modal-body .Chu {
     margin: 0 20px;
     font-size: 15px;
 }
-.modal .properties .ChuDuong input{
+
+.modal .properties .ChuDuong input {
     border-radius: 100%;
     height: 20px;
     width: 20px;
@@ -813,7 +951,9 @@ from {
 }
 
 
- .modal .modal-body .properties .Mua,.modal-admin .modal-body .properties .Accept,.modal-ADJUST .modal-body_ADJUST .properties .ADJUST{
+.modal .modal-body .properties .Mua,
+.modal-admin .modal-body .properties .Accept,
+.modal-ADJUST .modal-body_ADJUST .properties .ADJUST {
     background-color: orange;
     display: block;
     width: 90%;
@@ -827,14 +967,17 @@ from {
     padding: 10px;
     margin-top: 18px;
     cursor: pointer;
- }
- .modal .modal-body .properties .Mua:hover,.modal-admin .modal-body .properties .Accept:hover,.modal-ADJUST .modal-body_ADJUST .properties .ADJUST:hover{
-        opacity: 0.5;
+}
 
- }
+.modal .modal-body .properties .Mua:hover,
+.modal-admin .modal-body .properties .Accept:hover,
+.modal-ADJUST .modal-body_ADJUST .properties .ADJUST:hover {
+    opacity: 0.5;
 
- /* ADMIN */
- .modal-del {
+}
+
+/* ADMIN */
+.modal-del {
     position: fixed;
     bottom: 0;
     right: 0;
@@ -845,41 +988,43 @@ from {
     align-items: center;
     justify-content: center;
     z-index: 1;
-  }
-  
-  .modal-del h1 {
+}
+
+.modal-del h1 {
     text-align: center;
     font-size: 20px;
-  }
-  .modal-del .del-contain{
+}
+
+.modal-del .del-contain {
     background-color: wheat;
     border-radius: 30px;
     padding: 20px;
-  }
-  .modal-del .button{
+}
+
+.modal-del .button {
     display: flex;
-  }
-  
-  .modal-del button {
+}
+
+.modal-del button {
     background-color: #fff;
     color: #000;
     border: 1px solid #000;
     padding: 10px;
     cursor: pointer;
-  }
-  
-  .modal-del .co {
+}
+
+.modal-del .co {
     float: right;
     flex: 1;
-  }
-  
-  .modal-del .khong {
+}
+
+.modal-del .khong {
     float: left;
     flex: 1;
-  }
+}
 
-  /* CHI TIẾT HÓA ĐƠN */
-#CHITIETHOADON .HEADERHOADON{
+/* CHI TIẾT HÓA ĐƠN */
+#CHITIETHOADON .HEADERHOADON {
     position: fixed;
     display: flex;
     align-items: center;
@@ -892,24 +1037,28 @@ from {
     height: 20%;
     z-index: 6;
 }
-.container_logo_search{
+
+.container_logo_search {
     margin-right: auto;
     margin-left: auto;
     width: 100%;
     display: flex;
     align-items: center;
 }
-.logobackHome{
+
+.logobackHome {
     padding-left: 50px;
     display: flex;
     flex: 1;
 }
-.logoBar{
+
+.logoBar {
     display: flex;
     align-items: center;
     text-decoration: none;
 }
-.textLogo{
+
+.textLogo {
     margin-left: 20px;
     border-left: red solid 3px;
     padding-left: 20px;
@@ -920,29 +1069,34 @@ from {
     color: rgb(50, 50, 247);
 
 }
-.textLogo:visited{
+
+.textLogo:visited {
     color: rgb(50, 50, 247);
 }
-.searchBar{
+
+.searchBar {
     width: 38.8125rem;
     position: relative;
     display: flex;
     align-items: center;
     height: 40px;
 }
-.searchBar_main{
+
+.searchBar_main {
     padding: 0;
     border: rgb(50, 50, 247) solid 2px;
     flex: 1;
     height: 100%;
 }
-.search_form{
+
+.search_form {
     display: flex;
     box-sizing: border-box;
     margin: 0;
-    height: 100%;  
+    height: 100%;
 }
-.searchBar_input{
+
+.searchBar_input {
     display: flex;
     flex: 1;
     align-items: center;
@@ -953,49 +1107,56 @@ from {
     width: 100%;
     font-size: 0.9rem;
 }
-.btn_searchBar{
+
+.btn_searchBar {
     height: 100%;
     border-radius: 0;
     width: 5rem;
     border: solid blue 2px;
     background-color: blue;
 }
+
 #iconSearch {
     font-size: 15px;
 }
-#CHITIETHOADON .CHITIETHOADON{
+
+#CHITIETHOADON .CHITIETHOADON {
     position: fixed;
     background-color: #ccc;
     top: 20%;
     bottom: 10%;
-    right:0;
+    right: 0;
     left: 0;
     opacity: 1;
     height: 70%;
     z-index: 6;
 }
-#CHITIETHOADON .COVER{
+
+#CHITIETHOADON .COVER {
     position: fixed;
     bottom: 0;
-    right:0;
+    right: 0;
     left: 0;
     z-index: 6;
 }
-#CHITIETHOADON .TOTAL{
+
+#CHITIETHOADON .TOTAL {
     position: fixed;
     background-color: rgb(173 133 27 / 75%);
     bottom: 0;
-    right:0;
+    right: 0;
     left: 0;
     opacity: 1;
     height: 10%;
     z-index: 6;
 }
-.TOTAL h4{
+
+.TOTAL h4 {
     position: absolute;
     right: 0;
 }
-#CHITIETHOADON .PAY{
+
+#CHITIETHOADON .PAY {
     position: absolute;
     bottom: 0;
     z-index: 7;
@@ -1006,32 +1167,220 @@ from {
     border-radius: 5px;
     cursor: pointer;
 }
-#CHITIETHOADON .chart{
+
+#CHITIETHOADON .chart {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    padding: 10px;
+    background-color: white;
+    border-bottom: 3px solid rgb(32, 31, 29);
+    border-radius: 3px;
+    margin: 10px 10px;
+
 }
-#CHITIETHOADON .chart img,.AGREE .chart img{
+
+#CHITIETHOADON .ChartTsp {
+    flex-grow: 1;
+    /* Dãn ra chiếm không gian còn lại */
+}
+
+#CHITIETHOADON .ChartBox {
+    position: absolute;
+    /* Định vị tuyệt đối */
+    right: 10px;
+    /* Đặt ở phía bên phải ngoài cùng */
+    
+}
+
+#CHITIETHOADON .chart>*:not(.ChartTsp):not(.ChartBox) {
+    
+    /* Các thành phần còn lại sẽ chiếm toàn bộ chiều rộng */
+    min-width: 50px;
+    /* Đặt chiều rộng tối thiểu */
+}
+
+
+@media (max-width: 600px) {
+    #CHITIETHOADON .chart {
+        display: flex;
+
+        align-items: flex-start;
+        /* Căn phần tử theo đầu trang */
+        position: relative;
+        /* Cho phép absolute positioning bên trong */
+        padding: 10px;
+        padding-left: 120px;
+        margin: 10px 10px;
+        border-radius: 3px;
+        border-bottom: 3px solid wheat;
+    }
+    #CHITIETHOADON .chart>*:not(.ChartTsp):not(.ChartBox) {
+    
+        /* Các thành phần còn lại sẽ chiếm toàn bộ chiều rộng */
+        min-width: 0px;
+        /* Đặt chiều rộng tối thiểu */
+    }
+
+    #CHITIETHOADON .chartImage {
+        position: absolute;
+        left: 10px;
+        /* Đặt ở bên trái container */
+        top: 10px;
+        /* Đặt ở đầu container */
+        width: 100px;
+        /* Điều chỉnh kích thước theo yêu cầu */
+        height:100px;
+        order: 1;
+    }
+
+    #CHITIETHOADON .ChartTsp {
+        margin-left: +20px;
+
+    }
+
+    #CHITIETHOADON .ChartTsp,
+    #CHITIETHOADON .ChartSL {
+        flex-basis: 100%;
+        display: flex;
+        order: 2;
+        max-width: 100px;
+        margin-top: -100px;
+
+    }
+    
+    #CHITIETHOADON .ChartDuong,
+    #CHITIETHOADON .ChartDa,
+    #CHITIETHOADON .ChartSize,
+    #CHITIETHOADON .ChartTopping {
+        position: absolute;
+        left: 110px;
+        width: auto;
+        
+    }
+
+    #CHITIETHOADON .ChartDuong {
+        position: left;
+        top: 40px;
+        left: 120px;
+        min-width: auto;
+    }
+
+    #CHITIETHOADON .ChartDa {
+        position: left;
+        top: 60px;
+        left: 120px;
+        min-width: auto;
+        
+    }
+
+    #CHITIETHOADON .ChartSize {
+        position: left;
+        top: 80px;
+        left: 120px;
+        min-width: auto;
+    }
+
+    #CHITIETHOADON .ChartTopping {
+        position: left;
+        top: 100px;
+        left: 120px;
+        min-width: auto;
+    }
+    #CHITIETHOADON .ChartTime,
+    #CHITIETHOADON .ChartTien {
+        flex-basis: 100%;
+        /* Chiếm toàn bộ chiều rộng */
+        order: 4;
+        /* Đặt ưu tiên hiển thị, dưới cùng */
+        flex-direction: column;
+        display: flex;
+    }
+    #CHITIETHOADON .ChartBox {
+        position: absolute;
+        /* Định vị tuyệt đối */
+        right: 10px;
+        /* Đặt ở phía bên phải ngoài cùng */
+        top: 10px;
+        min-width:25px;
+        
+    }
+
+   
+    #CHITIETHOADON .HUY {
+        order: 5;
+        bottom:10px;
+        position: absolute;
+        right:5px;
+
+    }
+
+    #CHITIETHOADON .chartBox {
+        
+        width: 100%;
+        
+        position: relative;
+        
+        height: 10%;
+    }
+}
+
+
+#CHITIETHOADON .chart .SL {
+    color: #1ebfc1;
+}
+
+
+.box-chitiet-sanpham {
+    flex-direction: column;
+}
+
+#CHITIETHOADON .chart img,
+.AGREE .chart img {
     width: 10%;
     max-width: 50px;
     max-height: 65px;
 }
-#CHITIETHOADON .chart .ChartTsp,#CHITIETHOADON .ChartSL,#CHITIETHOADON .ChartDuong,#CHITIETHOADON .ChartDa,#CHITIETHOADON .ChartSize,
-#CHITIETHOADON .ChartTopping,#CHITIETHOADON .ChartTime,#CHITIETHOADON .ChartTien,#CHITIETHOADON .ChartBox,#CHITIETHOADON .HUY{
-    display: inline;
-    width: 6%;
+
+#CHITIETHOADON .chart .ChartTsp,
+#CHITIETHOADON .ChartSL {
+    width: 10%;
+    max-width: 150px;
+    max-height: 65px;
+    font-size: large;
+
 }
-#CHITIETHOADON .ChartBox{
+
+#CHITIETHOADON .ChartDuong,
+#CHITIETHOADON .ChartDa,
+#CHITIETHOADON .ChartSize,
+#CHITIETHOADON .ChartTopping,
+#CHITIETHOADON .ChartTime,
+#CHITIETHOADON .ChartTien,
+#CHITIETHOADON .ChartBox,
+#CHITIETHOADON .HUY {
+    display: inline;
+    width: auto;
+    flex-grow: 1;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+
+#CHITIETHOADON .ChartBox {
     height: 16px;
 }
-#CHITIETHOADON .ChartBox:hover,#CHITIETHOADON .HUY:hover{
+
+#CHITIETHOADON .ChartBox:hover,
+#CHITIETHOADON .HUY:hover {
     cursor: pointer;
     background-color: #fff;
     opacity: 0.8;
     padding: 2px;
 }
-.logobackHomeAgree{
+
+.logobackHomeAgree {
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     border: 1px solid orange;
@@ -1042,7 +1391,8 @@ from {
     flex: 1;
 
 }
-#XACNHANMUA{
+
+#XACNHANMUA {
     position: fixed;
     z-index: 8;
     top: 0;
@@ -1050,7 +1400,8 @@ from {
     right: 0;
     left: 0;
 }
-#XACNHANMUA .AGREE{
+
+#XACNHANMUA .AGREE {
     position: absolute;
     top: 10%;
     bottom: 0;
@@ -1061,7 +1412,8 @@ from {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
-.AGREE .chart{
+
+.AGREE .chart {
     display: flex;
     border-bottom: 1px solid orange;
     margin-bottom: 3px;
@@ -1069,16 +1421,25 @@ from {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
-#XACNHANMUA .AGREE .chart .ChartTsp,#XACNHANMUA .AGREE .ChartSL,#XACNHANMUA .AGREE .ChartDuong,#XACNHANMUA .AGREE .ChartDa,#XACNHANMUA .AGREE .ChartSize,
-#XACNHANMUA .AGREE .ChartTopping,#XACNHANMUA .AGREE .ChartTime,#XACNHANMUA .AGREE .ChartTien{
+
+#XACNHANMUA .AGREE .chart .ChartTsp,
+#XACNHANMUA .AGREE .ChartSL,
+#XACNHANMUA .AGREE .ChartDuong,
+#XACNHANMUA .AGREE .ChartDa,
+#XACNHANMUA .AGREE .ChartSize,
+#XACNHANMUA .AGREE .ChartTopping,
+#XACNHANMUA .AGREE .ChartTime,
+#XACNHANMUA .AGREE .ChartTien {
     display: inline;
     width: 10%;
 }
+
 .AGREE .chart .ChartTsp,
-.AGREE .ChartTime{
+.AGREE .ChartTime {
     overflow: hidden;
 }
-.AGREE .chart .XACNHANMUA{
+
+.AGREE .chart .XACNHANMUA {
     flex-basis: 100%;
     /* right: -14px; */
     position: relative;
@@ -1087,7 +1448,7 @@ from {
     border-top: 1px solid #ccc;
 }
 
-.modal_AccountInfo{
+.modal_AccountInfo {
     position: fixed;
     z-index: 4;
     top: 12.5%;
@@ -1095,12 +1456,14 @@ from {
     right: 0;
     left: 0;
 }
-.modal_AccountInfo .container{
+
+.modal_AccountInfo .container {
     width: 100%;
     position: relative;
     height: 100%;
 }
-.modal_AccountInfo .container .sidebar{
+
+.modal_AccountInfo .container .sidebar {
     width: 20%;
     position: absolute;
     height: 100%;
@@ -1109,16 +1472,19 @@ from {
     justify-content: center;
     align-items: center;
 }
-.modal_AccountInfo .sidebar li{
+
+.modal_AccountInfo .sidebar li {
     list-style-type: none;
     margin: 8px 0;
     padding: 4px 0;
     cursor: pointer;
 }
-.modal_AccountInfo .sidebar li:hover{
+
+.modal_AccountInfo .sidebar li:hover {
     color: red;
 }
-.modal_AccountInfo .container .content{
+
+.modal_AccountInfo .container .content {
     width: 80%;
     height: 100%;
     background-color: #ccc;
@@ -1127,31 +1493,37 @@ from {
     right: 0;
     align-items: center;
 }
-.modal_AccountInfo .content .main{
+
+.modal_AccountInfo .content .main {
     height: 90%;
     background-color: #fff;
     width: 100%;
     border-radius: 5px;
 }
-.modal_AccountInfo .main .NhapTen{
+
+.modal_AccountInfo .main .NhapTen {
     height: 40%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     position: relative;
 }
-.modal_AccountInfo .NhapTen input{
+
+.modal_AccountInfo .NhapTen input {
     border-radius: 5px;
     height: 25px;
     text-align: center;
     margin-left: 5px;
 }
-.modal_AccountInfo .UserName,.modal_AccountInfo .Password,
-.modal_AccountInfo .PasswordAgain{
+
+.modal_AccountInfo .UserName,
+.modal_AccountInfo .Password,
+.modal_AccountInfo .PasswordAgain {
     width: 100%;
     text-align: center;
 }
-.modal_AccountInfo .XacNhan{
+
+.modal_AccountInfo .XacNhan {
     position: absolute;
     bottom: -30px;
     right: 50%;
@@ -1163,8 +1535,8 @@ from {
     cursor: pointer;
 }
 
- 
-.userEmail{
+
+.userEmail {
     /* border: red solid 1px; */
     /* display: flex; */
     color: white;
@@ -1178,14 +1550,15 @@ from {
     right: 35%;
     translate: 50%;
 }
-#History{
+
+#History {
     height: 90%;
     background-color: #fff;
     width: 100%;
     border-radius: 5px;
 }
 
-#History .chart{
+#History .chart {
     width: 100%;
     display: flex;
     flex-wrap: nowrap;
@@ -1194,11 +1567,13 @@ from {
     align-items: center;
     margin: 5px 5px;
 }
-#History .chart:hover{
+
+#History .chart:hover {
     opacity: 0.6;
     background-color: #ccc;
 }
-#History .chart img{
+
+#History .chart img {
     width: 8%;
     display: inline;
     border: 1px solid #ccc;
@@ -1207,9 +1582,14 @@ from {
     max-height: 50px;
     max-width: 30px;
 }
-#History .chart .ChartTsp,#History .chart .ChartSL
-,.chart .ChartDuong,.chart .ChartDa,.chart .ChartSize,.chart .ChartTopping,
-#History .chart .ChartTien{
+
+#History .chart .ChartTsp,
+#History .chart .ChartSL,
+.chart .ChartDuong,
+.chart .ChartDa,
+.chart .ChartSize,
+.chart .ChartTopping,
+#History .chart .ChartTien {
     text-align: center;
     width: 20%;
     display: inline;
@@ -1224,109 +1604,113 @@ footer {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 20px;
-  }
-  
-  footer .col {
+}
+
+footer .col {
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 20px;
     color: white;
-  }
-  
-  footer .logo {
+}
+
+footer .logo {
     margin-bottom: 30px;
-  }
-  
-  footer h4 {
+}
+
+footer h4 {
     font-size: 20px;
     padding-bottom: 20px;
     color: white;
-  }
-  footer p {
+}
+
+footer p {
     font-size: 15px;
     margin: 0 0 8px 0;
     color: white;
-  }
-  
-  footer a {
+}
+
+footer a {
     font-size: 13px;
     margin-bottom: 10px;
     text-decoration: none;
     color: white;
-  }
-  
-  footer .follow {
+}
+
+footer .follow {
     margin-top: 20px;
-  }
-  
-  footer .follow i {
+}
+
+footer .follow i {
     color: white;
     padding-right: 4px;
     cursor: pointer;
-  }
-  
-  footer .install .row {
+}
+
+footer .install .row {
     margin-top: 20px;
-  }
-  
-  footer .follow i:hover,
-  footer a:hover {
+}
+
+footer .follow i:hover,
+footer a:hover {
     color: #659dbd;
-  }
-  
-  footer .coppyright {
+}
+
+footer .coppyright {
     width: 100%;
     text-align: center;
-  }
-  /* css cho tìm kiếm nâng cao */
-  .invisible{
+}
+
+/* css cho tìm kiếm nâng cao */
+.invisible {
     display: none !important;
-  }
-  .hello-filter {
+}
+
+.hello-filter {
     position: relative;
     margin: 30px 0;
     justify-content: space-between;
-  }
-  
-  .hello-filter .hello,
-  .recommend .title {
+}
+
+.hello-filter .hello,
+.recommend .title {
     color: var(--text-color-dark);
     font-size: 2.4rem;
     font-weight: 700;
     line-height: 1.41;
-  }
-  
-  .hello-filter .hello-name {
+}
+
+.hello-filter .hello-name {
     color: #1ebfc1;
     font-size: 2.4rem;
     font-weight: 700;
     line-height: 1.41;
-  }
-  
-  .hello-filter .filter {
+}
+
+.hello-filter .filter {
     background-color: #fff;
     padding: 12px;
     display: flex;
     border-radius: 6px;
     gap: 14px;
-  }
-  
-  .hello-filter span {
+}
+
+.hello-filter span {
     color: var(--text-color-dark);
     font-size: 1.6rem;
     font-weight: 500;
     line-height: 1.5;
     width: 100%;
-  }
-  .filter-toggle.active ~ .form-filter {
+}
+
+.filter-toggle.active~.form-filter {
     opacity: 1;
     visibility: visible;
     scale: 1;
-  }
-  
-  /* .form-filter::before {
+}
+
+/* .form-filter::before {
     background-color: #fff;
     content: "";
     position: absolute;
@@ -1335,8 +1719,8 @@ footer {
     border: 10px solid;
     border-color: var(--background-color) var(--background-color) #fff;
   } */
-  
-  .filter-toggle {
+
+.filter-toggle {
     background-color: #fff;
     padding: 6px 12px;
     border-radius: 6px;
@@ -1345,38 +1729,39 @@ footer {
     align-items: center;
     cursor: pointer;
     border: 1px solid #ccc;
-  }
-  
-  .filter-toggle:hover {
+}
+
+.filter-toggle:hover {
     background-color: rgba(255, 255, 255, 0.8);
-  }
-  
-  .title-filter {
+}
+
+.title-filter {
     color: var(--text-color-dark);
     font-size: 2.2rem;
     font-weight: 500;
-  }
-  .form-filter .group-btn {
+}
+
+.form-filter .group-btn {
     display: flex;
     margin-top: 20px;
     justify-content: center;
     gap: 20px;
-  }
-  
-  .form-filter .group-btn .btn-cancel {
+}
+
+.form-filter .group-btn .btn-cancel {
     color: var(--text-color-light);
     font-size: 1.4rem;
     font-weight: 400;
     border: none;
     background-color: #fff;
     cursor: pointer;
-  }
-  
-  .form-filter .group-btn .btn-cancel:hover {
+}
+
+.form-filter .group-btn .btn-cancel:hover {
     color: var(--text-color-dark);
-  }
-  
-  .form-filter .group-btn .btn-show-result {
+}
+
+.form-filter .group-btn .btn-show-result {
     color: var(--text-color-dark);
     font-size: 1.5rem;
     border: none;
@@ -1384,71 +1769,73 @@ footer {
     border-radius: 6px;
     background-color: #1ebfc1;
     padding: 10px;
-  }
-  
-  .form-filter .group-btn .btn-show-result:hover {
+}
+
+.form-filter .group-btn .btn-show-result:hover {
     background-color: #27b6b9;
     transform: scale(1.05);
-  }
+}
 
-  /* Đối với màn hình có độ rộng nhỏ hơn 600px */
+/* Đối với màn hình có độ rộng nhỏ hơn 600px */
 @media (max-width: 600px) {
-    #header{
-        display:flex;
+    #header {
+        display: flex;
         justify-content: left;
-        padding:10px 10px;
+        padding: 10px 10px;
     }
-    
+
 
     #SEARCH input {
         min-width: 100%;
         margin-left: 10%;
-        
+
         position: relative;
     }
-    .search-icon{
-        
-    }
-    .circle-search-box{
-        
-        
-    }
-    .logo-container{
+
+    .logo-container {
         margin-right: 30px;
     }
 
 
-    .HOME-BUTTON-NAV{
-        display:none;
+    .HOME-BUTTON-NAV {
+        display: none;
     }
-    .navbar-function-wrapper{
-        display:none;
+
+    .navbar-function-wrapper {
+        display: none;
     }
-    .navbar-icon-wrapper{
-        
+
+    .navbar-icon-wrapper {
+
         position: absolute;
-        justify-content:right;
-        right:0;
-        top:50%;
+        justify-content: right;
+        right: 0;
+        top: 50%;
         transform: translateY(-50%);
-        gap:0px;
+        gap: 0px;
     }
-    #header .icon-bar{
-       
+
+    #header .icon-bar {
+
         padding: 0px;
     }
-    #header .icon-bar .a{
+
+    #header .icon-bar .a {
         margin-left: 0px;
     }
-    #header li > h3.user{
+
+    #header li>h3.user {
         position: relative;
-        margin-left: 20px;  /*tăng khoảng cách giữa 2 icon */
+        margin-left: 20px;
+        /*tăng khoảng cách giữa 2 icon */
     }
-    .bar#user .CHART{
-        padding:0;
+
+    .bar#user .CHART {
+        padding: 0;
         /* display: ; */
     }
-    ul.CHART:hover >div#CHART_SHOW {
+
+    ul.CHART:hover>div#CHART_SHOW {
         display: none;
         animation: bung-ra 0.5s ease-in-out;
     }
@@ -1480,26 +1867,26 @@ footer {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap:30px;
-        
+        gap: 30px;
+
         position: relative;
     }
 
     #banner1 .TieuDe {
         opacity: 1;
         animation: colorText 2s ease-in-out infinite;
-        font-size:40px;
+        font-size: 40px;
         position: relative;
         top: 10x;
-        left:-80px;
-       display: none;
+        left: -80px;
+        display: none;
     }
-    
+
 
     #banner1 h4 {
         padding-bottom: 0px;
         color: #659dbd;
-        
+
     }
 
 
@@ -1508,14 +1895,14 @@ footer {
     }
 
 
-   
+
     #banner1 .icon {
         position: absolute;
         display: flex;
         width: 70%;
         bottom: 15px;
         text-align: right;
-        right:37%;
+        right: 37%;
 
         justify-content: right;
     }
@@ -1545,46 +1932,52 @@ footer {
     }
 
 
-    
+
     .spphobien {
         font-size: 30px;
         line-height: 64px;
         color: #222;
-      
+
         margin-top: auto;
-        
-        left: 0; /* Đặt vị trí từ bên trái */
-z-index: 1; /* Đảm bảo rằng nó luôn nằm trên các phần tử khác */
+
+        left: 0;
+        /* Đặt vị trí từ bên trái */
+        z-index: 1;
+        /* Đảm bảo rằng nó luôn nằm trên các phần tử khác */
     }
-    
+
     /* Tạo vùng đệm bằng cách thêm padding cho phần tử chứa "Sản phẩm phổ biến" */
     .container {
-        padding-top: 50px; /* Giả sử "Sản phẩm phổ biến" có chiều cao là 50px */
+        padding-top: 50px;
+        /* Giả sử "Sản phẩm phổ biến" có chiều cao là 50px */
     }
-    #product1{
+
+    #product1 {
         padding: 0;
     }
-    #product1 h1{
+
+    #product1 h1 {
         font-size: 25px;
     }
 
-    #CHITIETHOADON  {
-        display:flex;
-        padding:0;
+    #CHITIETHOADON {
+        display: flex;
+        padding: 0;
         top: 0;
         bottom: 0;
         right: 0;
         left: 0;
 
         height: 15%;
-        padding:5px;
+        padding: 5px;
     }
-    #CHITIETHOADON .HEADERHOADON{
+
+    #CHITIETHOADON .HEADERHOADON {
         position: fixed;
         display: flex;
         align-items: center;
         background-color: #181515;
-        padding:0;
+        padding: 0;
         top: 0;
         bottom: 0;
         right: 0;
@@ -1593,30 +1986,33 @@ z-index: 1; /* Đảm bảo rằng nó luôn nằm trên các phần tử khác 
         height: 10%;
         z-index: 6;
     }
-    .container_logo_search{
+
+    .container_logo_search {
         margin-right: auto;
         margin-left: auto;
         width: 100%;
         display: flex;
         align-items: center;
-        height:50%;
+        height: 50%;
     }
-    .logobackHome{
-        padding:5px;
+
+    .logobackHome {
+        padding: 5px;
     }
-    
-    #CHITIETHOADON .CHITIETHOADON{
+
+    #CHITIETHOADON .CHITIETHOADON {
         position: fixed;
         background-color: #ccc;
-        top: 13%;
+        top: 10%;
         bottom: 10%;
-        right:0;
+        right: 0;
         left: 0;
         opacity: 0.9;
         height: 70%;
         z-index: 6;
     }
-    #CHITIETHOADON .COVER{
+
+    #CHITIETHOADON .COVER {
         position: fixed;
         display: flex;
         bottom: 7%;
@@ -1624,7 +2020,8 @@ z-index: 1; /* Đảm bảo rằng nó luôn nằm trên các phần tử khác 
         left: 0;
         z-index: 6;
     }
-    #CHITIETHOADON .TOTAL{
+
+    #CHITIETHOADON .TOTAL {
         position: fixed;
         background-color: rgb(173 133 27 / 75%);
         bottom: 7%;
@@ -1634,11 +2031,13 @@ z-index: 1; /* Đảm bảo rằng nó luôn nằm trên các phần tử khác 
         height: 10%;
         z-index: 6;
     }
-    .TOTAL h4{
+
+    .TOTAL h4 {
         position: absolute;
         right: 0;
     }
-    #CHITIETHOADON .PAY{
+
+    #CHITIETHOADON .PAY {
         position: absolute;
         bottom: 0;
         z-index: 7;
@@ -1649,38 +2048,52 @@ z-index: 1; /* Đảm bảo rằng nó luôn nằm trên các phần tử khác 
         border-radius: 5px;
         cursor: pointer;
     }
-    #CHITIETHOADON .chart{
+
+    #CHITIETHOADON .chart {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: space-between;
+        justify-content: left;
+        padding: 10px;
+        background-color: white;
+        border-bottom: 3px solid wheat;
+        border-radius: 3px;
+        margin: 10px 10px;
+
     }
-    #CHITIETHOADON .chart img,.AGREE .chart img{
-        width: 10%;
-        max-width: 50px;
-        max-height: 65px;
+
+    #CHITIETHOADON .chart img,
+    .AGREE .chart img {
+        width: 20%;
+        max-width: 100px;
+        max-height: 300px;
+        border-radius:10px;
+        border:1px solid goldenrod;
+        display:flex;
+        align-items: center;
+
     }
-    #CHITIETHOADON .chart .ChartTsp,#CHITIETHOADON .ChartSL,#CHITIETHOADON .ChartDuong,#CHITIETHOADON .ChartDa,#CHITIETHOADON .ChartSize,
-    #CHITIETHOADON .ChartTopping,#CHITIETHOADON .ChartTime,#CHITIETHOADON .ChartTien,#CHITIETHOADON .ChartBox,#CHITIETHOADON .HUY{
-        display: inline;
-        width: 6%;
+
+
+
+    #CHITIETHOADON .ChartBox {
+        height: 36px;
     }
-    #CHITIETHOADON .ChartBox{
-        height: 16px;
-    }
-    #CHITIETHOADON .ChartBox:hover,#CHITIETHOADON .HUY:hover{
+
+    #CHITIETHOADON .ChartBox:hover,
+    #CHITIETHOADON .HUY:hover {
         cursor: pointer;
-        background-color: #fff;
+        background-color: #2f723f;
         opacity: 0.8;
         padding: 2px;
     }
-    .textLogo{
+
+    .textLogo {
         display: none;
     }
 
-    .form-filter .group-btn {
+    .form-filter .group-btn {}
 
-    }
     .modal_AccountInfo {
         position: fixed;
         z-index: 4;
@@ -1701,41 +2114,47 @@ z-index: 1; /* Đảm bảo rằng nó luôn nằm trên các phần tử khác 
 @media (min-width: 601px) and (max-width: 960px) {
     #header .bar {
         flex-wrap: wrap;
-display: flex;
+        display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0; 
-        margin: 0; 
+        padding: 0;
+        margin: 0;
     }
-    .HOME-BUTTON-NAV{
+
+    .HOME-BUTTON-NAV {
         position: relative;
-        
-        left:-5px;
-        top:25px;
+
+        left: -5px;
+        top: 25px;
         transform: translateY(-50%);
     }
-    .logo-container{
-        position:absolute;
-        left:10px;
-        top:50%;
+
+    .logo-container {
+        position: absolute;
+        left: 10px;
+        top: 50%;
         transform: translateY(-50%);
     }
+
     #SEARCH input {
         max-width: 100%;
     }
-    .navbar-icon-wrapper{
+
+    .navbar-icon-wrapper {
         position: absolute;
-        right:0;
-        top:50%;
+        right: 0;
+        top: 50%;
         transform: translateY(-50%);
     }
+
     .spphobien {
         font-size: 40px;
         line-height: 64px;
         color: #222;
-        
+
 
     }
+
     /* banner  */
     .img0 {
         background-image: url("./img/backgound.jpg");
@@ -1763,26 +2182,26 @@ display: flex;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap:30px;
-        
+        gap: 30px;
+
         position: relative;
     }
 
     #banner1 .TieuDe {
         opacity: 1;
         animation: colorText 2s ease-in-out infinite;
-        font-size:40px;
+        font-size: 40px;
         position: relative;
         top: 10x;
-        left:-80px;
-       
+        left: -80px;
+
     }
-    
+
 
     #banner1 h4 {
         padding-bottom: 0px;
         color: #659dbd;
-        
+
     }
 
 
@@ -1791,14 +2210,14 @@ display: flex;
     }
 
 
-   
+
     #banner1 .icon {
         position: absolute;
         display: flex;
         width: 70%;
         bottom: 15px;
         text-align: right;
-        right:10px;
+        right: 10px;
 
         justify-content: right;
     }
@@ -1827,18 +2246,21 @@ display: flex;
         display: flex;
         align-items: center;
         justify-content: center;
-        
+
     }
-    .HOME-BUTTON-NAV{
-        display:block;
+
+    .HOME-BUTTON-NAV {
+        display: block;
         position: absolute;
-        left:120px;
-        top:50%;
+        left: 120px;
+        top: 50%;
         transform: translateY(-50%);
     }
+
     #SEARCH input {
         min-width: 130%;
     }
+
     .spphobien {
         font-size: 50px;
         line-height: 64px;

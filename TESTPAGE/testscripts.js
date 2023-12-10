@@ -1799,6 +1799,13 @@ filterForm.addEventListener('click',function(event){
 })
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 // kết thúc
 
@@ -1807,9 +1814,20 @@ filterForm.addEventListener('click',function(event){
       const newmodal=new Modal(MODAL,modal.img,modal.name,"Giá: "+modal.price,modal.check);
     }
     for(const chart of charts){
-      if(chart.check===0){
+      if(chart.check===0){ //đưa lên 
         const newChart = new Pro_Chart(CHART_BOX, chart.img, chart.tensp, "SL:"+chart.soluong,chart.duong,chart.da,chart.size,chart.topping, "TONG:"+chart.thanhtien,chart.time);
-        const newCart = new Pro_Chart(DETAILUSERCART, chart.img, chart.tensp, "SL:"+chart.soluong,'Đường:'+chart.duong,'Đá:'+chart.da,'Size:'+chart.size,'Topping:'+chart.topping, "TỔNG:"+chart.thanhtien,chart.time);
+        const newCart = new Pro_Chart(
+          DETAILUSERCART, 
+          chart.img, 
+          chart.tensp, 
+          "SL:"+chart.soluong,
+          'Đường:'+chart.duong,
+          'Đá:'+chart.da,
+          'Size:'+chart.size,
+          'Topping:'+chart.topping, 
+          "TỔNG:"+chart.thanhtien,
+          chart.time
+        );
         newCart.element.querySelector('.ChartDuong').classList.remove('invisible');
         newCart.element.querySelector('.ChartDa').classList.remove('invisible');
         newCart.element.querySelector('.ChartSize').classList.remove('invisible');
@@ -1817,6 +1835,7 @@ filterForm.addEventListener('click',function(event){
         newCart.element.querySelector('.ChartTime').classList.remove('invisible');
         newCart.element.querySelector('.ChartBox').classList.remove('invisible');
         newCart.element.querySelector('.HUY').classList.remove('invisible');
+        
       }
     }
     for (const chart of charts) {
@@ -2518,9 +2537,3 @@ searchBar_input.addEventListener('keypress', function(event) {
 });
 
 
-// xóa loggedUser khi tắt trình duyệt
-window.addEventListener('beforeunload', function () {
-  // Xóa biến loggedUser khỏi localStorage
-  localStorage.removeItem('loggedInUser');
-  console.log('loggedUser has been removed from localStorage.');
-});
